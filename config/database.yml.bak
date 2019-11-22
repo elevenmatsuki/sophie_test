@@ -15,12 +15,12 @@
 development:
   adapter:  postgresql
   host:     localhost
-  encoding: utf8
+  encoding: unicode
   database: sophie_test_development
   pool:     5
   username: sophie_test
-  password: szHU5QR6AEHL
-  template: public
+  password: ee92c06469a914a1fab839dd5a133d39
+  template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
