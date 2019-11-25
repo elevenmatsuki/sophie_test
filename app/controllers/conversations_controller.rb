@@ -18,7 +18,7 @@ class ConversationsController < ApplicationController
   def create
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
-#    logger.debug "debug-1533"
+    logger.debug "debug-1533"
 #    put "debug-put-1633"
 
     orchestration = Orchestration.new(params, "Houndify")
