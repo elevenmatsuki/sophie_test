@@ -59,8 +59,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
-  # STDOUT(標準出力)への書き出し
-#  config.logger = Logger.new(STDOUT)
-  
-#  config.log_level = :debug
 end
