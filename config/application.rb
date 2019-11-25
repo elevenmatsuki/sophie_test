@@ -28,9 +28,5 @@ module SophieTest
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     
-    # STDOUT(標準出力)への書き出し
-    config.logger = Logger.new('log/development.log')
-  
-    config.log_level = :debug
   end
 end
