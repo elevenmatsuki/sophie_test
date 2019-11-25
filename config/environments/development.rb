@@ -60,10 +60,10 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
    # STDOUT(標準出力)への書き出し
-#  config.logger = Logger.new('log/development.log')  
-#  config.log_level = :debug
+  config.logger = Logger.new('log/development.log')  
+  config.log_level = :debug
   
- #   logger           = ActiveSupport::Logger.new(STDOUT)
- #   config.logger   = ActiveSupport::TaggedLogging.new(logger)
+#    logger           = ActiveSupport::Logger.new(STDOUT)
+#    config.logger   = ActiveSupport::TaggedLogging.new(logger)
   
 end
