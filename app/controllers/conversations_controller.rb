@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
     # There are other ways to do this - you could use AJAX directly from the front-end and return some values stored in a database somewhere, or grab a file
     # from an online bucket like S3 which contains the parameters - single use has to be instantiated every time, which makes my method more palatable for Rails
     
-    logger.debug("debug-2250")
+    logger.warm("debug-2250")
 
     @token = Conversation.first.token
     @api_key = Rails.application.secrets.fm_api_key
