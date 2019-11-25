@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
     # There are other ways to do this - you could use AJAX directly from the front-end and return some values stored in a database somewhere, or grab a file
     # from an online bucket like S3 which contains the parameters - single use has to be instantiated every time, which makes my method more palatable for Rails
     
-    logger.warn "debug-conv"
+#    logger.warn "debug-conv"
 
     @token = Conversation.first.token
     @api_key = Rails.application.secrets.fm_api_key
@@ -18,8 +18,8 @@ class ConversationsController < ApplicationController
   def create
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
-    logger.debug "debug-1533"
-    put "debug-put-1633"
+#    logger.debug "debug-1533"
+#    put "debug-put-1633"
 
     orchestration = Orchestration.new(params, "Houndify")
     response = orchestration.orchestrate
