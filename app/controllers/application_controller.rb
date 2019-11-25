@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
   def create
-    logger.warm("debug-App")
+    logger.warn("debug-App")
   end
 end
