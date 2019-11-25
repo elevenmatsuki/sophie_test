@@ -61,4 +61,6 @@ Rails.application.configure do
   
   # STDOUT(標準出力)への書き出し
   config.logger = Logger.new(STDOUT)
+  
+  config.log_level = :debug
 end
