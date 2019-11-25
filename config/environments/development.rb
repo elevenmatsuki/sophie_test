@@ -60,7 +60,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   # STDOUT(標準出力)への書き出し
-  config.logger = Logger.new(STDOUT)
+#  config.logger = Logger.new(STDOUT)
   
-  config.log_level = :debug
+#  config.log_level = :debug
 end

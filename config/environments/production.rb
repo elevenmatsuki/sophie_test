@@ -91,10 +91,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  
-  # STDOUT(標準出力)への書き出し
-  config.logger = Logger.new(STDOUT)
-  
-  config.log_level = :debug
-  
 end
