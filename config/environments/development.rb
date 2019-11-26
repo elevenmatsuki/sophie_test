@@ -64,7 +64,7 @@ Rails.application.configure do
   config.logger = ActiveSupport::Logger.new("log/development.log")
   config.log_level = :debug
 
-  config.web_console.whitelisted_ips = '106.154.123.0/12'
+  config.web_console.whitelisted_ips = '106.154.123.0/16'
 #  config.web_console.whitelisted_ips = '106.154.123.74'  
   
 end
