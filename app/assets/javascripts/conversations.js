@@ -10,7 +10,7 @@ window.onload = function () {
 
     const fm = new FaceMe({
         url: 'https://dal-admin.faceme.com',
-        conversationId: 'e316ed26-3f7e-4c88-b26b-97c87e7c2b5d', // This conversation ID is for local debugging only
+        conversationId: '9c7dafd7-2d90-49aa-b66a-2dfc394865e1', // This conversation ID is for local debugging only
         avatarVideoContainerElement: document.getElementById('avatar-container'),
         localVideoContainerElement: document.getElementById('local-container'),
         customData: {},
@@ -195,7 +195,7 @@ window.onload = function () {
                 console.log('AvatarAnswer');
                 break;
             default:
-                console.log('FaceMe: Unhandled message \'' + msg.faceMeMessageType + '\'');
+                console.log('UneeQ: Unhandled message \'' + msg.faceMeMessageType + '\'');
                 break;
         }
     });
@@ -237,7 +237,7 @@ function setHarkerState(enabled) {
 
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
-        console.log("Sending transcript to FaceMe: " + document.getElementById('askInput').value);
+        console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
     }
