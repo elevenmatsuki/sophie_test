@@ -7,6 +7,8 @@ class Conversation < ApplicationRecord
             headers: {"Content-Type": "application/jwt", "workspace": Rails.application.secrets.workspace_id},
             body: encode_payload(params).to_s
         })
+      
+        Rails.logger.fatal("authenticate_to_faceme")
         
         # puts response.body, response.code, response.message, response.headers.inspect
 
