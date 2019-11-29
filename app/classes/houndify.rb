@@ -11,6 +11,8 @@ class Houndify
   attr_accessor :hound_request_info, :location
 
   def initialize(clientID = nil, clientKey = nil, userID = "test_user", hostname = nil, proxyHost = nil, proxyPort = nil, proxyHeaders = nil)
+    logger.debug 'Houndify-initialize'
+    
     @clientID = Rails.application.secrets.houndify_client_id  
     @clientKey = Base64.urlsafe_decode64(Rails.application.secrets.houndify_client_secret) 
     @userID = userID
