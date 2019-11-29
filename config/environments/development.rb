@@ -61,12 +61,18 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
-  config.logger = ActiveSupport::Logger.new("log/development-1024.log")
+  config.logger = Logger.new(STDOUT)
   config.log_level = :debug
-  Rails.logger.level = 0
-  
-  config.action_view.logger = nil
+  config.log_tags = [:request_id, :remote_ip]
   config.logger.formatter = ::Logger::Formatter.new
+  config.action_view.logger = nil
+
+#  config.logger = ActiveSupport::Logger.new("log/development-1024.log")
+#  config.log_level = :debug
+#  Rails.logger.level = 0
+  
+#  config.action_view.logger = nil
+#  config.logger.formatter = ::Logger::Formatter.new
   Rails.logger.fatal("development-1026")
 
   config.web_console.whitelisted_ips = '0.0.0.0/0'
