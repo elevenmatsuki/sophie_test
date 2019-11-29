@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def index
-    Rails.logger.debug("ConversationsController-index")
+    logger.debug("ConversationsController-index")
 
     # Create a single-use token - this is what causes the digital human to display in the first place
     Conversation.new.authenticate_to_faceme(params)
@@ -13,14 +13,14 @@ class ConversationsController < ApplicationController
     
     @token = Conversation.first.token
     @api_key = Rails.application.secrets.fm_api_key
-    Rails.logger.debug("ConversationsController-index:token=" + @token)
-    Rails.logger.debug("ConversationsController-index:token=" + @api_key)
+    logger.debug("ConversationsController-index:token=" + @token)
+    logger.debug("ConversationsController-index:api_key=" + @api_key)
   end
 
   def create
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
-    Rails.logger.debug("ConversationsController-create")
+    logger.debug("ConversationsController-create")
 
     orchestration = Orchestration.new(params, "Houndify")
     response = orchestration.orchestrate
