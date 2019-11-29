@@ -64,7 +64,14 @@ Rails.application.configure do
   config.logger = Logger.new(STDOUT)
   config.log_level = :debug
   config.logger.formatter = ::Logger::Formatter.new
-  config.action_view.logger = nil
+#  config.action_view.logger = nil
+
+#  config.logger = ActiveSupport::Logger.new("log/development-1024.log")
+#  config.log_level = :debug
+#  Rails.logger.level = 0
+  
+#  config.action_view.logger = nil
+#  config.logger.formatter = ::Logger::Formatter.new
 
   config.web_console.whitelisted_ips = '0.0.0.0/0'
 #  config.web_console.whitelisted_ips = '106.154.123.0/16'
