@@ -7,9 +7,7 @@ class Conversation < ApplicationRecord
             headers: {"Content-Type": "application/jwt", "workspace": Rails.application.secrets.workspace_id},
             body: encode_payload(params).to_s
         })
-      
-        Rails.logger.fatal("authenticate_to_faceme")
-        
+              
         # puts response.body, response.code, response.message, response.headers.inspect
 
         # It's a dirty hack - so just drop everything in the DB and add it each time we hit - that way it's always Conversation.first when we want it - NO this isn't a best practice
