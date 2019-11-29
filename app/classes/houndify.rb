@@ -13,8 +13,8 @@ class Houndify
   def initialize(clientID = nil, clientKey = nil, userID = "test_user", hostname = nil, proxyHost = nil, proxyPort = nil, proxyHeaders = nil)
     Rails.logger.debug("Houndify-initialize")
     
-    @clientID = Rails.application.secrets.houndify_client_id  
-    @clientKey = Base64.urlsafe_decode64(Rails.application.secrets.houndify_client_secret) 
+    @clientID = Rails.application.secrets.houndify_client_id
+    @clientKey = Base64.urlsafe_decode64(Rails.application.secrets.houndify_client_secret)
     @userID = userID
     @hostname = hostname
     @proxyHost = proxyHost
