@@ -15,9 +15,9 @@ class Houndify
     
     @clientID = Rails.application.secrets.houndify_client_id
     Rails.logger.debug(@clientID)
+    Rails.logger.debug(Rails.application.secrets.houndify_client_secret)
     @clientKey = Base64.urlsafe_decode64(Rails.application.secrets.houndify_client_secret)
 #    @clientKey = Rails.application.secrets.houndify_client_secret
-    Rails.logger.debug(@clientKey)
     @userID = userID
     @hostname = hostname
     @proxyHost = proxyHost
