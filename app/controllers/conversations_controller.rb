@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def index
-    Rails.logger.fatal("%%%ConversationsController-index%%%")
+    Rails.logger.debug("%%%ConversationsController-index%%%")
 
     # Create a single-use token - this is what causes the digital human to display in the first place
     Conversation.new.authenticate_to_faceme(params)
