@@ -15,6 +15,11 @@ class ConversationsController < ApplicationController
     @api_key = Rails.application.secrets.fm_api_key
     logger.debug("ConversationsController-index:token=" + @token)
     logger.debug("ConversationsController-index:api_key=" + @api_key)
+
+    orchestration = Orchestration.new(params, "Houndify")
+    response = orchestration.orchestrate
+    render json: response
+
   end
 
   def create
