@@ -7,11 +7,11 @@ class Orchestration
         @location = params["fm-custom-data"].blank? ? {} : JSON.parse(params["fm-custom-data"])
         @partner = partner # string, the name of the partner company we reach out to
         @response = nil
-        logger.debug 'Orchestration-initialize'
+        Rails.logger.debug 'Orchestration-initialize'
     end
 
     def orchestrate
-        logger.debug 'Orchestration-orchestrate'
+        Rails.logger.debug 'Orchestration-orchestrate'
         case @partner
         when "Houndify"
             Houndify.new.query_houndify(@location, @conversation_state, @query)
