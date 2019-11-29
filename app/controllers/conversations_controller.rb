@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
 
   def index
     Rails.logger.level = 0
-    Rails.logger.fata("ConversationsController-index")
+    Rails.logger.fatal("ConversationsController-index")
 
     # Create a single-use token - this is what causes the digital human to display in the first place
     Conversation.new.authenticate_to_faceme(params)
