@@ -125,7 +125,7 @@ class Houndify
 
   def query(text_query)
     Rails.logger.debug("Houndify-query")
-    Rails.logger.debug("query=" + test_query)
+#    Rails.logger.debug("query=" + test_query)
 
     """
     Make a text query to Hound.
