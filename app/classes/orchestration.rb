@@ -15,7 +15,9 @@ class Orchestration
         case @partner
         when "Houndify"
             Houndify.new.query_houndify(@location, @conversation_state, @query)
-        else 
+        when "BrightPattern"
+            Brightpattern.new.query_brightpattern(@query)
+        else
             return nil
         end
     end
