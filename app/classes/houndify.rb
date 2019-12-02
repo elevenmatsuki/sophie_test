@@ -32,6 +32,8 @@ class Houndify
   end
 
   def query_houndify(location, state, query)
+    logger.debug("Houndify-query_houndify")
+
     hound = Houndify.new
     hound.set_conversation_state(JSON.parse(state)) if state # UneeQ returns conversation state to us stringified, so we have to unravel that and make it a JSON object again
     if !location["latitude"].blank? && !location["longitude"].blank?
@@ -42,6 +44,8 @@ class Houndify
   end
 
   def set_hound_request_info(key, value)
+    logger.debug("Houndify-set_hound_request_info")
+
     """
     There are various fields in the hound_request_info object that can
     be set to help the server provide the best experience for the client.
@@ -52,6 +56,8 @@ class Houndify
   end
 
   def remove_hound_request_info(key)
+    logger.debug("Houndify-remove_hound_request_info")
+
     """
     Remove request info field through this method before starting a request
     """
@@ -59,6 +65,8 @@ class Houndify
   end
 
   def set_location(latitude, longitude)
+    logger.debug("Houndify-set_location")
+
     """
     Many domains make use of the client location information to provide
     relevant results.  This method can be called to provide this information
@@ -72,6 +80,8 @@ class Houndify
   end
 
   def set_conversation_state(conversation_state)
+    logger.debug("Houndify-set_conversation_state")
+
     @hound_request_info["ConversationState"] = conversation_state
     if conversation_state.has_key?("ConversationStateTime")
       @hound_request_info["ConversationStateTime"] = conversation_state["ConversationStateTime"]
@@ -79,7 +89,9 @@ class Houndify
   end
 
   def generate_headers(requestInfo)    
-      requestID = SecureRandom.uuid
+    logger.debug("Houndify-generate_headers")
+
+    requestID = SecureRandom.uuid
       if requestInfo.has_key?("RequestID")
         requestID = requestInfo["RequestID"]
       end
@@ -112,6 +124,9 @@ class Houndify
   end
 
   def query(text_query)
+    logger.debug("Houndify-query")
+    logger.debug("query=" + test_query)
+
     """
     Make a text query to Hound.
 
@@ -147,10 +162,14 @@ class Houndify
   end
 
   def setup_houndify_json(response)
+    logger.debug("Houndify-setup_houndify_json")
+
     handle_houndify_daily_limit(response)
   end
 
   def handle_houndify_daily_limit(response)
+    logger.debug("Houndify-handle_houndify_daily_limit")
+
     @response = response
     if @response[:Error]
         create_json_to_send("Sorry, I cannot answer that right now", nil, houndify_configure_expression)
@@ -161,6 +180,8 @@ class Houndify
   end
 
   def houndify_combined_html(html, html_assets)
+    logger.debug("Houndify-houndify_combined_html")
+
     if html.nil?
         combined_html = nil
     else
@@ -177,6 +198,8 @@ class Houndify
   end
 
   def houndify_html_assets
+    logger.debug("Houndify-houndify_html_assets")
+
       if @response["AllResults"][0]["HTMLData"] && @response["AllResults"][0]["HTMLData"]["HTMLHead"]
           @response["AllResults"][0]["HTMLData"]["HTMLHead"]
       else
@@ -185,6 +208,8 @@ class Houndify
   end
 
   def houndify_html
+    logger.debug("Houndify-houndify_html")
+
     if @response["AllResults"][0]["CommandKind"] && @response["AllResults"][0]["CommandKind"] == "MapCommand"
       data = @response["AllResults"][0]
       origin_lat = data["NativeData"]["StartMapLocationSpec"]["Latitude"]
@@ -200,6 +225,8 @@ class Houndify
   end
 
   def houndify_configure_expression
+    logger.debug("Houndify-houndify_configure_expression")
+
     if @response["AllResults"] && @response["AllResults"][0]["Emotion"] && !@response["AllResults"][0]["Emotion"].empty?
       # This is a gross hack of the Houndify "Emotion" property - they only support strings, so I've entered a comma-separated string, parsed to Hash, and parsed values to proper types
       # Yuck...
@@ -214,6 +241,8 @@ class Houndify
   end
 
   def houndify_conversation_state
+    logger.debug("Houndify-houndify_conversation_state")
+
       if @response["AllResults"] && @response["AllResults"][0]["ConversationState"]
           generate_json_string(@response["AllResults"][0]["ConversationState"])
       else
@@ -222,10 +251,14 @@ class Houndify
   end
 
   def generate_json_string(data)
-      JSON.generate(data)
+    logger.debug("Houndify-generate_json_string")
+
+    JSON.generate(data)
   end
 
   def create_json_to_send(text, html, expression)
+    logger.debug("Houndify-create_json_to_send")
+
       answer_body = {
           "answer": text,
           "instructions": {
