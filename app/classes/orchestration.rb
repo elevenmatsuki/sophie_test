@@ -7,6 +7,8 @@ class Orchestration
         @location = params["fm-custom-data"].blank? ? {} : JSON.parse(params["fm-custom-data"])
         @partner = partner # string, the name of the partner company we reach out to
         @response = nil
+        @bp = Brightpattern.new
+      
         Rails.logger.debug 'Orchestration-initialize'
     end
 
@@ -16,7 +18,7 @@ class Orchestration
         when "Houndify"
             Houndify.new.query_houndify(@location, @conversation_state, @query)
         when "BrightPattern"
-            Brightpattern.new.query_brightpattern(@query)
+            @bp.query_brightpattern(@query)
         else
             return nil
         end
