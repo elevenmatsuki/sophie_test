@@ -13,19 +13,13 @@ class ConversationsController < ApplicationController
     
     @token = Conversation.first.token
     @api_key = Rails.application.secrets.fm_api_key
-    logger.debug("ConversationsController-index:token=" + @token)
-    logger.debug("ConversationsController-index:api_key=" + @api_key)
-
-    orchestration = Orchestration.new(params, "Houndify")
-    response = orchestration.orchestrate
-    render json: response
-
   end
 
   def create
+    logger.debug("ConversationsController-create")
+
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
-    logger.debug("ConversationsController-create")
 
     orchestration = Orchestration.new(params, "Houndify")
     response = orchestration.orchestrate
