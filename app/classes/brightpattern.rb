@@ -13,6 +13,7 @@ class Brightpattern
     responce = api_request_chat
     
     Rails.logger.debug responce.inspect
+    Rails.logger.debug responce.body.inspect
     
   end
   
@@ -38,15 +39,14 @@ class Brightpattern
         "phone_number" => "",
         "subject" => "TEST SUBJECT",
         "logging" => "",
-        "location" => ""
-        },
+        "location" => {},
         "user_platform" => {
           "browser" => "Chrome 78.0.3904.108",
           "os" => "Windows 10 64-bit",
           "description" => "Chrome 78.0.3904.108 on Windows 10 64-bit"
         }
       }
-    )
+    })
     Rails.logger.debug request.inspect
 
     req_options = {
