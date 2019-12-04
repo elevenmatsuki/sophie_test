@@ -16,9 +16,20 @@ class Brightpattern
     Rails.logger.debug responce.body.inspect
     Rails.logger.debug responce.body.chat_id
     
+    Rails.logger.debug "19"
+    
     responce_body = JSON.parse(responce.body)
+
+    Rails.logger.debug "23"
+
+    Rails.logger.debug responce_body
+
+    Rails.logger.debug "27"
+
     chat_id = responce_body["chat_id"]
     
+    Rails.logger.debug "31"
+
     responce = api_send_events(chat_id)
     
     Rails.logger.debug responce.inspect
