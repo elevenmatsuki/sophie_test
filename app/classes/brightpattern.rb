@@ -14,7 +14,6 @@ class Brightpattern
     
     Rails.logger.debug responce.inspect
     Rails.logger.debug responce.body.inspect
-    Rails.logger.debug responce.body.chat_id
     
     Rails.logger.debug "19"
     
