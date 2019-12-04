@@ -14,7 +14,15 @@ class Brightpattern
     
     Rails.logger.debug responce.inspect
     Rails.logger.debug responce.body.inspect
+    Rails.logger.debug responce.body.chat_id
     
+    chat_id = responce.body.chat_id
+    
+    responce = api_send_events(chat_id)
+    
+    Rails.logger.debug responce.inspect
+    Rails.logger.debug responce.body.inspect
+
   end
   
   def query_brightpattern(query)
@@ -58,6 +66,32 @@ class Brightpattern
     end    
     
     return response
+    
+  end
+  
+  def api_send_events(chat_id)
+    Rails.logger.debug 'Brightpattern-api_send_events'
+    
+#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    request = Net::HTTP::Post.new(uri)
+    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
+    request.body = JSON.dump({
+      "events" => [
+        {
+          "event" => "chat_session_message",
+          "msg" => "hi"
+        }
+      ]
+    })
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end    
     
   end
   
