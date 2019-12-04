@@ -17,7 +17,7 @@ class Brightpattern
     Rails.logger.debug responce.body.chat_id
     
     responce_body = JSON.parse(responce.body)
-    chat_id = responce_body.chat_id
+    chat_id = responce_body["chat_id"]
     
     responce = api_send_events(chat_id)
     
