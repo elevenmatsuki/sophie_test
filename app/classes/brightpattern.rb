@@ -46,7 +46,6 @@ class Brightpattern
       if events["event"] == "chat_session_message" then
         Rails.logger.debug "Message=" + events["msg"]
       end
-      end
     end
     end
     
