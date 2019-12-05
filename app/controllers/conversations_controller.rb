@@ -18,8 +18,8 @@ class ConversationsController < ApplicationController
 
   end
 
-  def create
-    logger.debug("ConversationsController-create")
+  def check
+    logger.debug("ConversationsController-check")
 
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
@@ -30,8 +30,8 @@ class ConversationsController < ApplicationController
     render json: response
   end
   
-  def check
-    logger.debug("ConversationsController-check")
+  def update
+    logger.debug("ConversationsController-update")
     
     if @orchestration then
       response = @orchestration.get_chat
