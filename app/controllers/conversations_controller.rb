@@ -31,6 +31,8 @@ class ConversationsController < ApplicationController
   end
   
   def update
+    skip_before_action :verify_authenticity_token
+    
     logger.debug("ConversationsController-update")
     
 #    if @orchestration then
