@@ -38,6 +38,9 @@ class Brightpattern
     Rails.logger.debug 'Brightpattern-query_getchat'
     
     responce = api_get_events
+
+    Rails.logger.debug response.inspect
+
     return responce
   end
   
@@ -108,6 +111,7 @@ class Brightpattern
   
   def api_get_events
     Rails.logger.debug 'Brightpattern-api_get_events'
+    Rails.logger.debug @chat_id
 
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
     uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
@@ -122,8 +126,6 @@ class Brightpattern
       http.request(request)
     end
 
-    Rails.logger.debug response.inspect
-    
     return response
   end
   
