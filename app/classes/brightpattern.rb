@@ -39,7 +39,7 @@ class Brightpattern
     
     responce = api_get_events
 
-    Rails.logger.debug response.inspect
+    Rails.logger.debug responce.inspect
 
     return responce
   end
