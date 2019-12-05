@@ -40,6 +40,16 @@ class Brightpattern
     responce = api_get_events
 
     Rails.logger.debug responce.body.inspect
+    responce_body = JSON.parse(responce.body)
+    
+    for events in responce_body["events"] do
+      if events["event"] == "chat_session_message" then
+        Rails.logger.debug "Message=" + events["msg"]
+      end
+      end
+    end
+    end
+    
 
     return responce
   end
