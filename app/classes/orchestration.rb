@@ -9,19 +9,33 @@ class Orchestration
         @location = params["fm-custom-data"].blank? ? {} : JSON.parse(params["fm-custom-data"])
         @partner = partner # string, the name of the partner company we reach out to
         @response = nil
-        @bp = Brightpattern.new
+        @bp = nil
       
     end
 
     def orchestrate
-        Rails.logger.debug 'Orchestration-orchestrate'
-        case @partner
-        when "Houndify"
-            Houndify.new.query_houndify(@location, @conversation_state, @query)
-        when "BrightPattern"
-            @bp.query_brightpattern(@query)
-        else
-            return nil
-        end
+      Rails.logger.debug 'Orchestration-orchestrate'
+      case @partner
+      when "Houndify"
+          Houndify.new.query_houndify(@location, @conversation_state, @query)
+      when "BrightPattern"
+        @bp = Brightpattern.new
+      else
+          return nil
+      end
+    end
+    
+    def send_chat
+      Rails.logger.debug 'Orchestration-send_chat'
+      if @bp then 
+        return @bp.query_sendchat(@query)
+      end
+    end
+    
+    def get_chat
+      Rails.logger.debug 'Orchestration-orchestrate'
+      if @bp then 
+        return @bp.query_getchat
+      end      
     end
 end

@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
+  
+  @orchestration = nil
 
   def index
     logger.debug("ConversationsController-index")
@@ -22,8 +24,18 @@ class ConversationsController < ApplicationController
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
 
-    orchestration = Orchestration.new(params, "BrightPattern")
-    response = orchestration.orchestrate
+    @orchestration = Orchestration.new(params, "BrightPattern")
+    @orchestration.orchestrate
+    response = @orchestration.send_chat
     render json: response
+  end
+  
+  def check
+    logger.debug("ConversationsController-check")
+    
+    if @orchestration then
+      response = @orchestration.get_chat
+      render json: response
+    end
   end
 end

@@ -7,7 +7,7 @@ require 'uri'
 require 'json'
 
 class Brightpattern
-  @chat_id
+  @chat_id = nil
   
   def initialize
     Rails.logger.debug 'Brightpattern-initialize'
@@ -22,14 +22,22 @@ class Brightpattern
 
   end
   
-  def query_brightpattern(query)
-    Rails.logger.debug 'Brightpattern-query_brightpattern'
+  def query_sendchat(query)
+    Rails.logger.debug 'Brightpattern-query_sendchat'
     
-    responce = api_send_events(query)
+    if @chat_id then
+      responce = api_send_events(query)
+    end
     
     Rails.logger.debug responce.inspect
     Rails.logger.debug responce.body.inspect
 
+  end
+  
+  def query_getchat
+    Rails.logger.debug 'Brightpattern-query_getchat'
+    
+    return api_get_events
   end
   
   def api_request_chat
@@ -95,6 +103,24 @@ class Brightpattern
       http.request(request)
     end    
     
+  end
+  
+  def api_get_events
+
+#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    request = Net::HTTP::Get.new(uri)
+    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+    
+    return response
   end
   
 end
