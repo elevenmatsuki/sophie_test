@@ -33,9 +33,9 @@ class ConversationsController < ApplicationController
   def update
     logger.debug("ConversationsController-update")
     
-    if @orchestration then
-      response = @orchestration.get_chat
-      render json: response
-    end
+#    if @orchestration then
+#      response = @orchestration.get_chat
+#      render json: response
+#    end
   end
 end
