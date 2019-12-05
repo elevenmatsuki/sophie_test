@@ -77,5 +77,6 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = '0.0.0.0/0'
 #  config.web_console.whitelisted_ips = '106.154.123.0/16'
 #  config.web_console.whitelisted_ips = '106.154.123.74'  
-  
+  config.action_controller.allow_forgery_protection = false  
+
 end
