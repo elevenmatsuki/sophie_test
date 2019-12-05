@@ -37,7 +37,8 @@ class Brightpattern
   def query_getchat
     Rails.logger.debug 'Brightpattern-query_getchat'
     
-    return api_get_events
+    responce = api_get_events
+    return responce
   end
   
   def api_request_chat

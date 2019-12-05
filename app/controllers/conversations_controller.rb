@@ -30,6 +30,8 @@ class ConversationsController < ApplicationController
     
     sleep(10)
 
+    logger.debug("Sleep")
+
     response = @orchestration.get_chat
     render json: response
   end
