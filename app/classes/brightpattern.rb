@@ -121,6 +121,8 @@ class Brightpattern
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
+
+    Rails.logger.debug response.inspect
     
     return response
   end
