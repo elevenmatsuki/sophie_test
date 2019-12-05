@@ -33,7 +33,7 @@ class Orchestration
     end
     
     def get_chat
-      Rails.logger.debug 'Orchestration-orchestrate'
+      Rails.logger.debug 'Orchestration-get_chat'
       if @bp then 
         return @bp.query_getchat
       end      
