@@ -27,17 +27,17 @@ class ConversationsController < ApplicationController
     @orchestration = Orchestration.new(params, "BrightPattern")
     @orchestration.orchestrate
     response = @orchestration.send_chat
+    
+    sleep(10)
+
+    response = @orchestration.get_chat
     render json: response
   end
   
   def check
-#    skip_before_action :verify_authenticity_token
-    
     logger.debug("ConversationsController-check")
     
-#    if @orchestration then
-      response = @orchestration.get_chat
-      render json: response
-#    end
+    if @orchestration then
+    end
   end
 end
