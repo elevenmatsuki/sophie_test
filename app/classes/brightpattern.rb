@@ -47,8 +47,6 @@ class Brightpattern
         Rails.logger.debug "Message=" + events["msg"]
       end
     end
-    end
-    
 
     return responce
   end
