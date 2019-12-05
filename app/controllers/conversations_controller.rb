@@ -35,9 +35,9 @@ class ConversationsController < ApplicationController
     
     logger.debug("ConversationsController-check")
     
-    if @orchestration then
+#    if @orchestration then
       response = @orchestration.get_chat
       render json: response
-    end
+#    end
   end
 end
