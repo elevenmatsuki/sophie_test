@@ -30,10 +30,10 @@ class ConversationsController < ApplicationController
     render json: response
   end
   
-  def update
-    skip_before_action :verify_authenticity_token
+  def check
+#    skip_before_action :verify_authenticity_token
     
-    logger.debug("ConversationsController-update")
+    logger.debug("ConversationsController-check")
     
 #    if @orchestration then
 #      response = @orchestration.get_chat
