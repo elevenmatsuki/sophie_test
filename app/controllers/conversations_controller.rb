@@ -18,8 +18,8 @@ class ConversationsController < ApplicationController
 
   end
 
-  def check
-    logger.debug("ConversationsController-check")
+  def create
+    logger.debug("ConversationsController-create")
 
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
