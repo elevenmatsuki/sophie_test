@@ -19,20 +19,13 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    logger.debug("ConversationsController-create")
-
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
 
-    @orchestration = Orchestration.new(params, "BrightPattern")
-    @orchestration.orchestrate
-    response = @orchestration.send_chat
-    
-    sleep(10)
+    logger.debug("ConversationsController-create")
 
-    logger.debug("Sleep")
-
-    response = @orchestration.get_chat
+    orchestration = Orchestration.new(params, "Houndify")
+    response = orchestration.orchestrate
     render json: response
   end
   
