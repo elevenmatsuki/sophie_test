@@ -36,9 +36,9 @@ class ConversationsController < ApplicationController
     
     orchestration.get_chat
 
-#    response.each do |var|
-#      logger.debug(var)
-#    end
+    response.each do |var|
+      logger.debug(var)
+    end
     
     render json: response
   end
