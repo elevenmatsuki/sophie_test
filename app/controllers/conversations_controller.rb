@@ -28,7 +28,11 @@ class ConversationsController < ApplicationController
     orchestration = Orchestration.new(params, "Houndify")
     response = orchestration.orchestrate
 
-    logger.debug(response[":answer"])
+    response.select do |var|
+      logger.debug(var)
+    end
+    
+    logger.debug(response["answer"]["answer"])
 
     render json: response
   end
