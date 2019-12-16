@@ -32,7 +32,7 @@ class ConversationsController < ApplicationController
       logger.debug(var)
     end
     
-    logger.debug(response["answer"]["answer"])
+    logger.debug(response["answer"])
 
     render json: response
   end
