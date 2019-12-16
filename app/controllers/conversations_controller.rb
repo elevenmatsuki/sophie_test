@@ -29,7 +29,8 @@ class ConversationsController < ApplicationController
     response = orchestration.orchestrate
 
     response.each do |var|
-      logger.debug(JSON.load(var))
+      logger.debug(var)
+      logger.debug(JSON.perse(var))
     end
     
     logger.debug(response["answer"])
