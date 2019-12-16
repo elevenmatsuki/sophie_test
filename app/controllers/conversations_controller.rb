@@ -24,17 +24,20 @@ class ConversationsController < ApplicationController
 
     logger.debug("ConversationsController-create")
 
-#    orchestration = Orchestration.new(params, "BrightPattern")
-    orchestration = Orchestration.new(params, "Houndify")
+    orchestration = Orchestration.new(params, "BrightPattern")
+#    orchestration = Orchestration.new(params, "Houndify")
     response = orchestration.orchestrate
+    
+    orchestration.send_chat
+    
+    sleep 10
+    
+    orchstration.get_chat
 
     response.each do |var|
       logger.debug(var)
-      logger.debug(JSON.parse(var))
     end
     
-    logger.debug(response["answer"])
-
     render json: response
   end
   
