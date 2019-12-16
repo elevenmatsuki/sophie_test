@@ -34,7 +34,7 @@ class ConversationsController < ApplicationController
     sleep(10)
     logger.debug("ConversationsController-sleepA")
     
-    orchstration.get_chat
+    orchestration.get_chat
 
     response.each do |var|
       logger.debug(var)
