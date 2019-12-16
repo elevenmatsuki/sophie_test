@@ -30,7 +30,7 @@ class ConversationsController < ApplicationController
     
     orchestration.send_chat
     
-    sleep 10
+    sleep(10)
     
     orchstration.get_chat
 
