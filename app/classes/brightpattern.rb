@@ -169,7 +169,7 @@ class Brightpattern
     }
 
       body = {
-          "answer": generate_json_string(answer_body),         
+          "answer": JSON.generate(answer_body),
           "matchedContext": "",
 #          "conversationPayload": houndify_conversation_state,
           "conversationPayload": "",
