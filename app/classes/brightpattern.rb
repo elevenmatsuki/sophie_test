@@ -29,8 +29,10 @@ class Brightpattern
       responce = api_send_events(query)
     end
     
+    Rails.logger.debug 'Brightpattern-query_sendchat1'
     Rails.logger.debug responce.inspect
     Rails.logger.debug responce.body.inspect
+    Rails.logger.debug 'Brightpattern-query_sendchat2'
 
   end
   
