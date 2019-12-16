@@ -38,6 +38,7 @@ class Brightpattern
   
   def query_getchat
     Rails.logger.debug 'Brightpattern-query_getchat'
+    msg = ""
     
     responce = api_get_events
 
@@ -47,8 +48,11 @@ class Brightpattern
     for events in responce_body["events"] do
       if events["event"] == "chat_session_message" then
         Rails.logger.debug "Message=" + events["msg"]
+        msg = events["msg"]   #とりあえず最後のメッセージ
       end
     end
+    
+    resopoce = create_json_to_send(msg, nil, nil)
 
     return responce
   end
@@ -137,6 +141,40 @@ class Brightpattern
     end
 
     return response
+  end
+  
+  def create_json_to_send(text, html, expression)
+    Rails.logger.debug("Brightpattern-create_json_to_send")
+
+    answer_body = {
+        "answer": text,
+        "instructions": {
+            "expressionEvent": [
+              expression
+            ],
+            "emotionalTone": [
+                {
+                    "tone": "happiness", # desired emotion in lowerCamelCase
+                    "value": 0.5, # number, intensity of the emotion to express between 0.0 and 1.0 
+                    "start": 2, # number, in seconds from the beginning of the utterance to display the emotion
+                    "duration": 4, # number, duration in seconds this emotion should apply
+                    "additive": true, # boolean, whether the emotion should be added to existing emotions (true), or replace existing ones (false)
+                    "default": true # boolean, whether this is the default emotion 
+                }
+            ],
+            "displayHtml": {
+                "html": html
+            }
+        }
+    }
+
+      body = {
+          "answer": generate_json_string(answer_body),         
+          "matchedContext": "",
+#          "conversationPayload": houndify_conversation_state,
+          "conversationPayload": "",
+      }
+      return body
   end
   
 end
