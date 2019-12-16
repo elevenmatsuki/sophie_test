@@ -30,7 +30,7 @@ class ConversationsController < ApplicationController
 
     response.each do |var|
       logger.debug(var)
-      logger.debug(JSON.perse(var))
+      logger.debug(JSON.parse(var))
     end
     
     logger.debug(response["answer"])
