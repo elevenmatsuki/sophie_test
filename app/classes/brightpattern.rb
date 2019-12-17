@@ -52,6 +52,7 @@ class Brightpattern
       end
     end
     
+    msg = "Welcome to CBA"
     responce = create_json_to_send(msg, nil, nil)
 
     return responce
