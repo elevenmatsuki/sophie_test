@@ -53,7 +53,7 @@ class Brightpattern
     end
     
 #    msg = "Welcome to CBA"
-   html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>1:13 pm   </h3> </div>" 
+    html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
     responce = create_json_to_send(msg, html, {})
 
     return responce
