@@ -52,7 +52,7 @@ class Brightpattern
       end
     end
     
-    resopoce = create_json_to_send(msg, nil, nil)
+    responce = create_json_to_send(msg, nil, nil)
 
     return responce
   end
@@ -168,13 +168,13 @@ class Brightpattern
         }
     }
 
-      body = {
-          "answer": JSON.generate(answer_body),
-          "matchedContext": "",
+    body = {
+        "answer": JSON.generate(answer_body),
+        "matchedContext": "",
 #          "conversationPayload": houndify_conversation_state,
-          "conversationPayload": "",
-      }
-      return body
+        "conversationPayload": "",
+    }
+    return body
   end
   
 end
