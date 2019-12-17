@@ -36,9 +36,11 @@ class ConversationsController < ApplicationController
     
     response = orchestration.get_chat
 
-    response.each do |var|
-      logger.debug(var)
-    end
+#    response.each do |var|
+#      logger.debug(var)
+#    end
+    Rails.logger.debug("ConversationsController-response")
+    Rails.logger.debug response.inspect
     
     render json: response
   end
