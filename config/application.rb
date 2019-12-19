@@ -27,6 +27,12 @@ module SophieTest
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    ### BrightPattern ###
+
+    config.x.x.brightpattern.hostname = "cbadev.brightpattern.com"
+    config.x.brightpattern.appId = "e7926a805d904b11a21dbe114beaf098"
+    config.x.brightpattern.clientId = "WebChat"
     
   end
 end
