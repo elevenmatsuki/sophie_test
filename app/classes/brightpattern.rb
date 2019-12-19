@@ -61,7 +61,7 @@ class Brightpattern
   
   def api_request_chat
     Rails.logger.debug 'Brightpattern-api_request_chat'
-    hostname = Rails.configration.x.brightpattern.hostname
+    hostname = Rails.configuration.x.brightpattern.hostname
     Rails.logger.debug ("Hostname" + hostname)
 
     uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
