@@ -30,7 +30,7 @@ module SophieTest
 
     ### BrightPattern ###
 
-    config.x.x.brightpattern.hostname = "cbadev.brightpattern.com"
+    config.x.brightpattern.hostname = "cbadev.brightpattern.com"
     config.x.brightpattern.appId = "e7926a805d904b11a21dbe114beaf098"
     config.x.brightpattern.clientId = "WebChat"
     
