@@ -23,6 +23,7 @@ class ConversationsController < ApplicationController
     # You could also implement a custom cascading check against multiple NLP providers.
 
     logger.debug("ConversationsController-create")
+    logger.debug params.inspect
 
     orchestration = Orchestration.new(params, "BrightPattern")
 #    orchestration = Orchestration.new(params, "Houndify")
