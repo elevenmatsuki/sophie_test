@@ -77,6 +77,9 @@ class Brightpattern
       http.request(request)
     end    
     
+    Rails.logger.debug("---RESPONSE---")    
+    Rails.logger.debug response.inspect
+
     return response
 
   end
