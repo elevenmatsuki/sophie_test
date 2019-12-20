@@ -36,7 +36,7 @@ module SophieTest
     
     #CBADEVINUS
     config.x.brightpattern.hostname = cbadevinus.brightpattern.com
-    config.x.brightpattern.appId = 7d4bb4bcf1e44a11a6870a76f791f6de 
+    config.x.brightpattern.appId = 7d4bb4bcf1e44a11a6870a76f791f6de
     config.x.brightpattern.clientId = WebChat
 
   end
