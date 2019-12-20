@@ -7,10 +7,10 @@ require 'uri'
 require 'json'
 
 class Brightpattern
-  @@chat_id = nil
-  @@hostname = ""
-  @@appId = ""
-  @@clientId = ""
+  @chat_id = nil
+#  @hostname = ""
+#  @appId = ""
+#  @clientId = ""
   
   def initialize
     Rails.logger.debug 'Brightpattern-initialize'
@@ -21,19 +21,13 @@ class Brightpattern
     Rails.logger.debug responce.body.inspect
     
     responce_body = JSON.parse(responce.body)
-    @@chat_id = responce_body["chat_id"]
-
-    @@hostname = Rails.configuration.x.brightpattern.hostname
-    Rails.logger.debug (@@hostname)
-    @@appId = Rails.configuration.x.brightpattern.appId
-    @@clientId = Rails.configuration.x.brightpattern.clientId
-
+    @chat_id = responce_body["chat_id"]
   end
   
   def query_sendchat(query)
     Rails.logger.debug 'Brightpattern-query_sendchat'
     
-    if @@chat_id then
+    if @chat_id then
       responce = api_send_events(query)
     end
     
@@ -68,8 +62,13 @@ class Brightpattern
   end
   
   def api_request_chat
+    hostname = Rails.configuration.x.brightpattern.hostname
+    appId = Rails.configuration.x.brightpattern.appId
+    clientId = Rails.configuration.x.brightpattern.clientId
 
-    uri = URI.parse("https://" + @@hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + @@hostname + "%2F")
+    Rails.logger.debug (hostname)
+
+    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
     request.body = JSON.dump({
@@ -108,12 +107,16 @@ class Brightpattern
   def api_send_events(query)
     Rails.logger.debug 'Brightpattern-api_send_events'
     Rails.logger.debug @chat_id
+
+    hostname = Rails.configuration.x.brightpattern.hostname
+    appId = Rails.configuration.x.brightpattern.appId
+    clientId = Rails.configuration.x.brightpattern.clientId
     
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-    uri = URI.parse("https://" + @@hostname + "/clientweb/api/v1/chats/" + @@chat_id + "/events?tenantUrl=https%3A%2F%2F" + @@hostname + "%2F")
+    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
     request = Net::HTTP::Post.new(uri)
-    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + @@appId + "\", clientId=\"" + @@clientId + "\""
+    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
     request.body = JSON.dump({
       "events" => [
         {
@@ -136,10 +139,10 @@ class Brightpattern
   
   def api_get_events
     Rails.logger.debug 'Brightpattern-api_get_events'
-    Rails.logger.debug @@chat_id
+    Rails.logger.debug @chat_id
 
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @@chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
     request = Net::HTTP::Get.new(uri)
     request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
 
