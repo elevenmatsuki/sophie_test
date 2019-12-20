@@ -65,7 +65,7 @@ class Brightpattern
     appId = "e7926a805d904b11a21dbe114beaf098"
     clientId = "WebChat"
     
-    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
+    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
     request.body = body
