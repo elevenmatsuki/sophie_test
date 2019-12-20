@@ -159,7 +159,7 @@ class Brightpattern
         }
       ]
     })
-    Rails.logger.debug request.inspect
+#    Rails.logger.debug request.inspect
 
 #    req_options = {
 #      use_ssl: uri.scheme == "https",
