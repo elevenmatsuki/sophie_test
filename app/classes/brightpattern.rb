@@ -81,8 +81,10 @@ class Brightpattern
       http.request(request)
     end    
     
-    Rails.logger.debug("---RESPONSE---")    
-    Rails.logger.debug response.inspect
+    Rails.logger.debug("---RESPONSE---")
+    if response
+      Rails.logger.debug response.inspect
+    end
 
     return response
 
