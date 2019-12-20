@@ -139,7 +139,11 @@ class Brightpattern
     Rails.logger.debug 'Brightpattern-api_get_events'
     Rails.logger.debug @chat_id
 
-#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    hostname = Rails.configuration.x.brightpattern.hostname
+    appId = Rails.configuration.x.brightpattern.appId
+    clientId = Rails.configuration.x.brightpattern.clientId
+
+    #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
     uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
     request = Net::HTTP::Get.new(uri)
 #    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
