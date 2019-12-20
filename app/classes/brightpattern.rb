@@ -64,13 +64,13 @@ class Brightpattern
   def send_api(api_opt, body)
     Rails.logger.debug 'Brightpattern-send_api'
     
-#    hostname = "cbadev.brightpattern.com"
-#    appId = "e7926a805d904b11a21dbe114beaf098"
-#    clientId = "WebChat"
-
-    hostname = "cbadevinus.brightpattern.com"
-    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+    hostname = "cbadev.brightpattern.com"
+    appId = "e7926a805d904b11a21dbe114beaf098"
     clientId = "WebChat"
+
+#    hostname = "cbadevinus.brightpattern.com"
+#    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+#    clientId = "WebChat"
     
     uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
     request = Net::HTTP::Post.new(uri)
@@ -203,13 +203,13 @@ class Brightpattern
 #    appId = Rails.configuration.x.brightpattern.appId
 #    clientId = Rails.configuration.x.brightpattern.clientId
 
-#    hostname = "cbadev.brightpattern.com"
-#    appId = "e7926a805d904b11a21dbe114beaf098"
-#    clientId = "WebChat"
-
-    hostname = "cbadevinus.brightpattern.com"
-    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+    hostname = "cbadev.brightpattern.com"
+    appId = "e7926a805d904b11a21dbe114beaf098"
     clientId = "WebChat"
+
+#    hostname = "cbadevinus.brightpattern.com"
+#    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+#    clientId = "WebChat"
 
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
