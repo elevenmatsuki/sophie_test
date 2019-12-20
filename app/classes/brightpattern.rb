@@ -186,33 +186,33 @@ class Brightpattern
     Rails.logger.debug 'Brightpattern-api_get_events'
     Rails.logger.debug @chat_id
     
-#    body = nil
-#    return send_api("/" + @chat_id + "/events", body)
+    body = nil
+    return send_api("/" + @chat_id + "/events", body)
 
 #    hostname = Rails.configuration.x.brightpattern.hostname
 #    appId = Rails.configuration.x.brightpattern.appId
 #    clientId = Rails.configuration.x.brightpattern.clientId
 
-    hostname = "cbadev.brightpattern.com"
-    appId = "e7926a805d904b11a21dbe114beaf098"
-    clientId = "WebChat"
+#    hostname = "cbadev.brightpattern.com"
+#    appId = "e7926a805d904b11a21dbe114beaf098"
+#    clientId = "WebChat"
 
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
-    request = Net::HTTP::Get.new(uri)
+#    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
+#    request = Net::HTTP::Get.new(uri)
 #    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
-    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
+#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
 
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
+#    req_options = {
+#      use_ssl: uri.scheme == "https",
+#    }
 
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
+#    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+#      http.request(request)
+#    end
 
-    return response
+#    return response
   end
   
   def create_json_to_send(text, html, expression)
