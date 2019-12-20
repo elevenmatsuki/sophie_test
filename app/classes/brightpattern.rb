@@ -69,8 +69,7 @@ class Brightpattern
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
 
-    if body.nil? then
-    else
+    if body
       request.body = body
     end
 
