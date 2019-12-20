@@ -29,9 +29,14 @@ module SophieTest
     # the framework and any gems in your application.
 
     ### BrightPattern ###
-    #CBADEV
-    config.x.brightpattern.hostname = cbadev.brightpattern.com
-    config.x.brightpattern.appId = e7926a805d904b11a21dbe114beaf098
+    #CBADEVINUS
+    config.x.brightpattern.hostname = cbadevinus.brightpattern.com
+    config.x.brightpattern.appId = 7d4bb4bcf1e44a11a6870a76f791f6de
     config.x.brightpattern.clientId = WebChat
+
+    #CBADEV
+#    config.x.brightpattern.hostname = cbadev.brightpattern.com
+#    config.x.brightpattern.appId = e7926a805d904b11a21dbe114beaf098
+#    config.x.brightpattern.clientId = WebChat
   end
 end
