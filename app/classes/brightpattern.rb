@@ -8,6 +8,9 @@ require 'json'
 
 class Brightpattern
   @chat_id = nil
+  @hostname = ""
+  @appId = ""
+  @clientId = ""
   
   def initialize
     Rails.logger.debug 'Brightpattern-initialize'
@@ -19,6 +22,11 @@ class Brightpattern
     
     responce_body = JSON.parse(responce.body)
     @chat_id = responce_body["chat_id"]
+
+    @hostname = Rails.configuration.x.brightpattern.hostname
+    Rails.logger.debug (@hostname)
+    @appId = Rails.configuration.x.brightpattern.appId
+    @clientId = Rails.configuration.x.brightpattern.clientId
 
   end
   
@@ -60,11 +68,8 @@ class Brightpattern
   end
   
   def api_request_chat
-    Rails.logger.debug 'Brightpattern-api_request_chat'
-    hostname = Rails.configuration.x.brightpattern.hostname
-    Rails.logger.debug (hostname)
 
-    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    uri = URI.parse("https://" + @hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + @hostname + "%2F")
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
     request.body = JSON.dump({
@@ -105,9 +110,10 @@ class Brightpattern
     Rails.logger.debug @chat_id
     
 #    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
+    uri = URI.parse("https://" + @hostname + "/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2F" + @hostname + "%2F")
     request = Net::HTTP::Post.new(uri)
-    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
+    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + @appId + "\", clientId=\"" + @clientId + "\""
     request.body = JSON.dump({
       "events" => [
         {
@@ -116,6 +122,7 @@ class Brightpattern
         }
       ]
     })
+    Rails.logger.debug request.inspect
 
     req_options = {
       use_ssl: uri.scheme == "https",
