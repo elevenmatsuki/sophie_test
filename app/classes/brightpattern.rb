@@ -58,22 +58,46 @@ class Brightpattern
     return responce
   end
   
+  def send_api(api_opt, body)
+    Rails.logger.debug 'Brightpattern-send_api'
+    
+    hostname = "cbadev.brightpattern.com"
+    appId = "e7926a805d904b11a21dbe114beaf098"
+    clientId = "WebChat"
+    
+    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
+    request = Net::HTTP::Post.new(uri)
+    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
+    request.body = body
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end    
+    
+    return response
+
+  end
+  
   def api_request_chat
 #    hostname = Rails.configuration.x.brightpattern.hostname
 #    appId = Rails.configuration.x.brightpattern.appId
 #    clientId = Rails.configuration.x.brightpattern.clientId
 
-    hostname = "cbadev.brightpattern.com"
-    appId = "e7926a805d904b11a21dbe114beaf098"
-    clientId = "WebChat"
+#    hostname = "cbadev.brightpattern.com"
+#    appId = "e7926a805d904b11a21dbe114beaf098"
+#    clientId = "WebChat"
 
-    Rails.logger.debug (hostname)
+#    Rails.logger.debug (hostname)
 
-    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
-    request = Net::HTTP::Post.new(uri)
+#    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
+#    request = Net::HTTP::Post.new(uri)
 #    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
-    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-    request.body = JSON.dump({
+#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
+#    request.body = JSON.dump({
+    body = JSON.dump({
       "phone_number" => "",
       "from" => "",
       "parameters" => {
@@ -92,17 +116,20 @@ class Brightpattern
         }
       }
     })
-    Rails.logger.debug request.inspect
+  
+    send_api("", body)
 
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
+#    Rails.logger.debug request.inspect
 
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end    
+#    req_options = {
+#      use_ssl: uri.scheme == "https",
+#    }
+
+#    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+#      http.request(request)
+#    end    
     
-    return response
+#    return response
     
   end
   
