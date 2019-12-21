@@ -77,8 +77,8 @@ class Brightpattern
     request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
 
     if body
-      request.body = body
-      Rails.logger.debug request.body
+		request.body = body
+		Rails.logger.debug("---BODY---")
     end
 
     req_options = {
