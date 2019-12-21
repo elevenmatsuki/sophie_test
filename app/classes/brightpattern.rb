@@ -28,10 +28,8 @@ class Brightpattern
       responce = api_send_events(query)
     end
     
-    Rails.logger.debug 'Brightpattern-query_sendchat1'
     Rails.logger.debug responce.inspect
     Rails.logger.debug responce.body.inspect
-    Rails.logger.debug 'Brightpattern-query_sendchat2'
 
   end
   
@@ -64,13 +62,13 @@ class Brightpattern
   def send_api(api_opt, body, post = true)
     Rails.logger.debug 'Brightpattern-send_api'
     
-    hostname = "cbadev.brightpattern.com"
-    appId = "e7926a805d904b11a21dbe114beaf098"
-    clientId = "WebChat"
-
-#    hostname = "cbadevinus.brightpattern.com"
-#    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+#    hostname = "cbadev.brightpattern.com"
+#    appId = "e7926a805d904b11a21dbe114beaf098"
 #    clientId = "WebChat"
+
+    hostname = "cbadevinus.brightpattern.com"
+    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+    clientId = "WebChat"
     
     uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
 	if post 
