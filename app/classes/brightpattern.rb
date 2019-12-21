@@ -107,21 +107,8 @@ class Brightpattern
   end
   
   def api_request_chat
-#    hostname = Rails.configuration.x.brightpattern.hostname
-#    appId = Rails.configuration.x.brightpattern.appId
-#    clientId = Rails.configuration.x.brightpattern.clientId
+    Rails.logger.debug 'Brightpattern-api_request_chat'
 
-#    hostname = "cbadev.brightpattern.com"
-#    appId = "e7926a805d904b11a21dbe114beaf098"
-#    clientId = "WebChat"
-
-#    Rails.logger.debug (hostname)
-
-#    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
-#    request = Net::HTTP::Post.new(uri)
-#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
-#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-#    request.body = JSON.dump({
     body = JSON.dump({
       "phone_number" => "",
       "from" => "",
@@ -143,39 +130,12 @@ class Brightpattern
     })
   
     return send_api("", body)
-
-#    Rails.logger.debug request.inspect
-
-#    req_options = {
-#      use_ssl: uri.scheme == "https",
-#    }
-
-#    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-#      http.request(request)
-#    end    
-    
-#    return response
-    
   end
   
   def api_send_events(query)
     Rails.logger.debug 'Brightpattern-api_send_events'
     Rails.logger.debug @chat_id
 
-#    hostname = Rails.configuration.x.brightpattern.hostname
-#    appId = Rails.configuration.x.brightpattern.appId
-#    clientId = Rails.configuration.x.brightpattern.clientId
-
-#    hostname = "cbadev.brightpattern.com"
-#    appId = "e7926a805d904b11a21dbe114beaf098"
-#    clientId = "WebChat"
-    
-#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-#    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
-#    request = Net::HTTP::Post.new(uri)
-#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-#    request.body = JSON.dump({
     body = JSON.dump({
       "events" => [
         {
@@ -184,18 +144,8 @@ class Brightpattern
         }
       ]
     })
-#    Rails.logger.debug request.inspect
-
-#    req_options = {
-#      use_ssl: uri.scheme == "https",
-#    }
-
-#    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-#      http.request(request)
-#    end    
 
     return send_api("/" + @chat_id + "/events", body)
-    
   end
   
   def api_get_events
@@ -204,39 +154,6 @@ class Brightpattern
     
     body = nil
     return send_api("/" + @chat_id + "/events", body, false)
-
-#    hostname = Rails.configuration.x.brightpattern.hostname
-#    appId = Rails.configuration.x.brightpattern.appId
-#    clientId = Rails.configuration.x.brightpattern.clientId
-
-#    hostname = "cbadev.brightpattern.com"
-#    appId = "e7926a805d904b11a21dbe114beaf098"
-#    clientId = "WebChat"
-
-#    hostname = "cbadevinus.brightpattern.com"
-#    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
-#    clientId = "WebChat"
-
-#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/c22f472f-a234-45ca-a759-6fb007cb5fce/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-#    uri = URI.parse("https://cbadev.brightpattern.com/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2Fcbadev.brightpattern.com%2F")
-#    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats/" + @chat_id + "/events?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
-#    request = Net::HTTP::Get.new(uri)
-#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"e7926a805d904b11a21dbe114beaf098\", clientId=\"WebChat\""
-#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-
-#    req_options = {
-#      use_ssl: uri.scheme == "https",
-#    }
-
-#    Rails.logger.debug("---REQUEST---")
-#    Rails.logger.debug request.inspect
-#    Rails.logger.debug uri.inspect
-
-#    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-#     http.request(request)
-#    end
-
-#    return response
   end
   
   def create_json_to_send(text, html, expression)
