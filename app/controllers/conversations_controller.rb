@@ -32,7 +32,7 @@ class ConversationsController < ApplicationController
     orchestration.send_chat
     
     logger.debug("ConversationsController-sleepB")
-    sleep(3)
+    sleep(1)
     logger.debug("ConversationsController-sleepA")
     
     response = orchestration.get_chat
