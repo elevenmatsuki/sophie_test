@@ -78,6 +78,7 @@ class Brightpattern
 
     if body
       request.body = body
+	   Rails.logger.debug request.body
     end
 
     req_options = {
