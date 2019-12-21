@@ -86,7 +86,7 @@ class Brightpattern
 
     Rails.logger.debug("---REQUEST---")
     Rails.logger.debug request.inspect
-    Rails.logger.debug url.inspect
+    Rails.logger.debug url
 
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
