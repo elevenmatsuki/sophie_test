@@ -76,10 +76,10 @@ class Brightpattern
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
 
-#    if body
-	request.body = body
-#	   Rails.logger.debug request.body
-#    end
+    if body
+      request.body = body
+      Rails.logger.debug request.body
+    end
 
     req_options = {
       use_ssl: uri.scheme == "https",
@@ -198,7 +198,7 @@ class Brightpattern
     Rails.logger.debug 'Brightpattern-api_get_events'
     Rails.logger.debug @chat_id
     
-    body = {}
+    body = nil
     return send_api("/" + @chat_id + "/events", body)
 
 #    hostname = Rails.configuration.x.brightpattern.hostname
