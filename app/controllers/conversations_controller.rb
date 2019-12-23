@@ -25,9 +25,13 @@ class ConversationsController < ApplicationController
     logger.debug("ConversationsController-create")
     logger.debug params.inspect
 
-    orchestration = Orchestration.new(params, "BrightPattern")
 #    orchestration = Orchestration.new(params, "Houndify")
 #     response = orchestration.orchestrate
+#    render json: response
+
+    # BrightPattern
+    orchestration = Orchestration.new(params, "BrightPattern")
+    response = orchestration.orchestrate
     
     orchestration.send_chat
     
