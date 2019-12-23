@@ -91,3 +91,4 @@ yarn-debug.log*
 .yarn-integrity
 .vscode/
 config/ssl
+/RailsApplication1/nbproject/private/
