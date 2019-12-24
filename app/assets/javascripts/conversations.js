@@ -245,6 +245,20 @@ function askKeyPress(e) {
 
 
 function getAPIEvent(e){
+    var form = document.createElement('form');
+    var request = document.createElement('input');
+ 
+    form.method = 'POST';
+    form.action = 'https://uneeq01.dev.cba-japan.com/conversations';
+ 
+    //request.type = 'hidden'; //入力フォームが表示されないように
+    //request.name = 'text';
+    //request.value = value;
+ 
+//    form.appendChild(request);
+    document.body.appendChild(form);
+ 
+    form.submit();
     alert("getAPIEvent")
 }
 
