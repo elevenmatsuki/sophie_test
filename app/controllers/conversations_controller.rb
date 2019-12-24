@@ -31,9 +31,9 @@ class ConversationsController < ApplicationController
 #    render json: response
 
     # BrightPattern
-#    if params["sid"].blank?
-#      logger.debug("ConversationsController-GETEVENT")
-#    else
+    if params["sid"].blank?
+      logger.debug("ConversationsController-GETEVENT")
+    else
       orchestration = Orchestration.new(params, "BrightPattern")
       response = orchestration.orchestrate
 
@@ -53,7 +53,7 @@ class ConversationsController < ApplicationController
       Rails.logger.debug response.inspect
 
       render json: response
-#    end
+    end
   end
   
   def check
