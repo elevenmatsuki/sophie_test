@@ -20,9 +20,9 @@ class Brightpattern
     responce_body = JSON.parse(responce.body)
     @chat_id = responce_body["chat_id"]
 
-    @hostname = Rails.configuration.brightpattern_hostname
-    @appId = Rails.configuration.brightpattern_appId
-    @clientId = Rails.configuration.brightpattern_clientId
+    @hostname = Rails.configuration.x.brightpattern_hostname
+    @appId = Rails.configuration.x.brightpattern_appId
+    @clientId = Rails.configuration.x.brightpattern_clientId
     
     Rails.logger.debug '===HOSTNAME1==='
     Rails.logger.debug @hostname

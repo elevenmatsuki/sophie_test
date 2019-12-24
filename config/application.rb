@@ -30,8 +30,8 @@ module SophieTest
 
     ### BrightPattern ###
     #CBADEV
-    config.brightpattern_hostname = 'cbadev.brightpattern.com'
-    config.brightpattern_appId = 'e7926a805d904b11a21dbe114beaf098'
-    config.brightpattern_clientId = 'WebChat'
+    config.x.brightpattern_hostname = 'cbadev.brightpattern.com'
+    config.x.brightpattern_appId = 'e7926a805d904b11a21dbe114beaf098'
+    config.x.brightpattern_clientId = 'WebChat'
   end
 end
