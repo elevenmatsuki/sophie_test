@@ -251,11 +251,11 @@ function getAPIEvent(e){
     form.method = 'POST';
     form.action = 'https://uneeq01.dev.cba-japan.com/conversations';
  
-    //request.type = 'hidden'; //入力フォームが表示されないように
-    //request.name = 'text';
-    //request.value = value;
+    request.type = 'hidden'; //入力フォームが表示されないように
+    request.name = 'text';
+    request.value = "1500";
  
-//    form.appendChild(request);
+    form.appendChild(request);
     document.body.appendChild(form);
  
     form.submit();
