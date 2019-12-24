@@ -245,21 +245,44 @@ function askKeyPress(e) {
 
 
 function getAPIEvent(e){
-    var form = document.createElement('form');
-    var request = document.createElement('input');
+    var url = 'https://uneeq01.dev.cba-japan.com/conversations'
+    console.log(url);
+    
+     var data = {};
+     data['sid'] = "";
+        
+    json_data = JSON.stringify(data);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/json");
  
-    form.method = 'POST';
-    form.action = 'https://uneeq01.dev.cba-japan.com/conversations';
+    xhr.onload = () => {
+      console.log(xhr.status);
+      console.log("success!");
+    };
+
+    xhr.onerror = () => {
+      console.log(xhr.status);
+      console.log("error!");
+    };
+    xhr.send(json_data);
+    
+#    var form = document.createElement('form');
+#    var request = document.createElement('input');
  
-    request.type = 'hidden'; //入力フォームが表示されないように
-    request.name = 'text';
-    request.value = "1500";
+#    form.method = 'POST';
+#    form.action = 'https://uneeq01.dev.cba-japan.com/conversations';
  
-    form.appendChild(request);
-    document.body.appendChild(form);
+#    request.type = 'hidden'; //入力フォームが表示されないように
+#    request.name = 'text';
+#    request.value = "1500";
  
-    form.submit();
-    alert("getAPIEvent")
+#    form.appendChild(request);
+#    document.body.appendChild(form);
+ 
+#    form.submit();
+#    alert("getAPIEvent")
 }
 
 function showSettings() {
