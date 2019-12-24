@@ -19,6 +19,11 @@ class Brightpattern
     
     responce_body = JSON.parse(responce.body)
     @chat_id = responce_body["chat_id"]
+
+    @hostname = Rails.configuration.x.brightpattern.hostname
+    @appId = Rails.configuration.x.brightpattern.appId
+    @clientId = Rails.configuration.x.brightpattern.clientId
+    
   end
   
   def query_sendchat(query)
@@ -66,6 +71,11 @@ class Brightpattern
     appId = "e7926a805d904b11a21dbe114beaf098"
     clientId = "WebChat"
 
+    Rails.logger.debug '===HOSTNAME==='
+    Rails.logger.debug @hostname
+    Rails.logger.debug @appId
+    Rails.logger.debug @clientId
+    
 #    hostname = "cbadevinus.brightpattern.com"
 #    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
 #    clientId = "WebChat"
