@@ -31,24 +31,24 @@ class ConversationsController < ApplicationController
 #    render json: response
 
     # BrightPattern
-   orchestration = Orchestration.new(params, "BrightPattern")
-   response = orchestration.orchestrate
+#   orchestration = Orchestration.new(params, "BrightPattern")
+#   response = orchestration.orchestrate
     
-   orchestration.send_chat
+#   orchestration.send_chat
    
-   logger.debug("ConversationsController-sleepB")
-   sleep(1)
-   logger.debug("ConversationsController-sleepA")
+#   logger.debug("ConversationsController-sleepB")
+#   sleep(1)
+#   logger.debug("ConversationsController-sleepA")
     
-   response = orchestration.get_chat
+#   response = orchestration.get_chat
 
-  response.each do |var|
-    logger.debug(var)
-  end
-    Rails.logger.debug("ConversationsController-response")
-    Rails.logger.debug response.inspect
+#  response.each do |var|
+#    logger.debug(var)
+#  end
+#    Rails.logger.debug("ConversationsController-response")
+#    Rails.logger.debug response.inspect
     
-  render json: response
+#  render json: response
   end
   
   def check
