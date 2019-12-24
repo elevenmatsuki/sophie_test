@@ -25,6 +25,9 @@ class Brightpattern
     @clientId = Rails.configuration.x.brightpattern_clientId
     
     Rails.logger.debug '===HOSTNAME1==='
+    Rails.logger.debug Rails.configuration.x.brightpattern_hostname
+    Rails.logger.debug Rails.configuration.x.brightpattern_appId
+    Rails.logger.debug Rails.configuration.x.brightpattern_clientId
     Rails.logger.debug @hostname
     Rails.logger.debug @appId
     Rails.logger.debug @clientId
