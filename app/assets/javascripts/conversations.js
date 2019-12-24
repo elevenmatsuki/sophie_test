@@ -243,7 +243,6 @@ function askKeyPress(e) {
     }
 }
 
-
 function getAPIEvent(e){
     var url = 'https://uneeq01.dev.cba-japan.com/conversations'
 //    console.log(url);
