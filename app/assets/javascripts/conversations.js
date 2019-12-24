@@ -243,6 +243,10 @@ function askKeyPress(e) {
     }
 }
 
+function getAPIEvent(e){
+    alert("getAPIEvent")
+}
+
 function showSettings() {
     document.getElementById('settings').classList.add('show');
     updateDeviceList();
