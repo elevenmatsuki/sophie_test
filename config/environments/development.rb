@@ -81,8 +81,8 @@ Rails.application.configure do
 
   ### BrightPattern ###
   #CBADEV
-#  config.x.brightpattern.hostname = 'cbadev.brightpattern.com'
-#  config.x.brightpattern.appId = 'e7926a805d904b11a21dbe114beaf098'
-#  config.x.brightpattern.clientId = 'WebChat'
+  config.brightpattern_hostname = 'cbadev.brightpattern.com'
+  config.brightpattern_appId = 'e7926a805d904b11a21dbe114beaf098'
+  config.brightpattern_clientId = 'WebChat'
   
 end
