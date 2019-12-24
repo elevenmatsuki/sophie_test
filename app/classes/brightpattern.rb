@@ -24,6 +24,10 @@ class Brightpattern
     @appId = Rails.configuration.x.brightpattern.appId
     @clientId = Rails.configuration.x.brightpattern.clientId
     
+    Rails.logger.debug '===HOSTNAME1==='
+    Rails.logger.debug @hostname
+    Rails.logger.debug @appId
+    Rails.logger.debug @clientId
   end
   
   def query_sendchat(query)
@@ -71,7 +75,7 @@ class Brightpattern
     appId = "e7926a805d904b11a21dbe114beaf098"
     clientId = "WebChat"
 
-    Rails.logger.debug '===HOSTNAME==='
+    Rails.logger.debug '===HOSTNAME2==='
     Rails.logger.debug @hostname
     Rails.logger.debug @appId
     Rails.logger.debug @clientId
