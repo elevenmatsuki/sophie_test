@@ -244,10 +244,10 @@ function askKeyPress(e) {
 }
 
 function getAPIEvent(e){
-    if (fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: GetEvent");
+//    if (fm.ready.value === true) {
+//        console.log("Sending transcript to UneeQ: GetEvent");
 //        fm.Transcript("1234567890");
-    }
+//    }
     //    
 //    var url = 'https://uneeq01.dev.cba-japan.com/conversations'
 //    console.log(url);
