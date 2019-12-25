@@ -244,28 +244,33 @@ function askKeyPress(e) {
 }
 
 function getAPIEvent(e){
-    var url = 'https://uneeq01.dev.cba-japan.com/conversations'
+    if (fm.ready.value === true) {
+        console.log("Sending transcript to UneeQ: GetEvent");
+        fm.Transcript("");
+    }
+    //    
+//    var url = 'https://uneeq01.dev.cba-japan.com/conversations'
 //    console.log(url);
     
-     var data = {};
-     data['sid'] = "";
+//     var data = {};
+//     data['sid'] = "";
         
-    json_data = JSON.stringify(data);
+//    json_data = JSON.stringify(data);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url);
-    xhr.setRequestHeader("Content-Type", "application/json");
+//    var xhr = new XMLHttpRequest();
+//    xhr.open("POST", url);
+//    xhr.setRequestHeader("Content-Type", "application/json");
  
-    xhr.onload = () => {
-      console.log(xhr.status);
-      console.log("success!");
-    };
+//    xhr.onload = () => {
+//      console.log(xhr.status);
+//      console.log("success!");
+//    };
 
-    xhr.onerror = () => {
-      console.log(xhr.status);
-      console.log("error!");
-    };
-    xhr.send(json_data);
+//    xhr.onerror = () => {
+//      console.log(xhr.status);
+//      console.log("error!");
+//    };
+//    xhr.send(json_data);
     
 //    var form = document.createElement('form');
 //    var request = document.createElement('input');

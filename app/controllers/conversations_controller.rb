@@ -31,7 +31,7 @@ class ConversationsController < ApplicationController
 #    render json: response
 
     # BrightPattern
-    if params["sid"].blank?
+    if params["fm-question"].blank?
       orchestration = Orchestration.new(params, "BrightPattern")
       response = orchestration.orchestrate
 
