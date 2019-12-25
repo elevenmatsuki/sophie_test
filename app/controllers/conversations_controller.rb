@@ -32,7 +32,21 @@ class ConversationsController < ApplicationController
 
     # BrightPattern
     if params["sid"].blank?
+      orchestration = Orchestration.new(params, "BrightPattern")
+      response = orchestration.orchestrate
+
       logger.debug("ConversationsController-GETEVENT")
+      
+      response = orchestration.get_chat
+
+      response.each do |var|
+        logger.debug(var)
+      end
+
+      Rails.logger.debug("ConversationsController-response")
+      Rails.logger.debug response.inspect
+
+      render json: response
     else
       orchestration = Orchestration.new(params, "BrightPattern")
       response = orchestration.orchestrate
@@ -40,7 +54,7 @@ class ConversationsController < ApplicationController
       orchestration.send_chat
 
       logger.debug("ConversationsController-sleepB")
-      sleep(1)
+#      sleep(1)
       logger.debug("ConversationsController-sleepA")
 
       response = orchestration.get_chat
