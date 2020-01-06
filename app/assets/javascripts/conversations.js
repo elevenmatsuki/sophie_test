@@ -243,7 +243,7 @@ function askKeyPress(e) {
     }
 }
 
-function getAPIEvent(e){
+function getAPIEventTimer(e){
 //    if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
 //        fm.Transcript("1234567890");
