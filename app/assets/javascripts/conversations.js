@@ -195,7 +195,7 @@ window.onload = function () {
                 console.log('AvatarAnswer');
                 break;
             default:
-                console.log('UneeQ: Unhandled message \'' + msg.faceMeMessageType + '\'');
+                console.log('FaceMe: Unhandled message \'' + msg.faceMeMessageType + '\'');
                 break;
         }
     });
@@ -237,55 +237,10 @@ function setHarkerState(enabled) {
 
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
+        console.log("Sending transcript to FaceMe: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
     }
-}
-
-function getAPIEventTimer(e){
-//    if (fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: GetEvent");
-//        fm.Transcript("1234567890");
-//    }
-    //    
-//    var url = 'https://uneeq01.dev.cba-japan.com/conversations'
-//    console.log(url);
-    
-//     var data = {};
-//     data['sid'] = "";
-        
-//    json_data = JSON.stringify(data);
-
-//    var xhr = new XMLHttpRequest();
-//    xhr.open("POST", url);
-//    xhr.setRequestHeader("Content-Type", "application/json");
- 
-//    xhr.onload = () => {
-//      console.log(xhr.status);
-//      console.log("success!");
-//    };
-
-//    xhr.onerror = () => {
-//      console.log(xhr.status);
-//      console.log("error!");
-//    };
-//    xhr.send(json_data);
-    
-//    var form = document.createElement('form');
-//    var request = document.createElement('input');
- 
-//    form.method = 'POST';
-//    form.action = 'https://uneeq01.dev.cba-japan.com/conversations';
- 
-//    request.type = 'hidden'; //入力フォームが表示されないように
-//    request.name = 'text';
-//    request.value = "1500";
-//    form.appendChild(request);
-//    document.body.appendChild(form);
- 
-//    form.submit();
-//    alert("getAPIEvent")
 }
 
 function showSettings() {
@@ -308,3 +263,4 @@ function setPauseState(paused) {
         document.getElementById('resume-btn').style.display = 'none';
     }
 }
+
