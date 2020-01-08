@@ -5,6 +5,7 @@ class ConversationsController < ApplicationController
 
   def index
     logger.debug("ConversationsController-index")
+    logger.debug(params)
 
     # Create a single-use token - this is what causes the digital human to display in the first place
     Conversation.new.authenticate_to_faceme(params)
