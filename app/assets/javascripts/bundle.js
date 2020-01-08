@@ -19321,7 +19321,6 @@
             return this.postRequest('/avatar/' + this._callId + '/welcome');
         }
         avatarAsk(text) {
-            alert(this._callId);
             return this.postRequest('/avatar/' + this._callId + '/ask', { text });
         }
         avatarStartRecording() {
