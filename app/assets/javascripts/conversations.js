@@ -246,7 +246,7 @@ function askKeyPress(e) {
 function getAPIEvent(e){
 //    if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
-        this.api.avatarAsk("Korosuke");
+        fm.api.avatarAsk("Korosuke");
 //        fm.Transcript("1234567890");
 //    }
     //    
