@@ -27,9 +27,9 @@ class ConversationsController < ApplicationController
     logger.debug params.inspect
 
     # Houdify
-    orchestration = Orchestration.new(params, "Houndify")
-    response = orchestration.orchestrate
-    render json: response
+#    orchestration = Orchestration.new(params, "Houndify")
+#    response = orchestration.orchestrate
+#    render json: response
 
     # BrightPattern
 #    if params["fm-question"].blank?
@@ -49,25 +49,25 @@ class ConversationsController < ApplicationController
 
 #      render json: response
 #    else
-#      orchestration = Orchestration.new(params, "BrightPattern")
-#      response = orchestration.orchestrate
+      orchestration = Orchestration.new(params, "BrightPattern")
+      response = orchestration.orchestrate
 
-#      orchestration.send_chat
+      orchestration.send_chat
 
-#      logger.debug("ConversationsController-sleepB")
-#      sleep(1)
-#      logger.debug("ConversationsController-sleepA")
+      logger.debug("ConversationsController-sleepB")
+      sleep(1)
+      logger.debug("ConversationsController-sleepA")
 
-#      response = orchestration.get_chat
+      response = orchestration.get_chat
 
-#      response.each do |var|
-#        logger.debug(var)
-#      end
+      response.each do |var|
+        logger.debug(var)
+      end
 
-#      Rails.logger.debug("ConversationsController-response")
-#      Rails.logger.debug response.inspect
+      Rails.logger.debug("ConversationsController-response")
+      Rails.logger.debug response.inspect
 
-#      render json: response
+      render json: response
 #    end
   end
   
