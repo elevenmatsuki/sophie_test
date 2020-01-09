@@ -246,46 +246,10 @@ function askKeyPress(e) {
 function getAPIEvent(e){
 //    if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
+        this.api.avatarAsk("Korosuke");
 //        fm.Transcript("1234567890");
 //    }
     //    
-//    var url = 'https://uneeq01.dev.cba-japan.com/conversations'
-//    console.log(url);
-    
-//     var data = {};
-//     data['sid'] = "";
-        
-//    json_data = JSON.stringify(data);
-
-//    var xhr = new XMLHttpRequest();
-//    xhr.open("POST", url);
-//    xhr.setRequestHeader("Content-Type", "application/json");
- 
-//    xhr.onload = () => {
-//      console.log(xhr.status);
-//      console.log("success!");
-//    };
-
-//    xhr.onerror = () => {
-//      console.log(xhr.status);
-//      console.log("error!");
-//    };
-//    xhr.send(json_data);
-    
-//    var form = document.createElement('form');
-//    var request = document.createElement('input');
- 
-//    form.method = 'POST';
-//    form.action = 'https://uneeq01.dev.cba-japan.com/conversations';
- 
-//    request.type = 'hidden'; //入力フォームが表示されないように
-//    request.name = 'text';
-//    request.value = "1500";
-//    form.appendChild(request);
-//    document.body.appendChild(form);
- 
-//    form.submit();
-//    alert("getAPIEvent")
 }
 
 function showSettings() {
