@@ -24,13 +24,13 @@ class Brightpattern
     @appId = Rails.configuration.x.brightpattern_appId
     @clientId = Rails.configuration.x.brightpattern_clientId
     
-    Rails.logger.debug '===HOSTNAME1==='
-    Rails.logger.debug Rails.configuration.x.brightpattern_hostname
-    Rails.logger.debug Rails.configuration.x.brightpattern_appId
-    Rails.logger.debug Rails.configuration.x.brightpattern_clientId
-    Rails.logger.debug @hostname
-    Rails.logger.debug @appId
-    Rails.logger.debug @clientId
+#    Rails.logger.debug '===HOSTNAME1==='
+#    Rails.logger.debug Rails.configuration.x.brightpattern_hostname
+#    Rails.logger.debug Rails.configuration.x.brightpattern_appId
+#    Rails.logger.debug Rails.configuration.x.brightpattern_clientId
+#    Rails.logger.debug @hostname
+#    Rails.logger.debug @appId
+#    Rails.logger.debug @clientId
   end
   
   def query_sendchat(query)
@@ -78,10 +78,10 @@ class Brightpattern
     appId = "e7926a805d904b11a21dbe114beaf098"
     clientId = "WebChat"
 
-    Rails.logger.debug '===HOSTNAME2==='
-    Rails.logger.debug @hostname
-    Rails.logger.debug @appId
-    Rails.logger.debug @clientId
+#    Rails.logger.debug '===HOSTNAME2==='
+#    Rails.logger.debug @hostname
+#    Rails.logger.debug @appId
+#    Rails.logger.debug @clientId
     
 #    hostname = "cbadevinus.brightpattern.com"
 #    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
