@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
   
-  @orchestration = nil
+  @@orchestration = nil
 
   def index
     logger.debug("ConversationsController-index")
@@ -38,7 +38,7 @@ class ConversationsController < ApplicationController
 
       logger.debug("ConversationsController-GETEVENT")
       
-      response = @orchestration.get_chat
+      response = @@orchestration.get_chat
 
       response.each do |var|
         logger.debug(var)
@@ -49,17 +49,17 @@ class ConversationsController < ApplicationController
 
       render json: response
     else
-      @orchestration = Orchestration.new(params, "BrightPattern")
+      @@orchestration = Orchestration.new(params, "BrightPattern")
 
-      response = @orchestration.orchestrate
+      response = @@orchestration.orchestrate
 
-      @orchestration.send_chat
+      @@orchestration.send_chat
 
       logger.debug("ConversationsController-sleepB")
       sleep(1)
       logger.debug("ConversationsController-sleepA")
 
-      response = @orchestration.get_chat
+      response = @@orchestration.get_chat
 
       response.each do |var|
         logger.debug(var)
@@ -75,7 +75,7 @@ class ConversationsController < ApplicationController
   def check
     logger.debug("ConversationsController-check")
     
-    if @orchestration then
+    if @@orchestration then
     end
   end
 end
