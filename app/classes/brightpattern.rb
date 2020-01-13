@@ -33,6 +33,58 @@ class Brightpattern
 #    Rails.logger.debug @clientId
   end
   
+  #API送付 - 共通処理
+  def send_api(api_opt, body, post = true)
+    Rails.logger.debug 'Brightpattern-send_api'
+    
+    hostname = "cbadev.brightpattern.com"
+    appId = "e7926a805d904b11a21dbe114beaf098"
+    clientId = "WebChat"
+
+#    Rails.logger.debug '===HOSTNAME2==='
+#    Rails.logger.debug @hostname
+#    Rails.logger.debug @appId
+#    Rails.logger.debug @clientId
+    
+#    hostname = "cbadevinus.brightpattern.com"
+#    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+#    clientId = "WebChat"
+    
+    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
+    if post 
+      request = Net::HTTP::Post.new(uri)
+    else
+      request = Net::HTTP::Get.new(uri)
+    end
+    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
+
+    if body
+      request.body = body
+      Rails.logger.debug("---BODY---")
+    end
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    Rails.logger.debug("---REQUEST---")
+    Rails.logger.debug request.inspect
+    Rails.logger.debug uri.inspect
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end    
+    
+    Rails.logger.debug("---RESPONSE---")
+    if response
+      Rails.logger.debug response.inspect
+    end
+
+    return response
+
+  end
+
+  # チャット送信
   def query_sendchat(query)
     Rails.logger.debug 'Brightpattern-query_sendchat'
     
@@ -45,6 +97,7 @@ class Brightpattern
 
   end
   
+  #チャット受信
   def query_getchat
     Rails.logger.debug 'Brightpattern-query_getchat'
     msg = ""
@@ -71,56 +124,8 @@ class Brightpattern
     return responce
   end
   
-  def send_api(api_opt, body, post = true)
-    Rails.logger.debug 'Brightpattern-send_api'
-    
-    hostname = "cbadev.brightpattern.com"
-    appId = "e7926a805d904b11a21dbe114beaf098"
-    clientId = "WebChat"
-
-#    Rails.logger.debug '===HOSTNAME2==='
-#    Rails.logger.debug @hostname
-#    Rails.logger.debug @appId
-#    Rails.logger.debug @clientId
-    
-#    hostname = "cbadevinus.brightpattern.com"
-#    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
-#    clientId = "WebChat"
-    
-    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
-	if post 
-		request = Net::HTTP::Post.new(uri)
-	else
-		request = Net::HTTP::Get.new(uri)
-	end
-    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-
-    if body
-		request.body = body
-		Rails.logger.debug("---BODY---")
-    end
-
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
-
-    Rails.logger.debug("---REQUEST---")
-    Rails.logger.debug request.inspect
-    Rails.logger.debug uri.inspect
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end    
-    
-    Rails.logger.debug("---RESPONSE---")
-    if response
-      Rails.logger.debug response.inspect
-    end
-
-    return response
-
-  end
   
+  # チャット開始
   def api_request_chat
     Rails.logger.debug 'Brightpattern-api_request_chat'
 
