@@ -37,6 +37,9 @@ class ConversationsController < ApplicationController
 
       response = orchestration.orchestrate
 
+      Rails.logger.debug("REQUEST-response")
+      Rails.logger.debug response.inspect
+
       response = orchestration.send_chat
 
       Rails.logger.debug("SENDCHAT-response")
