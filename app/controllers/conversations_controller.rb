@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
   
-  @@orchestration = nil
+  orchestration = nil
 
   def index
     logger.debug("ConversationsController-index")
@@ -32,39 +32,42 @@ class ConversationsController < ApplicationController
 #    render json: response
 
     # BrightPattern
-    if params["fm-question"].blank?
-#      orchestration = Orchestration.new(params, "BrightPattern")
-#      response = orchestration.orchestrate
+    if !params["fm-question"].blank?
+      orchestration = Orchestration.new(params, "BrightPattern")
 
-      logger.debug("ConversationsController-GETEVENT")
-      
-      response = @@orchestration.get_chat
+      response = orchestration.orchestrate
 
-      response.each do |var|
-        logger.debug(var)
-      end
+      response = orchestration.send_chat
 
-      Rails.logger.debug("ConversationsController-response")
+      Rails.logger.debug("SENDCHAT-response")
       Rails.logger.debug response.inspect
-
-      render json: response
-    else
-      @@orchestration = Orchestration.new(params, "BrightPattern")
-
-      response = @@orchestration.orchestrate
-
-      @@orchestration.send_chat
 
       logger.debug("ConversationsController-sleepB")
       sleep(1)
       logger.debug("ConversationsController-sleepA")
 
-      response = @@orchestration.get_chat
+      response = orchestration.get_chat
 
       response.each do |var|
         logger.debug(var)
       end
 
+      Rails.logger.debug("GETCHAT-response")
+      Rails.logger.debug response.inspect
+
+      render json: response
+    else
+      logger.debug("ConversationsController-GETEVENT")
+      
+      response  = {}
+      
+      if orchestration
+        response = orchestration.get_chat
+        response.each do |var|
+          logger.debug(var)
+        end
+      end
+      
       Rails.logger.debug("ConversationsController-response")
       Rails.logger.debug response.inspect
 
