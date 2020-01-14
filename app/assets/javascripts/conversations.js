@@ -236,6 +236,7 @@ function setHarkerState(enabled) {
 }
 
 var eventTimer = function(){
+    console.log("Sending transcript to UneeQ: Timer");
     getAPIEvent();
 };
 
