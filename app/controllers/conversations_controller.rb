@@ -35,50 +35,29 @@ class ConversationsController < ApplicationController
     orchestration = Orchestration.new(params, "BrightPattern")
     response = orchestration.orchestrate
 
-    Rails.logger.debug("REQUEST-response")
-    Rails.logger.debug response.inspect
-
     bp_chat_id = ""
-    if !session[:bp_chat_id].blank?
-      bp_chat_id = session[:bp_chat_id]
-    end
 
-    if !params["fm-question"].blank?
+    if session[:bp_chat_id].blank?
       response = orchestration.request_chat
-      
-      Rails.logger.debug("REQUEST_CHAT-response")
-      Rails.logger.debug response.body.inspect
+
       response_body = JSON.parse(response.body)
       bp_chat_id = response_body["chat_id"]
-      Rails.logger.debug("&&& CHAT_ID  &&&")
-      Rails.logger.debug bp_chat_id
-            
+      session[:bp_chat_id] = bp_chat_id
+    else
+      bp_chat_id = session[:bp_chat_id]
+    end
+    
+    if !params["fm-question"].blank?
       response = orchestration.send_chat(bp_chat_id)
 
       Rails.logger.debug("SENDCHAT-response")
       Rails.logger.debug response.inspect
-
-      session[:bp_chat_id] = bp_chat_id
-
-#      logger.debug("ConversationsController-sleepB")
-#      sleep(1)
-#      logger.debug("ConversationsController-sleepA")
-
-#      response = orchestration.get_chat
-
-#      response.each do |var|
-#        logger.debug(var)
-#      end
-
-#      Rails.logger.debug("GETCHAT-response")
-#      Rails.logger.debug response.inspect
 
       render json: response
     else
       logger.debug("ConversationsController-GETEVENT")
       
       response  = {}
-      
       if orchestration
         response = orchestration.get_chat(bp_chat_id)
         response.each do |var|
