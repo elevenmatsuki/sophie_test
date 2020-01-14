@@ -27,9 +27,10 @@ class ConversationsController < ApplicationController
     logger.debug params.inspect
     
     logger.debug("$$$ SESSION $$$")
-    if session[:bp_session].blank?
+    if !session[:bp_session].blank?
       logger.debug(session[:bp_session])
     end
+    logger.debug("$$$ SESSION $$$")
 
 
     # Houdify
@@ -63,6 +64,7 @@ class ConversationsController < ApplicationController
 
       Rails.logger.debug("GETCHAT-response")
       Rails.logger.debug response.inspect
+      session[:bp_session] = "123456"
 
       render json: response
     else
@@ -80,8 +82,6 @@ class ConversationsController < ApplicationController
       Rails.logger.debug("ConversationsController-response")
       Rails.logger.debug response.inspect
       
-      session[:bp_session] = "123456"
-
       render json: response
     end
   end
