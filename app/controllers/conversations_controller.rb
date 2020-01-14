@@ -25,6 +25,12 @@ class ConversationsController < ApplicationController
 
     logger.debug("ConversationsController-create")
     logger.debug params.inspect
+    
+    logger.debug("$$$ SESSION $$$")
+    if session[:bp_session].blank?
+      logger.debug(session[:bp_session])
+    end
+
 
     # Houdify
 #    orchestration = Orchestration.new(params, "Houndify")
@@ -73,6 +79,8 @@ class ConversationsController < ApplicationController
       
       Rails.logger.debug("ConversationsController-response")
       Rails.logger.debug response.inspect
+      
+      session[:bp_session] = "123456"
 
       render json: response
     end
