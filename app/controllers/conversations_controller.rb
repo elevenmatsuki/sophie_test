@@ -47,9 +47,9 @@ class ConversationsController < ApplicationController
       response = orchestration.request_chat
       
       Rails.logger.debug("REQUEST_CHAT-response")
-      Rails.logger.debug response.inspect
+      Rails.logger.debug response.body.inspect
       Rails.logger.debug("&&& CHAT_ID  &&&")
-      Rails.logger.debug response["chat_id"]
+      Rails.logger.debug response.body["chat_id"]
             
       response = orchestration.send_chat(bp_chat_id)
 
