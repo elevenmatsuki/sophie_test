@@ -46,7 +46,10 @@ class ConversationsController < ApplicationController
     else
       bp_chat_id = session[:bp_chat_id]
     end
-   
+
+    logger.debug("SESSION-Chat_id")
+    logger.debug bp_chat_id
+
     if !params["fm-question"].blank?
       response = orchestration.send_chat(bp_chat_id)
       Rails.logger.debug("SENDCHAT-response")
