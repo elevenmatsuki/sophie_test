@@ -20,13 +20,6 @@ class ConversationsController < ApplicationController
   end
   
   def create
-    
-    logger.debug("ConversationsController-create")
-    logger.debug params.inspect
-    
-  end
-
-  def createbk
     # Change the second parameter to another NLP provider in order to query against that provider
     # You could also implement a custom cascading check against multiple NLP providers.
 
