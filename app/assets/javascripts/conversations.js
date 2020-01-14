@@ -240,14 +240,19 @@ function askKeyPress(e) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
+        setInterval(eventTImer,1000);
     }
 }
 
-function getAPIEvent(e){
+function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
         fm.api.avatarAsk("");
     }
+}
+
+var eventTimer = function(){
+    getAPIEvent();
 }
 
 function showSettings() {
