@@ -245,7 +245,7 @@ function askKeyPress(e) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
-        setTimeout(eventTimer,1000);
+//        setTimeout(eventTimer,1000);
     }
 }
 
