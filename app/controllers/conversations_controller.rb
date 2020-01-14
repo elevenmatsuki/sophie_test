@@ -48,13 +48,17 @@ class ConversationsController < ApplicationController
       
       Rails.logger.debug("REQUEST_CHAT-response")
       Rails.logger.debug response.body.inspect
+      responce_body = JSON.parse(responce.body)
+      bp_chat_id = responce_body["chat_id"]
       Rails.logger.debug("&&& CHAT_ID  &&&")
-      Rails.logger.debug response.body["chat_id"]
+      Rails.logger.debug bp_chat_id
             
       response = orchestration.send_chat(bp_chat_id)
 
       Rails.logger.debug("SENDCHAT-response")
       Rails.logger.debug response.inspect
+
+      session[:bp_chat_id] = bp_chat_id
 
 #      logger.debug("ConversationsController-sleepB")
 #      sleep(1)
