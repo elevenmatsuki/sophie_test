@@ -26,14 +26,6 @@ class ConversationsController < ApplicationController
     logger.debug("ConversationsController-create")
     logger.debug params.inspect
     
-    logger.debug("$$$ SESSION $$$")
-    bp_chat_id = ""
-    if !session[:bp_chat_id].blank?
-      bp_chat_id = session[:bp_chat_id]
-    end
-    logger.debug("$$$ SESSION $$$")
-
-
     # Houdify
 #    orchestration = Orchestration.new(params, "Houndify")
 #    response = orchestration.orchestrate
@@ -45,12 +37,17 @@ class ConversationsController < ApplicationController
 
     Rails.logger.debug("REQUEST-response")
     Rails.logger.debug response.inspect
-    
-    
+
+    bp_chat_id = ""
+    if !session[:bp_chat_id].blank?
+      bp_chat_id = session[:bp_chat_id]
+    end
 
     if !params["fm-question"].blank?
       response = orchestration.request_chat
       
+      Rails.logger.debug("REQUEST_CHAT-response")
+      Rails.logger.debug response.inspect
       Rails.logger.debug("&&& CHAT_ID  &&&")
       Rails.logger.debug response["chat_id"]
             
@@ -59,18 +56,18 @@ class ConversationsController < ApplicationController
       Rails.logger.debug("SENDCHAT-response")
       Rails.logger.debug response.inspect
 
-      logger.debug("ConversationsController-sleepB")
-      sleep(1)
-      logger.debug("ConversationsController-sleepA")
+#      logger.debug("ConversationsController-sleepB")
+#      sleep(1)
+#      logger.debug("ConversationsController-sleepA")
 
-      response = orchestration.get_chat
+#      response = orchestration.get_chat
 
-      response.each do |var|
-        logger.debug(var)
-      end
+#      response.each do |var|
+#        logger.debug(var)
+#      end
 
-      Rails.logger.debug("GETCHAT-response")
-      Rails.logger.debug response.inspect
+#      Rails.logger.debug("GETCHAT-response")
+#      Rails.logger.debug response.inspect
 
       render json: response
     else
