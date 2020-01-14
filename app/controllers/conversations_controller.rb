@@ -48,8 +48,8 @@ class ConversationsController < ApplicationController
       
       Rails.logger.debug("REQUEST_CHAT-response")
       Rails.logger.debug response.body.inspect
-      responce_body = JSON.parse(responce.body)
-      bp_chat_id = responce_body["chat_id"]
+      response_body = JSON.parse(response.body)
+      bp_chat_id = response_body["chat_id"]
       Rails.logger.debug("&&& CHAT_ID  &&&")
       Rails.logger.debug bp_chat_id
             
