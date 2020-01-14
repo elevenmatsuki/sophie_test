@@ -25,17 +25,25 @@ class Orchestration
       end
     end
     
-    def send_chat
+    def request_chat
+      Rails.logger.debug 'Orchestration-request_chat'
+      if @bp then 
+        return @bp.api_request_chat
+      end
+      
+    end
+    
+    def send_chat(chat_id)
       Rails.logger.debug 'Orchestration-send_chat'
       if @bp then 
-        return @bp.query_sendchat(@query)
+        return @bp.query_sendchat(chat_id, @query)
       end
     end
     
-    def get_chat
+    def get_chat(chat_id)
       Rails.logger.debug 'Orchestration-get_chat'
       if @bp then 
-        return @bp.query_getchat
+        return @bp.query_getchat(chat_id)
       end      
     end
 end

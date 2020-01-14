@@ -7,19 +7,10 @@ require 'uri'
 require 'json'
 
 class Brightpattern
-  @chat_id = nil
   
   def initialize
     Rails.logger.debug 'Brightpattern-initialize'
     
-    responce = api_request_chat
-    
-    Rails.logger.debug responce.inspect
-    Rails.logger.debug responce.body.inspect
-    
-    responce_body = JSON.parse(responce.body)
-    @chat_id = responce_body["chat_id"]
-
     @hostname = Rails.configuration.x.brightpattern_hostname
     @appId = Rails.configuration.x.brightpattern_appId
     @clientId = Rails.configuration.x.brightpattern_clientId
@@ -84,47 +75,6 @@ class Brightpattern
 
   end
 
-  # チャット送信
-  def query_sendchat(query)
-    Rails.logger.debug 'Brightpattern-query_sendchat'
-    
-    if @chat_id then
-      responce = api_send_events(query)
-    end
-    
-    Rails.logger.debug responce.inspect
-    Rails.logger.debug responce.body.inspect
-
-  end
-  
-  #チャット受信
-  def query_getchat
-    Rails.logger.debug 'Brightpattern-query_getchat'
-    msg = ""
-    
-    responce = api_get_events
-
-    Rails.logger.debug responce.body.inspect
-    responce_body = JSON.parse(responce.body)
-    
-    msg = ""
-    html = ""
-    if responce_body["events"]
-      for events in responce_body["events"] do
-        if events["event"] == "chat_session_message" then
-          Rails.logger.debug "Message=" + events["msg"]
-          msg = events["msg"]   #とりあえず最後のメッセージ
-        end
-      end
-    
-      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
-    end
-    responce = create_json_to_send(msg, html, {})
-
-    return responce
-  end
-  
-  
   # チャット開始
   def api_request_chat
     Rails.logger.debug 'Brightpattern-api_request_chat'
@@ -152,6 +102,47 @@ class Brightpattern
     return send_api("", body)
   end
   
+  # チャット送信
+  def query_sendchat(chat_id, query)
+    Rails.logger.debug 'Brightpattern-query_sendchat'
+    
+    if chat_id then
+      responce = api_send_events(query)
+    end
+    
+    Rails.logger.debug responce.inspect
+    Rails.logger.debug responce.body.inspect
+
+  end
+  
+  #チャット受信
+  def query_getchat(chat_id)
+    Rails.logger.debug 'Brightpattern-query_getchat'
+    msg = ""
+    
+    responce = api_get_events(chat_id)
+
+    Rails.logger.debug responce.body.inspect
+    responce_body = JSON.parse(responce.body)
+    
+    msg = ""
+    html = ""
+    if responce_body["events"]
+      for events in responce_body["events"] do
+        if events["event"] == "chat_session_message" then
+          Rails.logger.debug "Message=" + events["msg"]
+          msg = events["msg"]   #とりあえず最後のメッセージ
+        end
+      end
+    
+      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
+    end
+    responce = create_json_to_send(msg, html, {})
+
+    return responce
+  end
+  
+  
   def api_send_events(query)
     Rails.logger.debug 'Brightpattern-api_send_events'
     Rails.logger.debug @chat_id
@@ -168,12 +159,12 @@ class Brightpattern
     return send_api("/" + @chat_id + "/events", body)
   end
   
-  def api_get_events
+  def api_get_events(chat_id)
     Rails.logger.debug 'Brightpattern-api_get_events'
-    Rails.logger.debug @chat_id
+    Rails.logger.debug chat_id
     
     body = nil
-    return send_api("/" + @chat_id + "/events", body, false)
+    return send_api("/" + chat_id + "/events", body, false)
   end
   
   def create_json_to_send(text, html, expression)

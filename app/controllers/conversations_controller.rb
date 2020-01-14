@@ -27,8 +27,9 @@ class ConversationsController < ApplicationController
     logger.debug params.inspect
     
     logger.debug("$$$ SESSION $$$")
-    if !session[:bp_session].blank?
-      logger.debug(session[:bp_session])
+    bp_chat_id = ""
+    if !session[:bp_chat_id].blank?
+      bp_chat_id = session[:bp_chat_id]
     end
     logger.debug("$$$ SESSION $$$")
 
@@ -39,15 +40,21 @@ class ConversationsController < ApplicationController
 #    render json: response
 
     # BrightPattern
+    orchestration = Orchestration.new(params, "BrightPattern")
+    response = orchestration.orchestrate
+
+    Rails.logger.debug("REQUEST-response")
+    Rails.logger.debug response.inspect
+    
+    
+
     if !params["fm-question"].blank?
-      orchestration = Orchestration.new(params, "BrightPattern")
-
-      response = orchestration.orchestrate
-
-      Rails.logger.debug("REQUEST-response")
-      Rails.logger.debug response.inspect
-
-      response = orchestration.send_chat
+      response = orchestration.request_chat
+      
+      Rails.logger.debug("&&& CHAT_ID  &&&")
+      Rails.logger.debug response["chat_id"]
+            
+      response = orchestration.send_chat(bp_chat_id)
 
       Rails.logger.debug("SENDCHAT-response")
       Rails.logger.debug response.inspect
@@ -64,7 +71,6 @@ class ConversationsController < ApplicationController
 
       Rails.logger.debug("GETCHAT-response")
       Rails.logger.debug response.inspect
-      session[:bp_session] = "123456"
 
       render json: response
     else
@@ -73,7 +79,7 @@ class ConversationsController < ApplicationController
       response  = {}
       
       if orchestration
-        response = orchestration.get_chat
+        response = orchestration.get_chat(bp_chat_id)
         response.each do |var|
           logger.debug(var)
         end
