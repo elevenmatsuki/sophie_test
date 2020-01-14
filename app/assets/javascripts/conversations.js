@@ -237,14 +237,14 @@ function setHarkerState(enabled) {
 
 var eventTimer = function(){
     getAPIEvent();
-}
+};
 
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
-        setInterval(eventTImer,1000);
+        setInterval(eventTimer,1000);
     }
 }
 
