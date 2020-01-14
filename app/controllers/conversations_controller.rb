@@ -81,7 +81,7 @@ class ConversationsController < ApplicationController
   def check
     logger.debug("ConversationsController-check")
     
-    if @@orchestration then
+    if orchestration then
     end
   end
 end

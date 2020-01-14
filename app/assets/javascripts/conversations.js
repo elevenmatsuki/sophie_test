@@ -244,12 +244,10 @@ function askKeyPress(e) {
 }
 
 function getAPIEvent(e){
-//    if (fm.ready.value === true) {
+    if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
         fm.api.avatarAsk("");
-//        fm.Transcript("1234567890");
-//    }
-    //    
+    }
 }
 
 function showSettings() {
