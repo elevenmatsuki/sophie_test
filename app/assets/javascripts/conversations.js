@@ -235,6 +235,10 @@ function setHarkerState(enabled) {
     }
 }
 
+var eventTimer = function(){
+    getAPIEvent();
+}
+
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
@@ -249,10 +253,6 @@ function getAPIEvent(){
         console.log("Sending transcript to UneeQ: GetEvent");
         fm.api.avatarAsk("");
     }
-}
-
-var eventTimer = function(){
-    getAPIEvent();
 }
 
 function showSettings() {
