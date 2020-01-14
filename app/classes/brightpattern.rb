@@ -107,7 +107,7 @@ class Brightpattern
     Rails.logger.debug 'Brightpattern-query_sendchat'
     
     if chat_id then
-      responce = api_send_events(query)
+      responce = api_send_events(chat_id, query)
     end
     
     Rails.logger.debug responce.inspect
@@ -143,9 +143,9 @@ class Brightpattern
   end
   
   
-  def api_send_events(query)
+  def api_send_events(chat_id, query)
     Rails.logger.debug 'Brightpattern-api_send_events'
-    Rails.logger.debug @chat_id
+    Rails.logger.debug chat_id
 
     body = JSON.dump({
       "events" => [
@@ -156,7 +156,7 @@ class Brightpattern
       ]
     })
 
-    return send_api("/" + @chat_id + "/events", body)
+    return send_api("/" + chat_id + "/events", body)
   end
   
   def api_get_events(chat_id)
