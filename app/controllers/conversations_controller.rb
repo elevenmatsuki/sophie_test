@@ -40,7 +40,7 @@ class ConversationsController < ApplicationController
 
     # BrightPattern
     orchestration = Orchestration.new(params, "BrightPattern")
-  response = orchestration.orchestrate
+    response = orchestration.orchestrate
 
     bp_chat_id = ""
 

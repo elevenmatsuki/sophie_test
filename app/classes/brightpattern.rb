@@ -137,8 +137,12 @@ class Brightpattern
     
       html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
     end
-    responce = create_json_to_send(msg, html, {})
-
+    
+    response = {}
+    if !msg.blank?
+      responce = create_json_to_send(msg, html, {})
+    end
+    
     return responce
   end
   

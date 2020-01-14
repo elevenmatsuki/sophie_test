@@ -236,8 +236,8 @@ function setHarkerState(enabled) {
 }
 
 var eventTimer = function(){
-    console.log("Sending transcript to UneeQ: Timer");
-//    getAPIEvent();
+    console.log("Sending transcript to UneeQ: TimeOut");
+    getAPIEvent();
 };
 
 function askKeyPress(e) {
@@ -245,7 +245,7 @@ function askKeyPress(e) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
-//        setInterval(eventTimer,3000);
+        setTimeout(eventTimer,1000);
     }
 }
 
