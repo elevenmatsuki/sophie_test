@@ -28,7 +28,8 @@ class Orchestration
     def request_chat
       Rails.logger.debug 'Orchestration-request_chat'
       if @bp then 
-        return @bp.api_request_chat
+        return @bp.get_response(@query)
+#        return @bp.api_request_chat
       end
       
     end

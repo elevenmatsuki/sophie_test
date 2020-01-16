@@ -146,6 +146,14 @@ class Brightpattern
     return responce
   end
   
+  #msgの値をそのままresponseにして返す
+  def get_response(msg)
+      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
+
+    response = create_json_to_send(msg, html, {})
+    
+    return response
+  end
   
   def api_send_events(chat_id, query)
     Rails.logger.debug 'Brightpattern-api_send_events'
