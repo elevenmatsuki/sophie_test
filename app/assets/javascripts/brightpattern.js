@@ -10,6 +10,11 @@ var BrightPattern = function(){
     var clientId = "WebChat";
 
     this.chat_id = "";
+    
+    this.main = function(){
+        requestApi.then(this.successRequesApi);
+    }
+    
     this.requestApi = function(){
         console.log("requestApi");
         var body = [{
@@ -33,6 +38,10 @@ var BrightPattern = function(){
         }];
         json_body = JSON.stringify(body);
         this.sendApi("", json_body);
+    }
+    this.successRequesApi = function(){
+        console.log("sucessRequesApi");
+        this.sendChat("Hi");
     }
     
     this.sendChat = function(msg){
