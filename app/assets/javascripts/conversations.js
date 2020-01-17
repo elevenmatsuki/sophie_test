@@ -247,7 +247,7 @@ function askKeyPress(e) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
-        bp.requestApi("12345");
+//        bp.requestApi("12345");
 //        setTimeout(eventTimer,1000);
     }
 }
