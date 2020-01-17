@@ -27,8 +27,8 @@ var BrightPattern = function(){
                     "browser": "Chrome 78.0.3904.108",
                     "os": "Windows 10 64-bit",
                     "description": "Chrome 78.0.3904.108 on Windows 10 64-bit"
-                }
-            }   
+                },
+            },   
         };
         json_body = JSON.stringify(body);
         console.log(json_body);
