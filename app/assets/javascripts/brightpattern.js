@@ -58,7 +58,7 @@ var BrightPattern = function(){
         this.sendChat("Hi");
     }
     
-    this.errorSendChat = function(){
+    this.errorSendApi = function(){
         console.log(this.status);
         console.log("error!");
     }
@@ -72,7 +72,7 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        this.sendApi("/" + this.chat_id + "/events", json_body, this.successSendChat);
+        this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat);
     }
 
     this.successSendChat = function(){
@@ -90,7 +90,7 @@ var BrightPattern = function(){
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
         xhr.onload = successCallback;
-        xhr.onerror = this.errorSendChat;
+        xhr.onerror = this.errorSendApi;
         xhr.send(body);
     };
 };
