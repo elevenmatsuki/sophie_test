@@ -252,7 +252,9 @@ function askKeyPress(e) {
 function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
-        getBpApi("TEST");
+        var bp = new BrightPattern;
+        bp.sendApi("TEST");
+//        getBpApi("TEST");
 //        fm.api.avatarAsk("");
     }
 }

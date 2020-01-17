@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
-function getBpApi(msg){
-    console.log("BrightPattern API: "+msg);
-}
+var BrightPattern = function(){
+    this.chat_id;
+    this.sendApi = function(msg){
+        console.log("BrightPattern API: "+msg);
+    };
+};
