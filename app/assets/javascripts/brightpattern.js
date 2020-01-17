@@ -5,8 +5,13 @@
  */
 
 var BrightPattern = function(){
-    this.chat_id;
+    this.chat_id = "";
+    this.requestApi = function(chat_id){
+        this.chat_id = chat_id;
+    }
+    
     this.sendApi = function(msg){
-        console.log("BrightPattern API: "+msg);
+        console.log("BrightPattern API: " + this.chat_id);
+        console.log("BrightPattern API: " + msg);
     };
 };

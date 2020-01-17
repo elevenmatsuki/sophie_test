@@ -240,11 +240,14 @@ var eventTimer = function(){
     getAPIEvent();
 };
 
+var bp = new BrightPattern;
+
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
+        bp.requestApi("12345");
 //        setTimeout(eventTimer,1000);
     }
 }
@@ -252,7 +255,6 @@ function askKeyPress(e) {
 function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
-        var bp = new BrightPattern;
         bp.sendApi("TEST");
 //        getBpApi("TEST");
 //        fm.api.avatarAsk("");
