@@ -32,9 +32,19 @@ var BrightPattern = function(){
             },   
         }];
         json_body = JSON.stringify(body);
-//        console.log(json_body);
         this.sendApi("", json_body);
-        console.log("requestApi-End");
+    }
+    
+    this.sendChat = function(msg){
+        console.log("sendChat");
+        body = [{
+          "events": {
+              "event":"chat_session_message",
+              "msg": msg
+            }
+        }];
+        json_body = JSON.stringify(body);
+        this.sendApi("/" + this.chat_id + "/events", json_body);        
     }
     
     this.sendApi = function(api_opt, body){
@@ -47,10 +57,14 @@ var BrightPattern = function(){
         
         xhr.onload = function (e){
             console.log(xhr.status);
+            console.log(xhr.response);
             console.log("success!");
-            var json_response = JSON.parse(xhr.response);
-            this.chat_id = json_response["chat_id"];
-            console.log("chat_id:" + this.chat_id);
+            var response = xhr.response;
+            if ("chat_id" in response) {
+                var json_response = JSON.parse(response);
+                this.chat_id = json_response["chat_id"];
+                console.log("chat_id:" + this.chat_id);
+            }
         };
 
         xhr.onerror = function(e){
