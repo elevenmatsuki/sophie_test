@@ -32,7 +32,7 @@ var BrightPattern = function(){
             },   
         }];
         json_body = JSON.stringify(body);
-        console.log(json_body);
+//        console.log(json_body);
         this.sendApi("", json_body);
     }
     
@@ -41,16 +41,15 @@ var BrightPattern = function(){
         
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url);
-//        request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-//        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(body);
         
         xhr.onload = function (e){
             console.log(xhr.status);
             console.log("success!");
-            console.log(xhr.responseText);
+            var json_response = JSON.parse(xrh.response);
+            this.chat_id = json_response["chat_id"];
+            console.log("chat_id:" + this.chat_id);
         };
 
         xhr.onerror = function(e){
