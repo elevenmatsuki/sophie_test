@@ -37,7 +37,7 @@ class ConversationsController < ApplicationController
     
     response = orchestration.request_chat
 
-     render json: response
+    render json: response
 
 #    bp_chat_id = ""
 
