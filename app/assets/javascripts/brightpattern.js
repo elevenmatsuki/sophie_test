@@ -43,9 +43,8 @@ var BrightPattern = function(){
                 },
             },   
         }];
-        var rp = new RequestParam;
-        rp.body = JSON.stringify(body);
-        this.sendApi(rs);
+        json_body = JSON.stringify(body);
+        this.sendApi("", json_body, true, this.successRequesApi);
     }
     
     this.successRequesApi = function(){
@@ -56,7 +55,7 @@ var BrightPattern = function(){
             this.chat_id = json_response["chat_id"];
             console.log("chat_id:" + this.chat_id);
         }
-//        this.sendChat("Hi");
+        this.sendChat("Hi");
     }
     
     this.erroSendChat = function(){
@@ -73,37 +72,25 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-//        this.sendApi("/" + this.chat_id + "/events", json_body);
+        this.sendApi("/" + this.chat_id + "/events", json_body, this.successSendChat);
     }
+
+    this.successSendChat = function(){
+        console.log("successSendChat");
+    }    
     
-    
-    this.sendApi = function(rs){
+    this.sendApi = function(api_opt, body, isPost, successCallback){
         var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/";
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", url);
+        if (isPost){
+            xhr.open("POST", url);
+        }else{
+            xhr.open("GET", url);
+        }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-        xhr.onload = this.successRequesApi;
+        xhr.onload = successCallback;
         xhr.onerror = this.erroSendChat;
-/*
-        xhr.onload = function (e){
-            console.log(xhr.status);
-            console.log(xhr.response);
-            console.log("success!");
-            var response = xhr.response;
-            var json_response = JSON.parse(response);
-            if ('chat_id' in json_response) {
-                this.chat_id = json_response["chat_id"];
-                console.log("chat_id:" + this.chat_id);
-            }
-        };
-*/
-/*
-        xhr.onerror = function(e){
-            console.log(xhr.status);
-            console.log("error!");
-        };
-*/
         xhr.send(rs.body);
     };
 };
