@@ -55,7 +55,8 @@ var BrightPattern = function(){
             this.chat_id = json_response["chat_id"];
             console.log("chat_id:" + this.chat_id);
         }
-        this.sendChat("Hi");
+        this.this.sendChat("Hi");
+//        this.sendChat("Hi");
     };
     
     this.errorSendApi = function(){
