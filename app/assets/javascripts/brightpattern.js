@@ -10,11 +10,12 @@ var BrightPattern = function(){
     var clientId = "WebChat";
 
     this.chat_id = "";
-    this.requestApi = function(chat_id){
-        this.chat_id = chat_id;
+    this.requestApi = function(){
+        var body = {};
+        this.sendApi("",body);
     }
     
-    this.sendApi = function(api_opt){
+    this.sendApi = function(api_opt, body){
         var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/"
         
         var xhr = new XMLHttpRequest();
@@ -23,7 +24,7 @@ var BrightPattern = function(){
 
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
 //        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send();
+        xhr.send(body);
         
         xhr.onload = function (e){
             console.log(xhr.status);
