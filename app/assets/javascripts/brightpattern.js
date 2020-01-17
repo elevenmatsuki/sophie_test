@@ -23,11 +23,12 @@ var BrightPattern = function(){
 
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
 //        xhr.setRequestHeader("Content-Type", "application/json");
-        var response = xhr.send();
+        xhr.send();
         
         xhr.onload = function (e){
             console.log(xhr.status);
             console.log("success!");
+            console.log(xhr.responseText);
         };
 
         xhr.onerror = function(e){
@@ -35,6 +36,5 @@ var BrightPattern = function(){
             console.log("error!");
         };
         
-        console.log(response.toString());
     };
 };
