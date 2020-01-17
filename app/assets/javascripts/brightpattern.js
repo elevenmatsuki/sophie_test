@@ -69,8 +69,8 @@ var BrightPattern = function(){
             console.log(xhr.response);
             console.log("success!");
             var response = xhr.response;
-            if ("chat_id" in response) {
-                var json_response = JSON.parse(response);
+            var json_response = JSON.parse(response);
+            if ('chat_id' in json_response) {
                 this.chat_id = json_response["chat_id"];
                 console.log("chat_id:" + this.chat_id);
             }
