@@ -12,7 +12,7 @@ var BrightPattern = function(){
     this.chat_id = "";
     
     this.main = function(){
-        requestApi.then(this.successRequesApi);
+        this.requestApi.then(this.successRequesApi);
     }
     
     this.requestApi = function(){
