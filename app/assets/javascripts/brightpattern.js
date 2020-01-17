@@ -4,6 +4,13 @@
  * and open the template in the editor.
  */
 
+var RequestParam = function(){
+    this.api_opt = "";
+    this.body;
+    this.isPost = true;
+    this.callbackFunction;
+}
+
 var BrightPattern = function(){
     var hostname = "cbadev.brightpattern.com";
     var appId = "e7926a805d904b11a21dbe114beaf098";
@@ -36,8 +43,9 @@ var BrightPattern = function(){
                 },
             },   
         }];
-        json_body = JSON.stringify(body);
-        this.sendApi("", json_body);
+        var rp = new RequestParam;
+        rp.body = JSON.stringify(body);
+        this.sendApi(rs);
     }
     
     this.successRequesApi = function(){
@@ -65,11 +73,11 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        this.sendApi("/" + this.chat_id + "/events", json_body);
+//        this.sendApi("/" + this.chat_id + "/events", json_body);
     }
     
     
-    this.sendApi = function(api_opt, body){
+    this.sendApi = function(rs){
         var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/";
 
         var xhr = new XMLHttpRequest();
@@ -96,6 +104,6 @@ var BrightPattern = function(){
             console.log("error!");
         };
 */
-        xhr.send(body);
+        xhr.send(rs.body);
     };
 };
