@@ -34,6 +34,7 @@ var BrightPattern = function(){
         json_body = JSON.stringify(body);
 //        console.log(json_body);
         this.sendApi("", json_body);
+        console.log("requestApi-End");
     }
     
     this.sendApi = function(api_opt, body){
