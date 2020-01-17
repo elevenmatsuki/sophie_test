@@ -47,7 +47,7 @@ var BrightPattern = function(){
         xhr.onload = function (e){
             console.log(xhr.status);
             console.log("success!");
-            var json_response = JSON.parse(xrh.response);
+            var json_response = JSON.parse(xhr.response);
             this.chat_id = json_response["chat_id"];
             console.log("chat_id:" + this.chat_id);
         };
