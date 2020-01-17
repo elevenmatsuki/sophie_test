@@ -39,9 +39,21 @@ var BrightPattern = function(){
         json_body = JSON.stringify(body);
         this.sendApi("", json_body);
     }
+    
     this.successRequesApi = function(){
         console.log("sucessRequesApi");
-        this.sendChat("Hi");
+        var response = this.response;
+        var json_response = JSON.parse(response);
+        if ('chat_id' in json_response) {
+            this.chat_id = json_response["chat_id"];
+            console.log("chat_id:" + this.chat_id);
+        }
+//        this.sendChat("Hi");
+    }
+    
+    this.erroSendChat = function(){
+        console.log(this.status);
+        console.log("error!");
     }
     
     this.sendChat = function(msg){
@@ -53,17 +65,19 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        this.sendApi("/" + this.chat_id + "/events", json_body);        
+        this.sendApi("/" + this.chat_id + "/events", json_body);
     }
     
+    
     this.sendApi = function(api_opt, body){
-        var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/"
-        
+        var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/";
+
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url);
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-        xhr.send(body);
-        
+        xhr.onload = this.successRequesApi;
+        xhr.onerror = this.erroSendChat;
+/*
         xhr.onload = function (e){
             console.log(xhr.status);
             console.log(xhr.response);
@@ -75,11 +89,13 @@ var BrightPattern = function(){
                 console.log("chat_id:" + this.chat_id);
             }
         };
-
+*/
+/*
         xhr.onerror = function(e){
             console.log(xhr.status);
             console.log("error!");
         };
-        
+*/
+        xhr.send(body);
     };
 };
