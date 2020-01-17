@@ -11,8 +11,27 @@ var BrightPattern = function(){
 
     this.chat_id = "";
     this.requestApi = function(){
-        var body = {};
-        this.sendApi("",body);
+        var body = {
+            "phone_number": "",
+            "from": "",
+            "parameters": {
+                "email": "info@cba-japan.com",
+                "last_name": "",
+                "first_name": "",
+                "account_number": "",
+                "phone_number": "",
+                "subject": "TEST SUBJECT",
+                "logging": "",
+                "location": {},
+                "user_platform": {
+                    "browser": "Chrome 78.0.3904.108",
+                    "os": "Windows 10 64-bit",
+                    "description": "Chrome 78.0.3904.108 on Windows 10 64-bit"
+                },
+            },   
+        };
+        json_body = JSON.stringify(body)
+        this.sendApi("", json_body);
     }
     
     this.sendApi = function(api_opt, body){
