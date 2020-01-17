@@ -9,7 +9,7 @@ var RequestParam = function(){
     this.body;
     this.isPost = true;
     this.callbackFunction;
-}
+};
 
 var BrightPattern = function(){
     var hostname = "cbadev.brightpattern.com";
@@ -20,7 +20,7 @@ var BrightPattern = function(){
     
     this.main = function(){
         this.requestApi();
-    }
+    };
     
     this.requestApi = function(){
         console.log("requestApi");
@@ -40,12 +40,12 @@ var BrightPattern = function(){
                     "browser": "Chrome 78.0.3904.108",
                     "os": "Windows 10 64-bit",
                     "description": "Chrome 78.0.3904.108 on Windows 10 64-bit"
-                },
-            },   
+                }
+            }
         }];
         json_body = JSON.stringify(body);
         this.sendApi("", json_body, true, this.successRequesApi);
-    }
+    };
     
     this.successRequesApi = function(){
         console.log("sucessRequesApi");
@@ -56,12 +56,12 @@ var BrightPattern = function(){
             console.log("chat_id:" + this.chat_id);
         }
         this.sendChat("Hi");
-    }
+    };
     
     this.errorSendApi = function(){
         console.log(this.status);
         console.log("error!");
-    }
+    };
     
     this.sendChat = function(msg){
         console.log("sendChat");
@@ -73,11 +73,11 @@ var BrightPattern = function(){
         }];
         json_body = JSON.stringify(body);
         this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat);
-    }
+    };
 
     this.successSendChat = function(){
         console.log("successSendChat");
-    }    
+    };    
     
     this.sendApi = function(api_opt, body, isPost, successCallback){
         var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/";
