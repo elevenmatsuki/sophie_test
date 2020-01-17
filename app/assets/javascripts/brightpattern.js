@@ -11,7 +11,8 @@ var BrightPattern = function(){
 
     this.chat_id = "";
     this.requestApi = function(){
-        var body = {
+        console.log("requestApi");
+        var body = [{
             "phone_number": "",
             "from": "",
             "parameters": {
@@ -29,7 +30,7 @@ var BrightPattern = function(){
                     "description": "Chrome 78.0.3904.108 on Windows 10 64-bit"
                 },
             },   
-        };
+        }];
         json_body = JSON.stringify(body);
         console.log(json_body);
         this.sendApi("", json_body);
