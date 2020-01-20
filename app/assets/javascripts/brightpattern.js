@@ -18,11 +18,7 @@ var BrightPattern = function(){
 
     this.chat_id = "";
     
-    this.main = function(){
-        this.requestApi();
-    };
-    
-    this.requestApi = function(){
+    this.requestApi = function(callback){
         console.log("requestApi");
         var body = [{
             "phone_number": "",
@@ -44,7 +40,7 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        this.sendApi("", json_body, true, this.successRequesApi, this.sendChat);
+        this.sendApi("", json_body, true, this.successRequesApi, callback);
         console.log("requestApi-end");
     };
     
@@ -54,11 +50,14 @@ var BrightPattern = function(){
         console.log(this);
         var response = this.response;
         console.log(response);
-        var json_response = JSON.parse(response);
-        if ('chat_id' in json_response) {
-            this.chat_id = json_response["chat_id"];
-            console.log("chat_id:" + this.chat_id);
-            this.callback();
+        console.log(this.status);
+        if(this.status === 200){
+            var json_response = JSON.parse(response);
+            if ('chat_id' in json_response) {
+                this.chat_id = json_response["chat_id"];
+                console.log("chat_id:" + this.chat_id);
+                callback();
+            }
         }
     };
     
@@ -67,7 +66,7 @@ var BrightPattern = function(){
         console.log("error!");
     };
     
-    this.sendChat = function(msg){
+    this.sendChat = function(msg, callback){
         console.log("sendChat");
         body = [{
           "events": {
@@ -76,7 +75,7 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat, null);
+        this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat, callback);
         console.log("sendChat-end");
     };
 
@@ -94,12 +93,19 @@ var BrightPattern = function(){
             xhr.open("GET", url, false);
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-//        xhr.onload = successOnload;
-//        xhr.onerror = this.errorSendApi;
-/*        if( callback !== null ){
+        xhr.onload = successOnload;
+        xhr.onerror = this.errorSendApi;
+        if( callback !== null ){
             xhr.callback = callback;
         }
-*/
+
         xhr.send(body);
+/*
+        var json_response = JSON.parse(xhr.response);
+        if ('chat_id' in json_response) {
+            this.chat_id = json_response["chat_id"];
+            console.log("chat_id:" + this.chat_id);
+        }
+*/
     };
 };

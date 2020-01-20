@@ -255,12 +255,15 @@ function askKeyPress(e) {
 function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
-//        bp.requestApi();
-        bp.main();
-//        bp.sendChat("Hi");
+        bp.requestApi(sendChat);
+        
 //        getBpApi("TEST");
 //        fm.api.avatarAsk("");
     }
+}
+
+function sendChat(){
+        bp.sendChat("Hi", null);
 }
 
 function showSettings() {
