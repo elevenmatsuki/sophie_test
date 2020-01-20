@@ -242,6 +242,7 @@ var eventTimer = function(){
 
 var bp = new BrightPattern;
 var bp_chat_id;
+var bp_chat_response = "";
 
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
