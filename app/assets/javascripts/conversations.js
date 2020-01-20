@@ -256,14 +256,16 @@ function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: GetEvent");
         bp.requestApi(sendChat);
-        
 //        getBpApi("TEST");
-//        fm.api.avatarAsk("");
     }
 }
 
 function sendChat(){
-        bp.sendChat("Hi", null);
+    bp.sendChat("Hi", getEvent);
+}
+
+function getEvent(msg){
+//    fm.api.avatarAsk(msg);
 }
 
 function showSettings() {

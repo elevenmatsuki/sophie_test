@@ -46,11 +46,7 @@ var BrightPattern = function(){
     
     this.successRequesApi = function(){
         console.log("sucessRequesApi");
-        console.log("this");
-        console.log(this);
         var response = this.response;
-        console.log(response);
-        console.log(this.status);
         if(this.status === 200){
             var json_response = JSON.parse(response);
             if ('chat_id' in json_response) {
@@ -81,8 +77,25 @@ var BrightPattern = function(){
 
     this.successSendChat = function(){
         console.log("successSendChat");
+        if(this.status === 200){
+            this.callback();
+        }        
     };    
     
+    this.getChat = function(callback){
+        console.log("getChat");
+        body = null;
+        this.sendApi("/" + chat_id + "/events", body, false, this.successGetChat, callback);
+    }
+    
+    this.successGetChat = function(){
+        console.log("successGetChat");
+        if(this.status === 200){
+            console.log(this.response);
+            this.callback();
+        }
+    };    
+
     this.sendApi = function(api_opt, body, isPost, successOnload, callback){
         var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/";
 
@@ -100,12 +113,5 @@ var BrightPattern = function(){
         }
 
         xhr.send(body);
-/*
-        var json_response = JSON.parse(xhr.response);
-        if ('chat_id' in json_response) {
-            this.chat_id = json_response["chat_id"];
-            console.log("chat_id:" + this.chat_id);
-        }
-*/
     };
 };
