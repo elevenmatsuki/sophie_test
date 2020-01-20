@@ -94,7 +94,7 @@ var BrightPattern = function(){
             xhr.open("GET", url);
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-        xhr.onload = successCallback();
+        xhr.onload = successCallback;
         xhr.onerror = this.errorSendApi;
         xhr.send(body);
     };
