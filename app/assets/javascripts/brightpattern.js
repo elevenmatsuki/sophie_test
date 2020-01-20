@@ -88,9 +88,9 @@ var BrightPattern = function(){
 
         var xhr = new XMLHttpRequest();
         if (isPost){
-            xhr.open("POST", url, false);
+            xhr.open("POST", url, true);
         }else{
-            xhr.open("GET", url, false);
+            xhr.open("GET", url, true);
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
         xhr.onload = successOnload;
