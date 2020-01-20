@@ -49,7 +49,8 @@ var BrightPattern = function(){
     
     this.successRequesApi = function(e, bp){
         console.log("sucessRequesApi");
-        console.log(this.status);
+        console.log(this);
+        console.log(e);
         var response = this.response;
         console.log(response);
         var json_response = JSON.parse(response);
