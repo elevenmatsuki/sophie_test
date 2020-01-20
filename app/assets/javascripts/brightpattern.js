@@ -96,7 +96,7 @@ var BrightPattern = function(){
             console.log(this.response);
             response = "こんにちは";
         }
-        this.callback(this.status, this.response);
+        this.callback(this.status, response);
     };    
 
     this.sendApi = function(api_opt, body, isPost, successOnload, callback){
