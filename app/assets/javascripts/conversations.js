@@ -235,11 +235,6 @@ function setHarkerState(enabled) {
     }
 }
 
-var eventTimer = function(){
-    console.log("Sending transcript to UneeQ: TimeOut");
-    getAPIEvent();
-};
-
 var bp = new BrightPattern;
 var bp_chat_id = "";
 
@@ -248,8 +243,6 @@ function askKeyPress(e) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
-//        bp.requestApi("12345");
-//        setTimeout(eventTimer,1000);
     }
 }
 
@@ -273,11 +266,15 @@ function getEvent(){
 }
 
 function resultGetEvent(status, msg){
-    console.log("Sending transcript to UneeQ: successGetEvent");
+    console.log("Sending transcript to UneeQ: resultGetEvent");
     console.log(status);
     console.log(msg);    
-    
-//    fm.api.avatarAsk(msg);
+    if ( status === 200 ){
+        fm.api.avatarAsk(msg);
+    }
+    if (fm.ready.value === true) {
+        bp.getChat(resultGetEvent);
+    }    
 }
 
 function showSettings() {

@@ -94,7 +94,7 @@ var BrightPattern = function(){
         var response = this.response;
         if(this.status === 200){
             console.log(this.response);
-            response = "12345";
+            response = "こんにちは";
         }
         this.callback(this.status, this.response);
     };    
