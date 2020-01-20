@@ -49,8 +49,8 @@ var BrightPattern = function(){
     
     this.successRequesApi = function(e, bp){
         console.log("sucessRequesApi");
-        console.log(e);
         var response = this.response;
+        console.log(response);
         var json_response = JSON.parse(response);
         if ('chat_id' in json_response) {
             this.chat_id = json_response["chat_id"];
