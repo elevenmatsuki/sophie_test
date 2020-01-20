@@ -89,16 +89,17 @@ var BrightPattern = function(){
 
         var xhr = new XMLHttpRequest();
         if (isPost){
-            xhr.open("POST", url);
+            xhr.open("POST", url, false);
         }else{
-            xhr.open("GET", url);
+            xhr.open("GET", url, false);
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-        xhr.onload = successOnload;
-        xhr.onerror = this.errorSendApi;
-        if( callback !== null ){
+//        xhr.onload = successOnload;
+//        xhr.onerror = this.errorSendApi;
+/*        if( callback !== null ){
             xhr.callback = callback;
         }
+*/
         xhr.send(body);
     };
 };
