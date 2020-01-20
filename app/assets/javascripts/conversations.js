@@ -241,8 +241,7 @@ var eventTimer = function(){
 };
 
 var bp = new BrightPattern;
-var bp_chat_id;
-var bp_chat_response = "";
+var bp_chat_id = "";
 
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
@@ -270,13 +269,13 @@ function sendChat(chat_id){
 
 function getEvent(){
     console.log("Sending transcript to UneeQ: getEvent");
-    bp.getChat(successGetEvent);
+    bp.getChat(resultGetEvent);
 }
 
-function successGetEvent(msg){
+function resultGetEvent(status, msg){
     console.log("Sending transcript to UneeQ: successGetEvent");
+    console.log(status);
     console.log(msg);    
-    console.log(bp_chat_response);
     
 //    fm.api.avatarAsk(msg);
 }

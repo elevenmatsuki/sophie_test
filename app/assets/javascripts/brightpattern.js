@@ -91,11 +91,12 @@ var BrightPattern = function(){
     this.successGetChat = function(){
         console.log("successGetChat");
         console.log(this);
+        var response = this.response;
         if(this.status === 200){
             console.log(this.response);
-            bp_chat_response = "12345";
-            this.callback(bp_chat_response);
+            response = "12345";
         }
+        this.callback(this.status, this.response);
     };    
 
     this.sendApi = function(api_opt, body, isPost, successOnload, callback){
