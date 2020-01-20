@@ -278,9 +278,9 @@ function resultGetEvent(status, msg){
     console.log(msg);    
     if ( status === 200 ){
         fm.api.avatarAsk(msg);
-        
     }
     if (fm.ready.value === true) {
+        console.log("setTimeout");
         setTimeout(getEvent, 3000);
 //        bp.getChat(bp_chat_id, resultGetEvent);
     }    
