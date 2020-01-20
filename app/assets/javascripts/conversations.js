@@ -269,7 +269,6 @@ function sendChat(chat_id){
 
 function getEvent(msg){
     console.log("Sending transcript to UneeQ: getEvent");
-    console.log(bp_chat_id);
     console.log(msg);
     
 //    fm.api.avatarAsk(msg);

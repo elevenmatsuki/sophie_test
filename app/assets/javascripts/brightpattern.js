@@ -46,15 +46,16 @@ var BrightPattern = function(){
     
     this.successRequesApi = function(){
         console.log("sucessRequesApi");
+        var chat_id = "";
         var response = this.response;
         if(this.status === 200){
             var json_response = JSON.parse(response);
             if ('chat_id' in json_response) {
                 chat_id = json_response["chat_id"];
                 console.log("chat_id:" + chat_id);
-                this.callback(chat_id);
             }
         }
+        this.callback(chat_id);
     };
     
     this.errorSendApi = function(){
@@ -71,14 +72,11 @@ var BrightPattern = function(){
           }]
         };
         json_body = JSON.stringify(body);
-        console.log(json_body);
         this.sendApi("/" + chat_id + "/events", json_body, true, this.successSendChat, callback);
-        console.log("sendChat-end");
     };
 
     this.successSendChat = function(){
         console.log("successSendChat");
-        console.log(this);
         if(this.status === 200){
             this.callback();
         }        
@@ -109,14 +107,12 @@ var BrightPattern = function(){
         }else{
             xhr.open("GET", url, true);
         }
-//        xhr.setRequestHeader("Access-Control-Allow-Origin", "https://" + hostname);
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
         xhr.onload = successOnload;
         xhr.onerror = this.errorSendApi;
         if( callback !== null ){
             xhr.callback = callback;
         }
-//        xhr.withCredentials = true;
         
         xhr.send(body);
     };
