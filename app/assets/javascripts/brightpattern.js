@@ -47,10 +47,10 @@ var BrightPattern = function(){
         this.sendApi("", json_body, true, this.successRequesApi);
     };
     
-    this.successRequesApi = function(xhr, bp){
+    this.successRequesApi = function(bp){
         console.log("sucessRequesApi");
-        console.log("xhr");
-        console.log(xhr);
+        console.log("this");
+        console.log(this);
         console.log("bp");
         console.log(bp);
         var response = xhr.response;
