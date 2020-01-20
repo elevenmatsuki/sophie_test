@@ -47,13 +47,13 @@ var BrightPattern = function(){
         this.sendApi("", json_body, true, this.successRequesApi);
     };
     
-    this.successRequesApi = function(e, bp){
+    this.successRequesApi = function(xhr, bp){
         console.log("sucessRequesApi");
-        console.log("e");
-        console.log(e);
+        console.log("xhr");
+        console.log(xhr);
         console.log("bp");
         console.log(bp);
-        var response = this.response;
+        var response = xhr.response;
         console.log(response);
         var json_response = JSON.parse(response);
         if ('chat_id' in json_response) {
@@ -94,7 +94,7 @@ var BrightPattern = function(){
             xhr.open("GET", url);
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-        xhr.onload = successCallback(this);
+        xhr.onload = successCallback(xhr,this);
         xhr.onerror = this.errorSendApi;
         xhr.send(body);
     };
