@@ -95,7 +95,6 @@ var BrightPattern = function(){
             var json_response = JSON.parse(response);
             if ('events' in json_response) {
                 var len = json_response["events"].length;
-//                for ( var v of json_response["events"]) {
                 for ( var i = 0;  i < len; i++ ) {
                     if ( json_response["events"][i]['event'] === "chat_session_message"){
                         msg = json_response["events"][i]['msg'];
@@ -103,7 +102,7 @@ var BrightPattern = function(){
                 }
             }
         }
-        console.log(msg);
+//        console.log(msg);
         this.callback(this.status, msg);
     };    
 

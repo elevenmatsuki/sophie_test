@@ -249,15 +249,22 @@ function askKeyPress(e) {
 function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: getAPIEvent");
-        bp.requestApi(sendChat);
-//        getBpApi("TEST");
+        if(bp_chat_id === ""){
+            bp.requestApi(sendChat);
+        }else{
+            req = document.getElementById('askInput').value
+            bp.sendChat(req, bp_chat_id, getEvent);
+            document.getElementById('askInput').value = '';
+        }
     }
 }
 
 function sendChat(chat_id){
     console.log("Sending transcript to UneeQ: sendChat");
     bp_chat_id = chat_id;
-    bp.sendChat("Korosuke", bp_chat_id, getEvent);
+    req = document.getElementById('askInput').value
+    bp.sendChat(req, bp_chat_id, getEvent);
+    document.getElementById('askInput').value = '';
 }
 
 function getEvent(){
@@ -274,6 +281,7 @@ function resultGetEvent(status, msg){
         
     }
     if (fm.ready.value === true) {
+        setTimeout(getEvent, 3000);
 //        bp.getChat(bp_chat_id, resultGetEvent);
     }    
 }
