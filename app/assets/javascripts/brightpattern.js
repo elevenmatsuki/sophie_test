@@ -58,6 +58,7 @@ var BrightPattern = function(){
         if ('chat_id' in json_response) {
             this.chat_id = json_response["chat_id"];
             console.log("chat_id:" + this.chat_id);
+            this.callback();
         }
     };
     
