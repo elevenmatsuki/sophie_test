@@ -45,6 +45,7 @@ var BrightPattern = function(){
         }];
         json_body = JSON.stringify(body);
         this.sendApi("", json_body, true, this.successRequesApi);
+        console.log("requestApi-end");
     };
     
     this.successRequesApi = function(){
@@ -98,7 +99,7 @@ var BrightPattern = function(){
 //        xhr.onload = successCallback;
         xhr.onload = function() {
             console.log("onload");
-        }
+        };
         xhr.onerror = this.errorSendApi;
         xhr.send(body);
     };
