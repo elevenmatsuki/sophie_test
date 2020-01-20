@@ -17,6 +17,7 @@ var BrightPattern = function(){
     var clientId = "WebChat";
 
     this.chat_id = "";
+    var chat_response = "";
     
     this.requestApi = function(callback){
         console.log("requestApi");
@@ -93,7 +94,8 @@ var BrightPattern = function(){
         console.log(this);
         if(this.status === 200){
             console.log(this.response);
-            this.callback("12345");
+            this.chat_response = "12345";
+            this.callback();
         }
     };    
 
