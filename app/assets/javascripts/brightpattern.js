@@ -41,7 +41,6 @@ var BrightPattern = function(){
         }];
         json_body = JSON.stringify(body);
         this.sendApi("", json_body, true, this.successRequesApi, callback);
-        console.log("requestApi-end");
     };
     
     this.successRequesApi = function(){
@@ -52,7 +51,6 @@ var BrightPattern = function(){
             var json_response = JSON.parse(response);
             if ('chat_id' in json_response) {
                 chat_id = json_response["chat_id"];
-                console.log("chat_id:" + chat_id);
             }
         }
         this.callback(chat_id);
@@ -90,11 +88,11 @@ var BrightPattern = function(){
     
     this.successGetChat = function(){
         console.log("successGetChat");
-        console.log(this);
+        console.log(this.response);
         var response = this.response;
         if(this.status === 200){
             console.log(this.response);
-            response = "こんにちは";
+//            response = "こんにちは";
         }
         this.callback(this.status, response);
     };    

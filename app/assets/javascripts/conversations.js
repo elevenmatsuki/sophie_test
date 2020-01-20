@@ -257,7 +257,7 @@ function getAPIEvent(){
 function sendChat(chat_id){
     console.log("Sending transcript to UneeQ: sendChat");
     bp_chat_id = chat_id;
-    bp.sendChat("Hi", bp_chat_id, getEvent);
+    bp.sendChat("Korosuke", bp_chat_id, getEvent);
 }
 
 function getEvent(){
@@ -270,7 +270,8 @@ function resultGetEvent(status, msg){
     console.log(status);
     console.log(msg);    
     if ( status === 200 ){
-        fm.api.avatarAsk(msg);
+//        fm.api.avatarAsk(msg);
+        
     }
     if (fm.ready.value === true) {
         bp.getChat(bp_chat_id, resultGetEvent);
