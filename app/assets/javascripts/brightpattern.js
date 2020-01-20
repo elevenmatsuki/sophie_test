@@ -65,10 +65,10 @@ var BrightPattern = function(){
     this.sendChat = function(msg, chat_id, callback){
         console.log("sendChat");
         body = [{
-          "events": {
-              "event":"chat_session_message",
+          "events": [{
+              "event": "chat_session_message",
               "msg": msg
-            }
+            }]
         }];
         json_body = JSON.stringify(body);
         console.log(chat_id);
