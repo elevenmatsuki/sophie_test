@@ -44,7 +44,7 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        this.sendApi("", json_body, true, this.successRequesApi);
+        this.sendApi("", json_body, true, this.successRequesApi, this.sendChat);
         console.log("requestApi-end");
     };
     
@@ -52,8 +52,6 @@ var BrightPattern = function(){
         console.log("sucessRequesApi");
         console.log("this");
         console.log(this);
-//        console.log("bp");
-//        console.log(bp);
         var response = this.response;
         console.log(response);
         var json_response = JSON.parse(response);
@@ -61,7 +59,6 @@ var BrightPattern = function(){
             this.chat_id = json_response["chat_id"];
             console.log("chat_id:" + this.chat_id);
         }
-//         bp.sendChat("Hi");
     };
     
     this.errorSendApi = function(){
@@ -78,7 +75,7 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat);
+        this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat, null);
         console.log("sendChat-end");
     };
 
@@ -86,7 +83,7 @@ var BrightPattern = function(){
         console.log("successSendChat");
     };    
     
-    this.sendApi = function(api_opt, body, isPost, successCallback){
+    this.sendApi = function(api_opt, body, isPost, successOnload, callback){
         var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/";
 
         var xhr = new XMLHttpRequest();
@@ -96,11 +93,11 @@ var BrightPattern = function(){
             xhr.open("GET", url);
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-//        xhr.onload = successCallback;
-        xhr.onload = function() {
-            console.log("onload");
-        };
+        xhr.onload = successOnload;
         xhr.onerror = this.errorSendApi;
+        if( callback !== null ){
+            xhr.callback = callback;
+        }
         xhr.send(body);
     };
 };
