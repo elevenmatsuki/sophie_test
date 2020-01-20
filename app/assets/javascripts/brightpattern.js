@@ -97,8 +97,8 @@ var BrightPattern = function(){
                 var len = json_response["events"].length;
 //                for ( var v of json_response["events"]) {
                 for ( var i = 0;  i < len; i++ ) {
-                    if ( 'chat_session_message' in  json_response["events"][i]){
-                        msg = json_response["events"][i]['chat_session_message'];
+                    if ( json_response["events"][i]['event'] === "chat_session_message"){
+                        msg = json_response["events"][i]['msg'];
                     }
                 }
             }
