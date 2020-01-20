@@ -116,7 +116,7 @@ var BrightPattern = function(){
         if( callback !== null ){
             xhr.callback = callback;
         }
-        xhr.withCredentials = false;
+        xhr.withCredentials = true;
         
         xhr.send(body);
     };
