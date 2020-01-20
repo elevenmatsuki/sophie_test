@@ -77,6 +77,7 @@ var BrightPattern = function(){
 
     this.successSendChat = function(){
         console.log("successSendChat");
+        console.log(this);
         if(this.status === 200){
             this.callback();
         }        
@@ -90,9 +91,10 @@ var BrightPattern = function(){
     
     this.successGetChat = function(){
         console.log("successGetChat");
+        console.log(this);
         if(this.status === 200){
             console.log(this.response);
-            this.callback();
+            this.callback("12345");
         }
     };    
 

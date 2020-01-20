@@ -254,17 +254,21 @@ function askKeyPress(e) {
 
 function getAPIEvent(){
     if (fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: GetEvent");
+        console.log("Sending transcript to UneeQ: getAPIEvent");
         bp.requestApi(sendChat);
 //        getBpApi("TEST");
     }
 }
 
 function sendChat(){
+    console.log("Sending transcript to UneeQ: sendChat");
     bp.sendChat("Hi", getEvent);
 }
 
 function getEvent(msg){
+    console.log("Sending transcript to UneeQ: getEvent");
+    console.log(msg);
+    
 //    fm.api.avatarAsk(msg);
 }
 
