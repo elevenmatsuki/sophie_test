@@ -101,6 +101,7 @@ var BrightPattern = function(){
 
     this.sendApi = function(api_opt, body, isPost, successOnload, callback){
         var url = "https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https://" + hostname + "/";
+        console.log("url:" + url);
 
         var xhr = new XMLHttpRequest();
         if (isPost){
