@@ -109,7 +109,7 @@ var BrightPattern = function(){
         }else{
             xhr.open("GET", url, true);
         }
-//        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "https://" + hostname);
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
         xhr.onload = successOnload;
         xhr.onerror = this.errorSendApi;
