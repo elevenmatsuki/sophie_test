@@ -241,6 +241,7 @@ var eventTimer = function(){
 };
 
 var bp = new BrightPattern;
+var chat_id;
 
 function askKeyPress(e) {
     if (e.key === 'Enter' && fm.ready.value === true) {
@@ -260,13 +261,15 @@ function getAPIEvent(){
     }
 }
 
-function sendChat(){
+function sendChat(ci){
     console.log("Sending transcript to UneeQ: sendChat");
-    bp.sendChat("Hi", getEvent);
+    chat_id = ci;
+    bp.sendChat("Hi", chat_id, getEvent);
 }
 
 function getEvent(msg){
     console.log("Sending transcript to UneeQ: getEvent");
+    console.log(chat_id);
     console.log(msg);
     
 //    fm.api.avatarAsk(msg);

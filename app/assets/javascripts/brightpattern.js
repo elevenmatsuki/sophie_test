@@ -50,9 +50,9 @@ var BrightPattern = function(){
         if(this.status === 200){
             var json_response = JSON.parse(response);
             if ('chat_id' in json_response) {
-                this.chat_id = json_response["chat_id"];
-                console.log("chat_id:" + this.chat_id);
-                this.callback();
+                chat_id = json_response["chat_id"];
+                console.log("chat_id:" + chat_id);
+                this.callback(chat_id);
             }
         }
     };
@@ -62,7 +62,7 @@ var BrightPattern = function(){
         console.log("error!");
     };
     
-    this.sendChat = function(msg, callback){
+    this.sendChat = function(msg, chat_id, callback){
         console.log("sendChat");
         body = [{
           "events": {
@@ -71,8 +71,8 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
-        console.log(this.chat_id);
-        this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat, callback);
+        console.log(chat_id);
+        this.sendApi("/" + chat_id + "/events", json_body, true, this.successSendChat, callback);
         console.log("sendChat-end");
     };
 
@@ -87,8 +87,8 @@ var BrightPattern = function(){
     this.getChat = function(callback){
         console.log("getChat");
         body = null;
-        this.sendApi("/" + chat_id + "/events", body, false, this.successGetChat, callback);
-    }
+        this.sendApi("/" + this.chat_id + "/events", body, false, this.successGetChat, callback);
+    };
     
     this.successGetChat = function(){
         console.log("successGetChat");
