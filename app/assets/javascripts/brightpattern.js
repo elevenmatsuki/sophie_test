@@ -68,7 +68,7 @@ var BrightPattern = function(){
           "events": [{
               "event": "chat_session_message",
               "msg": msg
-            }]
+          }]
         }];
         json_body = JSON.stringify(body);
         console.log(chat_id);
@@ -116,7 +116,7 @@ var BrightPattern = function(){
         if( callback !== null ){
             xhr.callback = callback;
         }
-        xhr.withCredentials = true;
+//        xhr.withCredentials = true;
         
         xhr.send(body);
     };
