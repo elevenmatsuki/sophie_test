@@ -58,7 +58,7 @@ var BrightPattern = function(){
             this.chat_id = json_response["chat_id"];
             console.log("chat_id:" + this.chat_id);
         }
- //        this.sendChat("Hi");
+         bp.sendChat("Hi");
     };
     
     this.errorSendApi = function(){
@@ -92,7 +92,7 @@ var BrightPattern = function(){
             xhr.open("GET", url);
         }
         xhr.setRequestHeader("Authorization", "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\"");
-        xhr.onload = successCallback("12345");
+        xhr.onload = successCallback(this);
         xhr.onerror = this.errorSendApi;
         xhr.send(body);
     };
