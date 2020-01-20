@@ -270,11 +270,11 @@ function resultGetEvent(status, msg){
     console.log(status);
     console.log(msg);    
     if ( status === 200 ){
-//        fm.api.avatarAsk(msg);
+        fm.api.avatarAsk(msg);
         
     }
     if (fm.ready.value === true) {
-        bp.getChat(bp_chat_id, resultGetEvent);
+//        bp.getChat(bp_chat_id, resultGetEvent);
     }    
 }
 
