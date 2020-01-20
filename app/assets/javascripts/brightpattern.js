@@ -85,7 +85,7 @@ var BrightPattern = function(){
     this.getChat = function(callback){
         console.log("getChat");
         body = null;
-        this.sendApi("/" + this.chat_id + "/events", body, false, this.successGetChat, callback);
+        this.sendApi("/" + chat_id + "/events", body, false, this.successGetChat, callback);
     };
     
     this.successGetChat = function(){
