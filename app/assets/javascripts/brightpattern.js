@@ -94,7 +94,7 @@ var BrightPattern = function(){
         if(this.status === 200){
             console.log(this.response);
             bp_chat_response = "12345";
-            this.callback();
+            this.callback(bp_chat_response);
         }
     };    
 

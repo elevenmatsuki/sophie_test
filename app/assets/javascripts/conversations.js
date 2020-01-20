@@ -270,6 +270,12 @@ function sendChat(chat_id){
 
 function getEvent(){
     console.log("Sending transcript to UneeQ: getEvent");
+    bp.getChat(successGetEvent);
+}
+
+function successGetEvent(msg){
+    console.log("Sending transcript to UneeQ: successGetEvent");
+    console.log(msg);    
     console.log(bp_chat_response);
     
 //    fm.api.avatarAsk(msg);
