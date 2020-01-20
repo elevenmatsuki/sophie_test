@@ -71,6 +71,7 @@ var BrightPattern = function(){
             }
         }];
         json_body = JSON.stringify(body);
+        console.log(this.chat_id);
         this.sendApi("/" + this.chat_id + "/events", json_body, true, this.successSendChat, callback);
         console.log("sendChat-end");
     };
