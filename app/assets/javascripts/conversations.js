@@ -262,7 +262,7 @@ function sendChat(chat_id){
 
 function getEvent(){
     console.log("Sending transcript to UneeQ: getEvent");
-    bp.getChat(resultGetEvent);
+    bp.getChat(bp_chat_id, resultGetEvent);
 }
 
 function resultGetEvent(status, msg){
@@ -273,7 +273,7 @@ function resultGetEvent(status, msg){
         fm.api.avatarAsk(msg);
     }
     if (fm.ready.value === true) {
-        bp.getChat(resultGetEvent);
+        bp.getChat(bp_chat_id, resultGetEvent);
     }    
 }
 
