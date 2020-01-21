@@ -239,14 +239,6 @@ var bp = new BrightPattern;
 var bp_chat_id = "";
 
 function askKeyPress(e) {
-    if (e.key === 'Enter' && fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
-        fm.sendTranscript(document.getElementById('askInput').value);
-        document.getElementById('askInput').value = '';
-    }
-}
-
-function getAskInput(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: getAPIEvent");
         if(bp_chat_id === ""){
@@ -256,12 +248,21 @@ function getAskInput(){
             bp.sendChat(msg, bp_chat_id, getEvent);
         }
     }
+    
     /*
+    if (e.key === 'Enter' && fm.ready.value === true) {
+        console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
+        fm.sendTranscript(document.getElementById('askInput').value);
+        document.getElementById('askInput').value = '';
+    }
+    */
+}
+
+function getAskInput(){
     var msg = document.getElementById('askInput').value
     document.getElementById('local-transcript').innerHTML = msg;
     document.getElementById('askInput').value = '';
     return msg;
-    */
 }
 
 /*
