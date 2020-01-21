@@ -278,7 +278,7 @@ function resultGetEvent(status, msg){
     console.log(msg);    
     if ( status === 200 ){
         len = msg.length;
-        if ( var i = 0; i < len; i++ ){
+        for ( var i = 0; i < len; i++ ){
             fm.api.avatarAsk(msg[i]);
         }
     }
