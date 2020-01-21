@@ -142,7 +142,7 @@ window.onload = function () {
                 fmReadyHandler();
                 break;
             case 'AvatarQuestionText':
-                document.getElementById('local-transcript').innerHTML = msg.question;
+//                document.getElementById('local-transcript').innerHTML = msg.question;
                 break;
             case 'AvatarAnswerText':
                 addAvatarTranscript(msg.answer);
@@ -246,15 +246,21 @@ function askKeyPress(e) {
     }
 }
 
+function getAskInput(){
+    var msg = document.getElementById('askInput').value
+    document.getElementById('local-transcript').innerHTML = msg;
+    document.getElementById('askInput').value = '';
+    return msg;
+}
+
 function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: getAPIEvent");
         if(bp_chat_id === ""){
             bp.requestApi(sendChat);
         }else{
-            req = document.getElementById('askInput').value
-            bp.sendChat(req, bp_chat_id, getEvent);
-            document.getElementById('askInput').value = '';
+            var msg = getAskInput();
+            bp.sendChat(msg, bp_chat_id, getEvent);
         }
     }
 }
@@ -262,9 +268,8 @@ function getAPIEvent(){
 function sendChat(chat_id){
     console.log("Sending transcript to UneeQ: sendChat");
     bp_chat_id = chat_id;
-    req = document.getElementById('askInput').value
-    bp.sendChat(req, bp_chat_id, getEvent);
-    document.getElementById('askInput').value = '';
+    var msg = getAskInput();
+    bp.sendChat(msg, bp_chat_id, getEvent);
 }
 
 function getEvent(){
