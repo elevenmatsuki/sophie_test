@@ -277,7 +277,10 @@ function resultGetEvent(status, msg){
     console.log(status);
     console.log(msg);    
     if ( status === 200 ){
-        fm.api.avatarAsk(msg);
+        len = msg.length;
+        if ( var i = 0; i < len; i++ ){
+            fm.api.avatarAsk(msg[i]);
+        }
     }
     if (fm.ready.value === true && fm.sessionPaused === false) {
         console.log("setTimeout");

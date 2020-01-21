@@ -84,19 +84,18 @@ var BrightPattern = function(){
         console.log("successGetChat");
         console.log(this.response);
         var response = this.response;
-        var msg = "";
+        var msg = [];
         if ( this.status === 200 ){
             var json_response = JSON.parse(response);
             if ('events' in json_response) {
                 var len = json_response["events"].length;
                 for ( var i = 0;  i < len; i++ ) {
                     if ( json_response["events"][i]['event'] === "chat_session_message"){
-                        msg = json_response["events"][i]['msg'];
+                        msg.push(json_response["events"][i]['msg']);
                     }
                 }
             }
         }
-//        console.log(msg);
         this.callback(this.status, msg);
     };    
 
