@@ -274,11 +274,11 @@ function getEvent(){
 
 function resultGetEvent(status, msg){
     console.log("Sending transcript to UneeQ: resultGetEvent");
-    console.log(status);
-    console.log(msg);    
+//    console.log(status);
     if ( status === 200 ){
         len = msg.length;
         for ( var i = 0; i < len; i++ ){
+            console.log("MSG" + msg[i]);    
             fm.api.avatarAsk(msg[i]);
         }
     }
