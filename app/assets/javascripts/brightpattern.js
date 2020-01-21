@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 var BrightPattern = function(){
-    var hostname = "cbadev.brightpattern.com";
-    var appId = "e7926a805d904b11a21dbe114beaf098";
+//    var hostname = "cbadev.brightpattern.com";
+//    var appId = "e7926a805d904b11a21dbe114beaf098";
+//    var clientId = "WebChat";
+
+    var hostname = "awsbp.jplab.cba-japan.com";
+    var appId = "671027b01d1c497b81cd27798b480140";
     var clientId = "WebChat";
 
     this.requestApi = function(callback){
