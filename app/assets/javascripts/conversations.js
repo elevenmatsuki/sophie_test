@@ -280,7 +280,7 @@ function resultGetEvent(status, msg){
         for ( var i = 0; i < len; i++ ){
             console.log("MSG:" + msg[i]);    
             fm.api.avatarAsk(msg[i]);
-            sleep(1000);
+//            sleep(1000);
         }
     }
     if (fm.ready.value === true && fm.sessionPaused === false) {
