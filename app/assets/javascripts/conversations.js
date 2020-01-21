@@ -247,12 +247,24 @@ function askKeyPress(e) {
 }
 
 function getAskInput(){
+    if (fm.ready.value === true) {
+        console.log("Sending transcript to UneeQ: getAPIEvent");
+        if(bp_chat_id === ""){
+            bp.requestApi(sendChat);
+        }else{
+            var msg = getAskInput();
+            bp.sendChat(msg, bp_chat_id, getEvent);
+        }
+    }
+    /*
     var msg = document.getElementById('askInput').value
     document.getElementById('local-transcript').innerHTML = msg;
     document.getElementById('askInput').value = '';
     return msg;
+    */
 }
 
+/*
 function getAPIEvent(){
     if (fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: getAPIEvent");
@@ -264,7 +276,7 @@ function getAPIEvent(){
         }
     }
 }
-
+*/
 function sendChat(chat_id){
     console.log("Sending transcript to UneeQ: sendChat");
     bp_chat_id = chat_id;
