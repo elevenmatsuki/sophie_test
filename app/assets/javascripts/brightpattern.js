@@ -3,21 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-var RequestParam = function(){
-    this.api_opt = "";
-    this.body;
-    this.isPost = true;
-    this.callbackFunction;
-};
-
 var BrightPattern = function(){
     var hostname = "cbadev.brightpattern.com";
     var appId = "e7926a805d904b11a21dbe114beaf098";
     var clientId = "WebChat";
 
-    this.chat_id = "";
-    
     this.requestApi = function(callback){
         console.log("requestApi");
         var body = [{
