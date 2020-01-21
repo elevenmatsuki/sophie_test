@@ -29,22 +29,6 @@ class Orchestration
       Rails.logger.debug 'Orchestration-request_chat'
       if @bp then 
         return @bp.get_response(@query)
-#        return @bp.api_request_chat
       end
-      
-    end
-    
-    def send_chat(chat_id)
-      Rails.logger.debug 'Orchestration-send_chat'
-      if @bp then 
-        return @bp.query_sendchat(chat_id, @query)
-      end
-    end
-    
-    def get_chat(chat_id)
-      Rails.logger.debug 'Orchestration-get_chat'
-      if @bp then 
-        return @bp.query_getchat(chat_id)
-      end      
     end
 end
