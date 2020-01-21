@@ -280,12 +280,21 @@ function resultGetEvent(status, msg){
         for ( var i = 0; i < len; i++ ){
             console.log("MSG:" + msg[i]);    
             fm.api.avatarAsk(msg[i]);
+            sleep(500);
         }
     }
     if (fm.ready.value === true && fm.sessionPaused === false) {
         console.log("setTimeout");
         setTimeout(getEvent, 3000);
     }    
+}
+
+// ビジーwaitを使う方法
+function sleep(waitMsec) {
+  var startMsec = new Date();
+ 
+  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+  while (new Date() - startMsec < waitMsec);
 }
 
 function showSettings() {
