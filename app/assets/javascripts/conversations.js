@@ -137,15 +137,18 @@ window.onload = function () {
 
     // Subscribe to UneeQ messages from the API, various response types, and trigger on certain actions
     fm.messages.subscribe((msg) => {
+        console.log(msg.faceMeMessageType);
         switch (msg.faceMeMessageType) {
             case 'Ready':
                 fmReadyHandler();
                 break;
             case 'AvatarQuestionText':
                 document.getElementById('local-transcript').innerHTML = msg.question;
+                console.log(msg);
                 break;
             case 'AvatarAnswerText':
                 addAvatarTranscript(msg.answer);
+                console.log(msg);
                 break;
             case 'AvatarUnavailable':
                 document.getElementById('msg').innerHTML = 'Avatar Unavailable. Session will begin when an avatar becomes available.';
@@ -156,6 +159,7 @@ window.onload = function () {
                 break;
             case 'AvatarAnswerContent':
                 document.getElementById('injectHTML').innerHTML = msg.content;
+                console.log(msg);
                 break;
             case 'DeviceListUpdated':
                 devices = msg.devices;
