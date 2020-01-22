@@ -239,7 +239,7 @@ var bp = new BrightPattern;
 var bp_chat_id = "";
 
 function askKeyPress(e) {
-    if (fm.ready.value === true) {
+    if (e.key === 'Enter' && fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: getAPIEvent");
         if(bp_chat_id === ""){
             bp.requestApi(sendChat);
