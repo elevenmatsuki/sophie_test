@@ -144,7 +144,7 @@ window.onload = function () {
                 fmReadyHandler();
                 break;
             case 'AvatarQuestionText':
-                document.getElementById('local-transcript').innerHTML = msg.question;
+//                document.getElementById('local-transcript').innerHTML = msg.question;
                 console.log(msg);
                 break;
             case 'AvatarAnswerText':
