@@ -265,6 +265,10 @@ function getAskInput(){
     return msg;
 }
 
+function getAPIEvent(){
+    chat_id = window.sessionStorage.getItem(['bp_chat_id']); 
+    console.log("getAPIEvent session:" + chat_id);
+}
 /*
 function getAPIEvent(){
     if (fm.ready.value === true) {
