@@ -34,6 +34,8 @@ class ConversationsController < ApplicationController
     orchestration.orchestrate
     
     response = orchestration.request_chat
+    
+    session[:bp_chat_id] = "12345";
 
     render json: response
   end
