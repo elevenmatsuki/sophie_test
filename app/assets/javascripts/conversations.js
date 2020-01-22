@@ -137,6 +137,7 @@ window.onload = function () {
 
     // Subscribe to UneeQ messages from the API, various response types, and trigger on certain actions
     fm.messages.subscribe((msg) => {
+        console.log("---------------------------");
         console.log(msg.faceMeMessageType);
         switch (msg.faceMeMessageType) {
             case 'Ready':
