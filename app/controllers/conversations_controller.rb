@@ -15,6 +15,8 @@ class ConversationsController < ApplicationController
     @token = Conversation.first.token
     @api_key = Rails.application.secrets.fm_api_key
 
+    session[:bp_chat_id] = "12345";
+
   end
   
   def create
@@ -35,8 +37,6 @@ class ConversationsController < ApplicationController
     
     response = orchestration.request_chat
     
-    session[:bp_chat_id] = "12345";
-
     logger.debug("session:" + session[:bp_chat_id])
 
     render json: response
