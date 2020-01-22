@@ -266,6 +266,8 @@ function getAskInput(){
 }
 
 function getAPIEvent(){
+    window.sessionStorage.setItem('bp_chat_id',"23456"); 
+    
     chat_id = window.sessionStorage.getItem('bp_chat_id'); 
     console.log("getAPIEvent session:" + chat_id);
 }
