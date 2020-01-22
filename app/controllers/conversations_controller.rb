@@ -37,6 +37,8 @@ class ConversationsController < ApplicationController
     
     session[:bp_chat_id] = "12345";
 
+    logger.debug("session:" + session[:bp_chat_id])
+
     render json: response
   end
   
