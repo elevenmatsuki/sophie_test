@@ -14,7 +14,7 @@ class Brightpattern
   
   #msgの値をそのままresponseにして返す
   def get_response(msg)
-      html = "[123456]<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
+      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
       
     response = create_json_to_send(msg, html, {})
     
