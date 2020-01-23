@@ -148,8 +148,6 @@ window.onload = function () {
                 console.log(msg);
                 break;
             case 'AvatarAnswerText':
-                console.log(msg.answer);
-                msg.answer = getGetId(msg.answer);
                 addAvatarTranscript(msg.answer);
                 console.log(msg.answer);
                 break;
@@ -161,6 +159,8 @@ window.onload = function () {
                 document.getElementById('msg').innerHTML = 'Loading...';
                 break;
             case 'AvatarAnswerContent':
+                console.log(msg.content);
+                msg.answer = getGetId(msg.content);
                 document.getElementById('injectHTML').innerHTML = msg.content;
                 console.log(msg);
                 break;
@@ -331,6 +331,8 @@ function sleep(waitMsec) {
 }
  
  function getChatId(msg){
+    console.log("getChatId");
+    console.log(msg);
      var start = msg.indexOf('[');
      var end = msg.indexOf(']');
      if (start >= 0 && end >= 0){
