@@ -42,6 +42,7 @@ class Brightpattern
 
     answer_body = {
         "answer": text,
+        "chat_id": "123456",
         "instructions": {
             "expressionEvent": [
               expression
