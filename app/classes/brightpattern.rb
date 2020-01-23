@@ -14,7 +14,7 @@ class Brightpattern
   
   #msgの値をそのままresponseにして返す
   def get_response(msg)
-      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
+      html = "[123456]<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
       
     response = create_json_to_send(msg, html, {})
     
@@ -42,7 +42,6 @@ class Brightpattern
 
     answer_body = {
         "answer": text,
-        "chat_id": "123456",
         "instructions": {
             "expressionEvent": [
               expression
@@ -60,7 +59,6 @@ class Brightpattern
             "displayHtml": {
                 "html": html
             },
-            "chat_id": "123456"
         }
     }
 

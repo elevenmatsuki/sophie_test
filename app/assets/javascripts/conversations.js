@@ -148,6 +148,8 @@ window.onload = function () {
                 console.log(msg);
                 break;
             case 'AvatarAnswerText':
+                console.log(msg.answer);
+                msg.answer = getGetId(msg.answer);
                 addAvatarTranscript(msg.answer);
                 console.log(msg.answer);
                 break;
@@ -197,9 +199,7 @@ window.onload = function () {
                 console.log('RecordingStopped');
                 break;
             case 'AvatarAnswer':
-//                msg.answer = getGetId(msg.answer);
                 console.log('AvatarAnswer');
-                console.log(msg);
                 break;
             default:
                 console.log('UneeQ: Unhandled message \'' + msg.faceMeMessageType + '\'');
