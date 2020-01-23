@@ -332,9 +332,14 @@ function sleep(waitMsec) {
  function getChatId(msg){
      var start = msg.indexOf('[');
      var end = msg.indexOf(']');
-     bp_chat_id = msg.substr(start + 1, end - 1);
+     if (start >= 0 && end >= 0){
+         bp_chat_id = msg.substr(start + 1, end - 1);
+     }
     console.log("chat_id:" + bp_chat_id);
-    return msg.substr(end + 1);     
+    if(end >= 0){
+        msg = msg.substr(end + 1);
+    }
+    return msg;
  }
 
 function showSettings() {
