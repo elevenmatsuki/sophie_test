@@ -160,7 +160,7 @@ window.onload = function () {
                 break;
             case 'AvatarAnswerContent':
                 console.log(msg.content);
-                msg.answer = getGetId(msg.content);
+                msg.answer = getChatId(msg.content);
                 document.getElementById('injectHTML').innerHTML = msg.content;
                 console.log(msg);
                 break;
