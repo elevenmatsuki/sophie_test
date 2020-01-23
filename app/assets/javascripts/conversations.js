@@ -148,8 +148,9 @@ window.onload = function () {
                 console.log(msg);
                 break;
             case 'AvatarAnswerText':
+                msg.answer = getGetId(msg.answer);
                 addAvatarTranscript(msg.answer);
-                console.log(msg);
+                console.log(msg.answer);
                 break;
             case 'AvatarUnavailable':
                 document.getElementById('msg').innerHTML = 'Avatar Unavailable. Session will begin when an avatar becomes available.';
@@ -327,6 +328,14 @@ function sleep(waitMsec) {
   // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
   while (new Date() - startMsec < waitMsec);
 }
+ 
+ function getChatId(msg){
+     var start = msg.indexOf('[');
+     var end = msg.indexOf(']');
+     bp_chat_id = msg.substr(start + 1, end - 1);
+    console.log("chat_id:" + bp_chat_id);
+    return msg.substr(end + 1);     
+ }
 
 function showSettings() {
     document.getElementById('settings').classList.add('show');
