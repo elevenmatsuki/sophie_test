@@ -13,6 +13,7 @@ class Houndify
   def initialize(clientID = nil, clientKey = nil, userID = "test_user", hostname = nil, proxyHost = nil, proxyPort = nil, proxyHeaders = nil)
     Rails.logger.debug("Houndify-initialize")
     
+    userID = "matsuki@cba-japan.com"
     clientID = "CcO2Bd4KCGOWTh24YXGQDA=="
     clientKey = "ZNQCMiUsFYekkDDzuuMzccanKtsQz8I_h8dxduBDT6xBeYCh_S-eX7aMTDP0x3MxCw9vVcbAF5i60R1GK_DyEg=="
     

@@ -3,6 +3,7 @@
 <div id="transcript"></div>
 <div id="local-transcript"></div>
 <input type="text" id="askInput" placeholder="Type Something..." onkeypress="askKeyPress(event)" />
+<button id="debugging" style="background:#7fffd4">デバッグ中</button>
 <div id="prompt" class="prompt">Hold <b>space</b> to speak.</div>
 <div id="controls">
     <button onclick="showSettings()">Settings</button>
@@ -11,7 +12,6 @@
     <button id="harker-btn" onclick="setHarkerState(true)">Enable Harker</button>
     <button id="disable-harker-btn" style="display: none" onclick="setHarkerState(false)">Disable Harker</button>
     <button onclick="fm.endSession()">End</button>
-    <button id="debugging">デバッグ中</button>
 </div>
 <div id="settings">
     <h2>Settings</h2>
