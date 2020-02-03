@@ -27,11 +27,11 @@ class Watson
       
     baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
 #    baseurl = "https://gateway-tok.watsonplatform.net/v2/assistants/"
-    appId = "oiV8ILLsE8JxaA-ImHud6KmPWb1wZZJN6JswseUR7HFl"
+    assistant_id = "537a4514-20cc-40f3-a26d-a1c654fa8b3c"
 #    clientId = "WebChat"
 
 #    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/537a4514-20cc-40f3-a26d-a1c654fa8b3c/sessions?version=2019-02-28")
-    uri = URI.parse(baseurl + appId + "/" + api_opt + "?version=2019-02-28")
+    uri = URI.parse(baseurl + assistant_id + "/" + api_opt + "?version=2019-02-28")
     Rails.logger.debug (uri)
     if post 
       request = Net::HTTP::Post.new(uri)
