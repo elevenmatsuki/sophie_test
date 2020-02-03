@@ -6,20 +6,20 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-class Brightpattern
+class Watson
   
   def initialize
-    Rails.logger.debug 'Brightpattern-initialize'
+    Rails.logger.debug 'Watson-initialize'
     
-    @hostname = Rails.configuration.x.brightpattern_hostname
-    @appId = Rails.configuration.x.brightpattern_appId
-    @clientId = Rails.configuration.x.brightpattern_clientId
+#    @hostname = Rails.configuration.x.brightpattern_hostname
+#    @appId = Rails.configuration.x.brightpattern_appId
+#    @clientId = Rails.configuration.x.brightpattern_clientId
     
   end
   
   #API送付 - 共通処理
   def send_api(api_opt, body, post = true)
-    Rails.logger.debug 'Brightpattern-send_api'
+    Rails.logger.debug 'Watson-send_api'
       
     hostname = "cbadev.brightpattern.com"
     appId = "e7926a805d904b11a21dbe114beaf098"
@@ -70,7 +70,7 @@ class Brightpattern
   
   # チャット開始
   def api_request_chat
-    Rails.logger.debug 'Brightpattern-api_request_chat'
+    Rails.logger.debug 'Watson-api_request_chat'
 
     body = JSON.dump({
       "phone_number" => "",
@@ -97,7 +97,7 @@ class Brightpattern
   
   # チャット送信
   def query_sendchat(chat_id, query)
-    Rails.logger.debug 'Brightpattern-query_sendchat'
+    Rails.logger.debug 'Watson-query_sendchat'
     
     if chat_id then
       responce = api_send_events(chat_id, query)
@@ -110,7 +110,7 @@ class Brightpattern
   
   #チャット受信
   def query_getchat(chat_id)
-    Rails.logger.debug 'Brightpattern-query_getchat'
+    Rails.logger.debug 'Watson-query_getchat'
     msg = ""
     
     responce = api_get_events(chat_id)
@@ -157,7 +157,7 @@ class Brightpattern
   end
   
   def api_get_events(chat_id)
-    Rails.logger.debug 'Brightpattern-api_get_events'
+    Rails.logger.debug 'Watson-api_get_events'
     Rails.logger.debug chat_id
     
     body = nil
@@ -165,7 +165,7 @@ class Brightpattern
   end
   
   def create_json_to_send(text, html, expression)
-    Rails.logger.debug("Brightpattern-create_json_to_send")
+    Rails.logger.debug("Watson-create_json_to_send")
 
     answer_body = {
         "answer": text,

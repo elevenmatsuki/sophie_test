@@ -10,6 +10,7 @@ class Orchestration
       @partner = partner # string, the name of the partner company we reach out to
       @response = nil
       @bp = nil
+      @watson = nil
       
     end
 
@@ -20,6 +21,8 @@ class Orchestration
           Houndify.new.query_houndify(@location, @conversation_state, @query)
       when "BrightPattern"
         @bp = Brightpattern.new
+      when "Watson"
+        @watson = Watson.new
       else
           return nil
       end

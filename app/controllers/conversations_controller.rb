@@ -25,7 +25,11 @@ class ConversationsController < ApplicationController
     logger.debug params.inspect
     
     # Houdify
-    orchestration = Orchestration.new(params, "Houndify")
+#    orchestration = Orchestration.new(params, "Houndify")
+#    response = orchestration.orchestrate
+#    render json: response
+
+    orchestration = Orchestration.new(params, "Watson")
     response = orchestration.orchestrate
     render json: response
 
