@@ -15,8 +15,6 @@ class ConversationsController < ApplicationController
     @token = Conversation.first.token
     @api_key = Rails.application.secrets.fm_api_key
 
-    session[:bp_chat_id] = "12345";
-
   end
   
   def create
@@ -27,19 +25,19 @@ class ConversationsController < ApplicationController
     logger.debug params.inspect
     
     # Houdify
-#    orchestration = Orchestration.new(params, "Houndify")
-#    response = orchestration.orchestrate
-#    render json: response
+    orchestration = Orchestration.new(params, "Houndify")
+    response = orchestration.orchestrate
+    render json: response
 
     # BrightPattern
-    orchestration = Orchestration.new(params, "BrightPattern")
-    orchestration.orchestrate
+#    orchestration = Orchestration.new(params, "BrightPattern")
+#    orchestration.orchestrate
     
-    response = orchestration.request_chat
+#    response = orchestration.request_chat
     
-    logger.debug("session:" + session[:bp_chat_id])
+#    logger.debug("session:" + session[:bp_chat_id])
 
-    render json: response
+#    render json: response
   end
   
 end

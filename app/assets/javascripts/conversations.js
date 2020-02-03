@@ -137,19 +137,15 @@ window.onload = function () {
 
     // Subscribe to UneeQ messages from the API, various response types, and trigger on certain actions
     fm.messages.subscribe((msg) => {
-        console.log("---------------------------");
-        console.log(msg.faceMeMessageType);
         switch (msg.faceMeMessageType) {
             case 'Ready':
                 fmReadyHandler();
                 break;
             case 'AvatarQuestionText':
-//                document.getElementById('local-transcript').innerHTML = msg.question;
-                console.log(msg);
+                document.getElementById('local-transcript').innerHTML = msg.question;
                 break;
             case 'AvatarAnswerText':
                 addAvatarTranscript(msg.answer);
-                console.log(msg.answer);
                 break;
             case 'AvatarUnavailable':
                 document.getElementById('msg').innerHTML = 'Avatar Unavailable. Session will begin when an avatar becomes available.';
@@ -159,10 +155,7 @@ window.onload = function () {
                 document.getElementById('msg').innerHTML = 'Loading...';
                 break;
             case 'AvatarAnswerContent':
-                console.log(msg.content);
-//                msg.content = getChatId(msg.content);
                 document.getElementById('injectHTML').innerHTML = msg.content;
-                console.log(msg);
                 break;
             case 'DeviceListUpdated':
                 devices = msg.devices;
@@ -242,108 +235,17 @@ function setHarkerState(enabled) {
     }
 }
 
-var bp = new BrightPattern;
-var bp_chat_id = "";
-
 function askKeyPress(e) {
-    if (e.key === 'Enter' && fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: getAPIEvent");
-        if(bp_chat_id === ""){
-            bp.requestApi(sendChat);
-        }else{
-            var msg = getAskInput();
-            bp.sendChat(msg, bp_chat_id, getEvent);
-        }
-    }
-    
-    /*
     if (e.key === 'Enter' && fm.ready.value === true) {
         console.log("Sending transcript to UneeQ: " + document.getElementById('askInput').value);
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
     }
-    */
 }
 
-function getAskInput(){
-    var msg = document.getElementById('askInput').value
-    document.getElementById('local-transcript').innerHTML = msg;
-    document.getElementById('askInput').value = '';
-    return msg;
+function getAPIEvent(e){
+    alert("getAPIEvent")
 }
-
-function getAPIEvent(){
-    window.sessionStorage.setItem('bp_chat_id',"23456"); 
-    
-    chat_id = window.sessionStorage.getItem('bp_chat_id'); 
-    console.log("getAPIEvent session:" + chat_id);
-}
-/*
-function getAPIEvent(){
-    if (fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: getAPIEvent");
-        if(bp_chat_id === ""){
-            bp.requestApi(sendChat);
-        }else{
-            var msg = getAskInput();
-            bp.sendChat(msg, bp_chat_id, getEvent);
-        }
-    }
-}
-*/
-function sendChat(chat_id){
-    console.log("Sending transcript to UneeQ: sendChat");
-    bp_chat_id = chat_id;
-    var msg = getAskInput();
-    bp.sendChat(msg, bp_chat_id, getEvent);
-}
-
-function getEvent(){
-    console.log("Sending transcript to UneeQ: getEvent");
-    bp.getChat(bp_chat_id, resultGetEvent);
-}
-
-function resultGetEvent(status, msg){
-    console.log("Sending transcript to UneeQ: resultGetEvent");
-//    console.log(status);
-    if ( status === 200 ){
-        len = msg.length;
-        for ( var i = 0; i < len; i++ ){
-            console.log("MSG:" + msg[i]);    
-            fm.api.avatarAsk(msg[i]);
-            if ( i !== (len - 1) ){
-                sleep(1000);
-            }
-        }
-    }
-    if (fm.ready.value === true && fm.sessionPaused === false) {
-        console.log("setTimeout");
-        setTimeout(getEvent, 3000);
-    }    
-}
-
-// ビジーwaitを使う方法
-function sleep(waitMsec) {
-  var startMsec = new Date();
- 
-  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
-  while (new Date() - startMsec < waitMsec);
-}
- 
- function getChatId(msg){
-    console.log("getChatId");
-    console.log(msg);
-     var start = msg.indexOf('[');
-     var end = msg.indexOf(']');
-     if (start >= 0 && end >= 0){
-         bp_chat_id = msg.substr(start + 1, end - 1);
-     }
-    console.log("chat_id:" + bp_chat_id);
-    if(end >= 0){
-        msg = msg.substr(end + 1);
-    }
-    return msg;
- }
 
 function showSettings() {
     document.getElementById('settings').classList.add('show');
@@ -365,4 +267,3 @@ function setPauseState(paused) {
         document.getElementById('resume-btn').style.display = 'none';
     }
 }
-
