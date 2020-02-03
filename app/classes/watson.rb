@@ -39,6 +39,7 @@ class Watson
       request = Net::HTTP::Get.new(uri)
     end
     request.basic_auth("apikey", "oiV8ILLsE8JxaA-ImHud6KmPWb1wZZJN6JswseUR7HFl")
+    request.content_type = "application/json"
 #    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
 
 
