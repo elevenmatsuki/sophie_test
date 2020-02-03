@@ -62,18 +62,10 @@ class Watson
       Rails.logger.debug("---BODY---")
     end
 
-#    req_options = {
-#      use_ssl: uri.scheme == "https",
-#    }
-
     Rails.logger.debug("---REQUEST---")
     Rails.logger.debug request.inspect
     Rails.logger.debug uri.inspect
 
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end    
-    
     Rails.logger.debug("---RESPONSE---")
     if response
       Rails.logger.debug response.inspect
