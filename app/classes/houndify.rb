@@ -13,8 +13,13 @@ class Houndify
   def initialize(clientID = nil, clientKey = nil, userID = "test_user", hostname = nil, proxyHost = nil, proxyPort = nil, proxyHeaders = nil)
     Rails.logger.debug("Houndify-initialize")
     
-    @clientID = Rails.application.secrets.houndify_client_id
-    @clientKey = Base64.urlsafe_decode64(Rails.application.secrets.houndify_client_secret)
+    clientID = "CcO2Bd4KCGOWTh24YXGQDA=="
+    clientKey = "ZNQCMiUsFYekkDDzuuMzccanKtsQz8I_h8dxduBDT6xBeYCh_S-eX7aMTDP0x3MxCw9vVcbAF5i60R1GK_DyEg=="
+    
+    @clientID = clientID
+    @clientKey = clientKey
+#    @clientID = Rails.application.secrets.houndify_client_id
+#    @clientKey = Base64.urlsafe_decode64(Rails.application.secrets.houndify_client_secret)
     @userID = userID
     @hostname = hostname
     @proxyHost = proxyHost
@@ -23,7 +28,8 @@ class Houndify
     @gzip = true # Net::HTTP takes care of unzipping compressed responses, so we should always use them to save bandwidth
 
     @hound_request_info = {
-      "ClientID" => Rails.application.secrets.houndify_client_id, 
+#      "ClientID" => Rails.application.secrets.houndify_client_id, 
+      "ClientID" => clientID, 
       "UserID" => userID,
       "StoredGlobalPagesToMatch" => ["Uneeq"]
       # "Latitude" => 37.388309, 
