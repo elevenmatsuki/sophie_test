@@ -17,6 +17,7 @@ class Watson
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
 #    @clientId = Rails.configuration.x.brightpattern_clientId
+    Rails.logger.debug("---RESPONSE2---")
     Rails.logger.debug (response)
     
   end
