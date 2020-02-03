@@ -49,7 +49,8 @@ class Watson
 #    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
     
     req_options = {
-      use_ssl: uri.scheme == "https",
+#      use_ssl: uri.scheme == "https",
+      use_ssl: false,
     }
 
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
