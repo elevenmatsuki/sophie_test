@@ -66,6 +66,7 @@ class Watson
     Rails.logger.debug("---RESPONSE---")
     if response
       Rails.logger.debug response.inspect
+      Rails.logger.debug response.body
     end
 
     return response
