@@ -25,10 +25,10 @@ class Watson
   def send_api(api_opt, body, post = true)
     Rails.logger.debug 'Watson-send_api'
       
-    baseurl = "https://api.jp-tok.assistant.watson.cloud.ibm.com/v2/assistants/"
+    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
 #    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
 #    baseurl = "https://gateway-tok.watsonplatform.net/v2/assistants/"
-    assistant_id = "537a4514-20cc-40f3-a26d-a1c654fa8b3c"
+    assistant_id = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
 #    clientId = "WebChat"
 
 #    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/537a4514-20cc-40f3-a26d-a1c654fa8b3c/sessions?version=2019-02-28")
