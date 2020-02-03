@@ -39,10 +39,11 @@ class Watson
     else
       request = Net::HTTP::Get.new(uri)
     end
-    request.basic_auth("apikey", "oiV8ILLsE8JxaA-ImHud6KmPWb1wZZJN6JswseUR7HFl")
+#    request.basic_auth("apikey", "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB")
 #    request.content_type = "text/plain"
 #    request.content_type = "application/json"
 #    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
+    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
 
 
     if body
