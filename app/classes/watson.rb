@@ -19,6 +19,7 @@ class Watson
 #    @clientId = Rails.configuration.x.brightpattern_clientId
     Rails.logger.debug("---RESPONSE2---")
     Rails.logger.debug (response)
+    Rails.logger.debug (response.body)
     
   end
   
