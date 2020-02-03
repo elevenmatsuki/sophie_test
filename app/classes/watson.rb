@@ -17,9 +17,6 @@ class Watson
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
 #    @clientId = Rails.configuration.x.brightpattern_clientId
-    Rails.logger.debug("---RESPONSE2---")
-    Rails.logger.debug (response)
-    Rails.logger.debug (response.code)
     
   end
   
@@ -71,6 +68,7 @@ class Watson
     if response
       Rails.logger.debug response.inspect
       Rails.logger.debug response.body
+      Rails.logger.debug response.code
     end
 
     return response
