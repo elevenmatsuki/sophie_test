@@ -11,9 +11,13 @@ class Watson
   def initialize
     Rails.logger.debug 'Watson-initialize'
     
+    body = ""
+    response = send_api("sessions", body)
+    
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
 #    @clientId = Rails.configuration.x.brightpattern_clientId
+    Rails.logger.debug (response)
     
   end
   
@@ -21,26 +25,20 @@ class Watson
   def send_api(api_opt, body, post = true)
     Rails.logger.debug 'Watson-send_api'
       
-    hostname = "cbadev.brightpattern.com"
-    appId = "e7926a805d904b11a21dbe114beaf098"
-    clientId = "WebChat"
-    
-#    Rails.logger.debug '===HOSTNAME2==='
-#    Rails.logger.debug @hostname
-#    Rails.logger.debug @appId
-#    Rails.logger.debug @clientId
-    
-#    hostname = "cbadevinus.brightpattern.com"
-#    appId = "7d4bb4bcf1e44a11a6870a76f791f6de"
+    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
+#    baseurl = "https://gateway-tok.watsonplatform.net/v2/assistants/"
+    appId = "oiV8ILLsE8JxaA-ImHud6KmPWb1wZZJN6JswseUR7HFl"
 #    clientId = "WebChat"
-    
-    uri = URI.parse("https://" + hostname + "/clientweb/api/v1/chats" + api_opt + "?tenantUrl=https%3A%2F%2F" + hostname + "%2F")
+
+#    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/537a4514-20cc-40f3-a26d-a1c654fa8b3c/sessions?version=2019-02-28")
+    uri = URI.parse(baseurl + app_id + "/" + api_opt + "?version=2019-02-28")
     if post 
       request = Net::HTTP::Post.new(uri)
     else
       request = Net::HTTP::Get.new(uri)
     end
-    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
+    request.basic_auth("apikey", "oiV8ILLsE8JxaA-ImHud6KmPWb1wZZJN6JswseUR7HFl")
+#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
 
     if body
       request.body = body
