@@ -61,12 +61,12 @@ class Watson
     end
 
     Rails.logger.debug("---REQUEST---")
-    Rails.logger.debug request.inspect
+    Rails.logger.debug request
     Rails.logger.debug uri.inspect
 
     Rails.logger.debug("---RESPONSE---")
     if response
-      Rails.logger.debug response.inspect
+      Rails.logger.debug response
       Rails.logger.debug response.body
       Rails.logger.debug response.code
     end
