@@ -25,35 +25,46 @@ class Watson
   def send_api(api_opt, body, post = true)
     Rails.logger.debug 'Watson-send_api'
       
-    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
+#    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
 #    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
 #    baseurl = "https://gateway-tok.watsonplatform.net/v2/assistants/"
-    assistant_id = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
+ #   assistant_id = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
 #    clientId = "WebChat"
 
 #    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/537a4514-20cc-40f3-a26d-a1c654fa8b3c/sessions?version=2019-02-28")
-    uri = URI.parse(baseurl + assistant_id + "/" + api_opt + "?version=2019-02-28")
-    Rails.logger.debug (uri)
-    if post 
-      request = Net::HTTP::Post.new(uri)
-    else
-      request = Net::HTTP::Get.new(uri)
-    end
+#    uri = URI.parse(baseurl + assistant_id + "/" + api_opt + "?version=2019-02-28")
+#    Rails.logger.debug (uri)
+#    if post 
+#      request = Net::HTTP::Post.new(uri)
+#    else
+#      request = Net::HTTP::Get.new(uri)
+#    end
 #    request.basic_auth("apikey", "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB")
 #    request.content_type = "text/plain"
 #    request.content_type = "application/json"
 #    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
+#    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
 
+    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+    request = Net::HTTP::Post.new(uri)
+    request.basic_auth("apikey", "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB")
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
 
     if body
       request.body = body
       Rails.logger.debug("---BODY---")
     end
 
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
+#    req_options = {
+#      use_ssl: uri.scheme == "https",
+#    }
 
     Rails.logger.debug("---REQUEST---")
     Rails.logger.debug request.inspect
