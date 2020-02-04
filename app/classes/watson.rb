@@ -84,9 +84,9 @@ class Watson
     
 #    response = http.request(request)
 
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
+#    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+#      http.request(request)
+#    end
 
     if body
       request.body = body
