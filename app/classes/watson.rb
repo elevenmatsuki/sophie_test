@@ -53,8 +53,6 @@ class Watson
     }
 
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      Rails.logger.debug("---REQUEST-L---")
-      Rails.logger.debug request
       http.request(request)
     end
 
@@ -65,6 +63,7 @@ class Watson
 
     Rails.logger.debug("---REQUEST---")
     Rails.logger.debug request
+    Rails.logger.debug request["Authorization"]
     Rails.logger.debug uri.inspect
     Rails.logger.debug uri.hostname
     Rails.logger.debug uri.port
