@@ -149,7 +149,14 @@ class Watson
     json_response = JSON.parse(response)
     msg = json_response["output"]["generic"][0]["text"]
     
-    Rails.logger.debug msg
+    html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
+
+    response = ""
+    if !msg.blank?
+      responce = create_json_to_send(msg, html, {})
+    end
+    
+    return response
  end
   
   #チャット受信
