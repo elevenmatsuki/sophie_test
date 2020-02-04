@@ -132,17 +132,25 @@ class Watson
   end
   
   # チャット送信
-  def query_sendchat(chat_id, query)
+  def query_sendchat()
     Rails.logger.debug 'Watson-query_sendchat'
     
-    if chat_id then
-      responce = api_send_events(chat_id, query)
-    end
+#    if chat_id then
+#      responce = api_send_events(chat_id, query)
+#    end
     
-    Rails.logger.debug responce.inspect
-    Rails.logger.debug responce.body.inspect
+#    Rails.logger.debug responce.inspect
+#    Rails.logger.debug responce.body.inspect
 
-  end
+    cmd = "curl -u \'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB\' -X POST -H \'Content-Type:application/json\' -d '{\"input\": {\"text\": \"Hello\"}}' 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions/" + @@sessionId + "/message?version=2019-02-28'"
+    Rails.logger.debug cmd
+
+    response = %x[ #{cmd} ]
+    json_response = JSON.parse(response)
+    msg = json_response["output"]["generic"][0]["text"]
+    
+    Rails.logger.debug msg
+ end
   
   #チャット受信
   def query_getchat(chat_id)
