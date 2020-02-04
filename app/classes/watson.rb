@@ -81,10 +81,10 @@ class Watson
       Rails.logger.debug("---BODY---")
     end
     request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
-    http.start() {|http|
         response = http.request(request)
+#    http.start() {|http|
 #        print response.body
-    }
+#    }
 #    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     
 #    response = http.request(request)
