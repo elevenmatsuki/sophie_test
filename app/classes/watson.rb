@@ -155,8 +155,9 @@ class Watson
     if !msg.blank?
       responce = create_json_to_send(msg, html, {})
     end
+    Rails.logger.debug responce
     
-    return response
+    return responce
  end
   
   #チャット受信
