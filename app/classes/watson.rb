@@ -52,7 +52,7 @@ class Watson
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme === "https"
-    headers = { "Authorization" => "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC" }
+    headers = { "Authorization" => "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC", "Content-Type" => "application/json" }
 #    headers = { "Content-Type" => "application/json" }
     request = Net::HTTP::Post.new(uri.path)
     request.initialize_http_header(headers)
