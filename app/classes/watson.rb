@@ -59,7 +59,7 @@ class Watson
  #   request.initialize_http_header(headers)
 #    path = uri.path
 #   headers = {}
-    headers["Authorization"] = "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC"
+#    headers["Authorization"] = "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC"
 #    response = http.post(path, body, headers)
     
 #    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
