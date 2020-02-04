@@ -75,7 +75,7 @@ class Watson
     Rails.logger.debug uri.inspect
     Rails.logger.debug uri.hostname
     Rails.logger.debug uri.port
-    Rails.logger.debug req_options
+#    Rails.logger.debug req_options
 
     Rails.logger.debug("---RESPONSE---")
     if response
