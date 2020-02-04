@@ -16,6 +16,7 @@ class Watson
     body = ""
 #    response = send_api("sessions", body)
     api_request_chat
+    query_sendchat
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
