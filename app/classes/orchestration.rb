@@ -20,9 +20,9 @@ class Orchestration
       when "Houndify"
           Houndify.new.query_houndify(@location, @conversation_state, @query)
       when "BrightPattern"
-        @bp = Brightpattern.new.query_sendchat(@query)
+        @bp = Brightpattern.new
       when "Watson"
-        @watson = Watson.new
+        @watson = Watson.new.query_sendchat(@query)
       else
           return nil
       end
