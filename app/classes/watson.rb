@@ -53,6 +53,8 @@ class Watson
     }
 
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      Rails.logger.debug("---REQUEST-L---")
+      Rails.logger.debug request
       http.request(request)
     end
 
