@@ -64,7 +64,7 @@ class Watson
 #    response = http.post(path, body, headers)
     
 #    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+#    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
 
 #    request = Net::HTTP::Post.new(uri.path)
 #    req_options = {
@@ -72,16 +72,16 @@ class Watson
 #      verify_mode: OpenSSL::SSL::VERIFY_NONE,
 #    }
 #    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    http=Net::HTTP.new("gateway-tok.watsonplatform.net", 443)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Post.new("/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-    if body
-      request.body = body
-      Rails.logger.debug("---BODY---")
-    end
-    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
-        response = http.request(request)
+#    http=Net::HTTP.new("gateway-tok.watsonplatform.net", 443)
+#    http.use_ssl = true
+#    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+#    request = Net::HTTP::Post.new("/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+#    if body
+#      request.body = body
+#      Rails.logger.debug("---BODY---")
+#    end
+#    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
+#        response = http.request(request)
 #    http.start() {|http|
 #        print response.body
 #    }
@@ -92,20 +92,23 @@ class Watson
 #    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
 #      http.request(request)
 #    end
-
+#    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+    cmd = "curl -u 'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB' -X POST 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28'"
+    response = %x[ #{cmd} ]
+    
     Rails.logger.debug("---REQUEST---")
-    Rails.logger.debug request
+#    Rails.logger.debug request
 #    Rails.logger.debug request["Authorization"]
-    Rails.logger.debug uri.inspect
-    Rails.logger.debug uri.hostname
-    Rails.logger.debug uri.port
+#    Rails.logger.debug uri.inspect
+#    Rails.logger.debug uri.hostname
+#    Rails.logger.debug uri.port
 #    Rails.logger.debug req_options
 
     Rails.logger.debug("---RESPONSE---")
     if response
       Rails.logger.debug response
-      Rails.logger.debug response.body
-      Rails.logger.debug response.code
+#      Rails.logger.debug response.body
+#      Rails.logger.debug response.code
     end
 
     return response
