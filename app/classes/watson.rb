@@ -45,7 +45,6 @@ class Watson
 
 #    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions")
 #    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
 #    request = Net::HTTP::Post.new(uri)
 #    request.basic_auth 'apikey', 'UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB'
 #    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
@@ -59,10 +58,13 @@ class Watson
 #    request.set_form_data(params)
  #   request.initialize_http_header(headers)
     
+    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+
     request = Net::HTTP::Post.new(uri.path)
     req_options = {
       use_ssl: uri.scheme == "https",
     }
+    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     
 #    response = http.request(request)
 
