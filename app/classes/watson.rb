@@ -5,6 +5,7 @@
 require 'net/http'
 require 'uri'
 require 'json'
+require "net/https"
 
 class Watson
   
