@@ -71,7 +71,7 @@ class Watson
 #      verify_mode: OpenSSL::SSL::VERIFY_NONE,
 #    }
 #    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    http=Net::HTTP.new("https://gateway-tok.watsonplatform.net", 443)
+    http=Net::HTTP.new("gateway-tok.watsonplatform.net", 443)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.start() {|http|
