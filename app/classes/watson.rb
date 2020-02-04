@@ -16,7 +16,6 @@ class Watson
     body = ""
 #    response = send_api("sessions", body)
     api_request_chat
-    query_sendchat
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
@@ -133,7 +132,7 @@ class Watson
   end
   
   # チャット送信
-  def query_sendchat()
+  def query_sendchat(msg)
     Rails.logger.debug 'Watson-query_sendchat'
     
 #    if chat_id then
@@ -143,7 +142,7 @@ class Watson
 #    Rails.logger.debug responce.inspect
 #    Rails.logger.debug responce.body.inspect
 
-    cmd = "curl -u \'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB\' -X POST -H \'Content-Type:application/json\' -d '{\"input\": {\"text\": \"こんにちは\"}}' 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions/" + @@sessionId + "/message?version=2019-02-28'"
+    cmd = "curl -u \'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB\' -X POST -H \'Content-Type:application/json\' -d '{\"input\": {\"text\": \"" + msg + "\"}}' 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions/" + @@sessionId + "/message?version=2019-02-28'"
     Rails.logger.debug cmd
 
     response = %x[ #{cmd} ]

@@ -30,7 +30,8 @@ class ConversationsController < ApplicationController
 #    render json: response
 
     orchestration = Orchestration.new(params, "Watson")
-    response = orchestration.orchestrate
+    orchestration.orchestrate
+    orchestration.request_chat
     render json: response
 
     # BrightPattern
