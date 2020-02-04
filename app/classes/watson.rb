@@ -8,12 +8,14 @@ require 'json'
 require "net/https"
 
 class Watson
+  @@sessionId = ""
   
   def initialize
     Rails.logger.debug 'Watson-initialize'
     
     body = ""
-    response = send_api("sessions", body)
+#    response = send_api("sessions", body)
+    api_request_chat
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
@@ -93,10 +95,8 @@ class Watson
 #      http.request(request)
 #    end
 #    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-    cmd = "curl -u 'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB' -X POST 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28'"
-    response = %x[ #{cmd} ]
     
-    Rails.logger.debug("---REQUEST---")
+#    Rails.logger.debug("---REQUEST---")
 #    Rails.logger.debug request
 #    Rails.logger.debug request["Authorization"]
 #    Rails.logger.debug uri.inspect
@@ -104,12 +104,12 @@ class Watson
 #    Rails.logger.debug uri.port
 #    Rails.logger.debug req_options
 
-    Rails.logger.debug("---RESPONSE---")
-    if response
-      Rails.logger.debug response
+#    Rails.logger.debug("---RESPONSE---")
+#    if response
+#      Rails.logger.debug response
 #      Rails.logger.debug response.body
 #      Rails.logger.debug response.code
-    end
+#    end
 
     return response
 
@@ -119,27 +119,16 @@ class Watson
   def api_request_chat
     Rails.logger.debug 'Watson-api_request_chat'
 
-    body = JSON.dump({
-      "phone_number" => "",
-      "from" => "",
-      "parameters" => {
-        "email" => "info@cba-japan.com",
-        "last_name" => "",
-        "first_name" => "",
-        "account_number" => "",
-        "phone_number" => "",
-        "subject" => "TEST SUBJECT",
-        "logging" => "",
-        "location" => {},
-        "user_platform" => {
-          "browser" => "Chrome 78.0.3904.108",
-          "os" => "Windows 10 64-bit",
-          "description" => "Chrome 78.0.3904.108 on Windows 10 64-bit"
-        }
-      }
-    })
+    cmd = "curl -u 'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB' -X POST 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28'"
+    response = %x[ #{cmd} ]
+    
+    json_response = JSON.parse(response)
+    @@sessionId = json_response["session_id"]
+
+    Rails.logger.debug ("SessionID")
+    Rails.logger.debug @@sessionId
   
-    return send_api("", body)
+    return json_response
   end
   
   # チャット送信
