@@ -48,9 +48,11 @@ class Watson
 #    request.basic_auth 'apikey', 'UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB'
 #    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
 #    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
+
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme === "https"
-    headers = { "Content-Type" => "application/json" }
+    headers = { "Authorization" => "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC" }
+#    headers = { "Content-Type" => "application/json" }
     request = Net::HTTP::Post.new(uri.path)
     request.initialize_http_header(headers)
     
