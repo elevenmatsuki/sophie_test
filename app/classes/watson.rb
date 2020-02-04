@@ -47,7 +47,7 @@ class Watson
     request = Net::HTTP::Post.new(uri)
 #    request.basic_auth 'apikey', 'UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB'
 #    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
-    request["Authorization"] = "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC"
+    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     
     req_options = {
       use_ssl: uri.scheme == "https",
@@ -64,7 +64,7 @@ class Watson
 
     Rails.logger.debug("---REQUEST---")
     Rails.logger.debug request
-#    Rails.logger.debug request.basic_auth
+    Rails.logger.debug request["Authorization"]
     Rails.logger.debug uri.inspect
     Rails.logger.debug uri.hostname
     Rails.logger.debug uri.port
