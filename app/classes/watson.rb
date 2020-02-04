@@ -63,7 +63,7 @@ class Watson
 
     Rails.logger.debug("---REQUEST---")
     Rails.logger.debug request
-    Rails.logger.debug request.basic_auth
+#    Rails.logger.debug request.basic_auth
     Rails.logger.debug uri.inspect
     Rails.logger.debug uri.hostname
     Rails.logger.debug uri.port
