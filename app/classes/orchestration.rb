@@ -32,8 +32,6 @@ class Orchestration
       Rails.logger.debug 'Orchestration-request_chat'
       if @bp then 
         return @bp.get_response(@query)
-      else if @watson then
-        return @watson.get_response(@query)
       end
     end
 end
