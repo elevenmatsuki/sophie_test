@@ -65,13 +65,22 @@ class Watson
 #    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
     uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
 
-    request = Net::HTTP::Post.new(uri.path)
-    req_options = {
-      use_ssl: uri.scheme == "https",
-      verify_mode: OpenSSL::SSL::VERIFY_NONE,
-    }
+#    request = Net::HTTP::Post.new(uri.path)
+#    req_options = {
+#      use_ssl: uri.scheme == "https",
+#      verify_mode: OpenSSL::SSL::VERIFY_NONE,
+#    }
 #    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
+    http=Net::HTTP.new("https://gateway-tok.watsonplatform.net", 443)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.start() {|http|
+        req = Net::HTTP::Post.new("/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+        req.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
+        response = http.request(req)
+#        print response.body
+    }
+#    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     
 #    response = http.request(request)
 
