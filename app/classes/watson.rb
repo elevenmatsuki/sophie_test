@@ -13,12 +13,6 @@ class Watson
   def initialize
     Rails.logger.debug 'Watson-initialize'
     
-    body = ""
-    json_response = send_api("", body)
-    if json_response
-      @@sessionId = json_response["session_id"]
-     end
-#    api_request_chat
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
@@ -64,14 +58,11 @@ class Watson
   def api_request_chat
     Rails.logger.debug 'Watson-api_request_chat'
 
-    cmd = "curl -u 'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB' -X POST 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28'"
-    response = %x[ #{cmd} ]
-    
-    json_response = JSON.parse(response)
-    @@sessionId = json_response["session_id"]
-
-    Rails.logger.debug ("SessionID")
-    Rails.logger.debug @@sessionId
+    body = ""
+    json_response = send_api("", body)
+    if json_response
+      @@sessionId = json_response["session_id"]
+     end
   
     return json_response
   end
@@ -86,18 +77,6 @@ class Watson
       json_response = send_api("/" + @@sessionId + "/message", body)
     end
 
-    #    if chat_id then
-#      responce = api_send_events(chat_id, query)
-#    end
-    
-#    Rails.logger.debug responce.inspect
-#    Rails.logger.debug responce.body.inspect
-
-#    cmd = "curl -u \'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB\' -X POST -H \'Content-Type:application/json\' -d '{\"input\": {\"text\": \"" + msg + "\"}}' 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions/" + @@sessionId + "/message?version=2019-02-28'"
-#    Rails.logger.debug cmd
-
-#    response = %x[ #{cmd} ]
-
     Rails.logger.debug json_response
 
     text = ""
@@ -107,73 +86,14 @@ class Watson
       html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + text + "</h3> </div>" 
     end
     
-    Rails.logger.debug text
-
     response = ""
     if !text.blank?
       response = create_json_to_send(text, html, {})
     end
-    Rails.logger.debug response
     
     return response
- end
-  
-  #チャット受信
-  def query_getchat(chat_id)
-    Rails.logger.debug 'Watson-query_getchat'
-    msg = ""
-    
-    responce = api_get_events(chat_id)
-
-    Rails.logger.debug responce.body.inspect
-    responce_body = JSON.parse(responce.body)
-    
-    msg = ""
-    html = ""
-    if responce_body["events"]
-      for events in responce_body["events"] do
-        if events["event"] == "chat_session_message" then
-          Rails.logger.debug "Message=" + events["msg"]
-          msg = events["msg"]   #とりあえず最後のメッセージ
-        end
-      end
-    
-      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
-    end
-    
-    response = {}
-    if !msg.blank?
-      responce = create_json_to_send(msg, html, {})
-    end
-    
-    return responce
   end
-  
-  
-  def api_send_events(chat_id, query)
-    Rails.logger.debug 'Brightpattern-api_send_events'
-    Rails.logger.debug chat_id
-
-    body = JSON.dump({
-      "events" => [
-        {
-          "event" => "chat_session_message",
-          "msg" => query
-        }
-      ]
-    })
-
-    return send_api("/" + chat_id + "/events", body)
-  end
-  
-  def api_get_events(chat_id)
-    Rails.logger.debug 'Watson-api_get_events'
-    Rails.logger.debug chat_id
     
-    body = nil
-    return send_api("/" + chat_id + "/events", body, false)
-  end
-  
   def create_json_to_send(text, html, expression)
     Rails.logger.debug("Watson-create_json_to_send")
 
