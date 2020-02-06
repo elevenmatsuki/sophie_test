@@ -80,6 +80,7 @@ class Watson
   def query_sendchat(msg)
     Rails.logger.debug 'Watson-query_sendchat'
     
+    json_response = {}
     if @@sessionId
       body = "{\"input\": {\"text\": \"" + msg + "\"}}"
       json_response = send_api("/" + @@sessionId + "/message", body)
@@ -96,6 +97,9 @@ class Watson
 #    Rails.logger.debug cmd
 
 #    response = %x[ #{cmd} ]
+
+    Rails.logger.debug json_response
+
     text = ""
 
     if json_response
