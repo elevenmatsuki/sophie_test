@@ -15,8 +15,9 @@ class Watson
     
     body = ""
     json_response = send_api("sessions", body)
-    @@sessionId = json_response["session_id"]
-
+    if json_response
+      @@sessionId = json_response["session_id"]
+     end if
 #    api_request_chat
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
@@ -31,16 +32,20 @@ class Watson
     
     json_response = {}
       
-    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions" + api_opt + "?version=2019-02-28")
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     request['Content-Type'] = request['Accept'] = 'application/json'
+    if body
+      request.body = body
+    end
 
     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') { |http|
       http.request(request)
     }    
     
     Rails.logger.debug("---REQUEST---")
+    Rails.logger.debug uri
     Rails.logger.debug request
 
     Rails.logger.debug("---RESPONSE---")
@@ -75,25 +80,34 @@ class Watson
   def query_sendchat(msg)
     Rails.logger.debug 'Watson-query_sendchat'
     
-#    if chat_id then
+    if @@sessionId
+      body = "{\"input\": {\"text\": \"" + msg + "\"}}"
+      json_response = send_api("/" + @@sessionId + "/message", body)
+    end
+
+    #    if chat_id then
 #      responce = api_send_events(chat_id, query)
 #    end
     
 #    Rails.logger.debug responce.inspect
 #    Rails.logger.debug responce.body.inspect
 
-    cmd = "curl -u \'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB\' -X POST -H \'Content-Type:application/json\' -d '{\"input\": {\"text\": \"" + msg + "\"}}' 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions/" + @@sessionId + "/message?version=2019-02-28'"
-    Rails.logger.debug cmd
+#    cmd = "curl -u \'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB\' -X POST -H \'Content-Type:application/json\' -d '{\"input\": {\"text\": \"" + msg + "\"}}' 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions/" + @@sessionId + "/message?version=2019-02-28'"
+#    Rails.logger.debug cmd
 
-    response = %x[ #{cmd} ]
-    json_response = JSON.parse(response)
-    msg = json_response["output"]["generic"][0]["text"]
+#    response = %x[ #{cmd} ]
+    text = ""
+
+    if json_response
+      json_response = JSON.parse(json_response)
+      text = json_response["output"]["generic"][0]["text"]
+      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + text + "</h3> </div>" 
+    end if 
     
-    html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
 
     response = ""
-    if !msg.blank?
-      responce = create_json_to_send(msg, html, {})
+    if text.blank?
+      responce = create_json_to_send(text, html, {})
     end
     Rails.logger.debug responce
     
