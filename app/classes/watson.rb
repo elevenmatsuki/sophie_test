@@ -13,6 +13,8 @@ class Watson
   def initialize
     Rails.logger.debug 'Watson-initialize'
     
+    @assistantId = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
+    @watsonUrl = "https://gateway-tok.watsonplatform.net/assistant/api"
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
@@ -26,7 +28,7 @@ class Watson
     
     json_response = {}
       
-    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions" + api_opt + "?version=2019-02-28")
+    uri = URI.parse(@watsonUrl + "/v2/assistants/" + @assistantId + "/sessions" + api_opt + "?version=2019-02-28")
     request = Net::HTTP::Post.new(uri)
     request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     request['Content-Type'] = request['Accept'] = 'application/json'
