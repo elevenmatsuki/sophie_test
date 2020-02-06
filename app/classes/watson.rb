@@ -17,7 +17,7 @@ class Watson
     json_response = send_api("sessions", body)
     if json_response
       @@sessionId = json_response["session_id"]
-     end if
+     end
 #    api_request_chat
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
@@ -102,7 +102,7 @@ class Watson
       json_response = JSON.parse(json_response)
       text = json_response["output"]["generic"][0]["text"]
       html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + text + "</h3> </div>" 
-    end if 
+    end
     
 
     response = ""
