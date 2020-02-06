@@ -14,7 +14,7 @@ class Watson
     Rails.logger.debug 'Watson-initialize'
     
     body = ""
-    json_response = send_api("sessions", body)
+    json_response = send_api("", body)
     if json_response
       @@sessionId = json_response["session_id"]
      end
