@@ -110,7 +110,7 @@ class Watson
     Rails.logger.debug text
 
     response = ""
-    if text.blank?
+    if !text.blank?
       response = create_json_to_send(text, html, {})
     end
     Rails.logger.debug response
