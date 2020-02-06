@@ -14,8 +14,8 @@ class Watson
     Rails.logger.debug 'Watson-initialize'
     
     body = ""
-#    response = send_api("sessions", body)
-    api_request_chat
+    response = send_api("sessions", body)
+#    api_request_chat
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
@@ -47,12 +47,16 @@ class Watson
 #    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
 
 #    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions")
-#    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-#    request = Net::HTTP::Post.new(uri)
+    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+    request = Net::HTTP::Post.new(uri)
 #    request.basic_auth 'apikey', 'UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB'
 #    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
-#    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
+    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
+    request['Content-Type'] = request['Accept'] = 'application/json'
 
+    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') { |http|
+      http.request(request)
+    }    
 #    http = Net::HTTP.new(uri.host, uri.port)
 #    http.use_ssl = uri.scheme === "https"
 #    headers = { "Authorization" => "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC"}
