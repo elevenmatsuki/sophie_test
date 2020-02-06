@@ -48,7 +48,7 @@ class Watson
       Rails.logger.debug response
       Rails.logger.debug response.body
       Rails.logger.debug response.code
-      json_response = JSON.parse(response)
+      json_response = JSON.parse(response.body)
     end
 
     return json_response
