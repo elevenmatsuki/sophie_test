@@ -103,7 +103,6 @@ class Watson
     text = ""
 
     if json_response
-      json_response = JSON.parse(json_response)
       text = json_response["output"]["generic"][0]["text"]
       html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + text + "</h3> </div>" 
     end
