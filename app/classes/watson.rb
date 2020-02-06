@@ -5,7 +5,7 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require "net/https"
+require "base64"
 
 class Watson
   @@sessionId = ""
@@ -15,6 +15,11 @@ class Watson
     
     @assistantId = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
     @watsonUrl = "https://gateway-tok.watsonplatform.net/assistant/api"
+    
+    apikey = "IeCn8mhxVqwEbZdlpSSUubFPZ41MJ9IW5U1-xhMkLSGJ"
+    basic_enc   = Base64.encode64(apikey) 
+    Rails.logger.debug("---ENC---")
+    Rails.logger.debug basic_enc
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
