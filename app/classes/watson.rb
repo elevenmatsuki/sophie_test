@@ -16,7 +16,7 @@ class Watson
     @assistantId = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
     @watsonUrl = "https://gateway-tok.watsonplatform.net/assistant/api"
     
-    apikey = "IeCn8mhxVqwEbZdlpSSUubFPZ41MJ9IW5U1-xhMkLSGJ"
+    apikey = "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
     basic_enc   = Base64.encode64(apikey) 
     Rails.logger.debug("---ENC---")
     Rails.logger.debug basic_enc
