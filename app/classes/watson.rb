@@ -107,14 +107,15 @@ class Watson
       html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + text + "</h3> </div>" 
     end
     
+    Rails.logger.debug text
 
     response = ""
     if text.blank?
-      responce = create_json_to_send(text, html, {})
+      response = create_json_to_send(text, html, {})
     end
-    Rails.logger.debug responce
+    Rails.logger.debug response
     
-    return responce
+    return response
  end
   
   #チャット受信
