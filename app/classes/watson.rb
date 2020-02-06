@@ -100,20 +100,20 @@ class Watson
 #    end
 #    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
     
-#    Rails.logger.debug("---REQUEST---")
-#    Rails.logger.debug request
+    Rails.logger.debug("---REQUEST---")
+    Rails.logger.debug request
 #    Rails.logger.debug request["Authorization"]
 #    Rails.logger.debug uri.inspect
 #    Rails.logger.debug uri.hostname
 #    Rails.logger.debug uri.port
 #    Rails.logger.debug req_options
 
-#    Rails.logger.debug("---RESPONSE---")
-#    if response
-#      Rails.logger.debug response
-#      Rails.logger.debug response.body
-#      Rails.logger.debug response.code
-#    end
+    Rails.logger.debug("---RESPONSE---")
+    if response
+      Rails.logger.debug response
+      Rails.logger.debug response.body
+      Rails.logger.debug response.code
+    end
 
     return response
 
