@@ -16,7 +16,7 @@ class Watson
     @assistantId = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
     @watsonUrl = "https://gateway-tok.watsonplatform.net/assistant/api"
     
-    apikey = "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
+    @apikey = "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
     basic_enc   = Base64.urlsafe_encode64(apikey) 
     Rails.logger.debug("---ENC---")
     Rails.logger.debug basic_enc
@@ -35,7 +35,8 @@ class Watson
       
     uri = URI.parse(@watsonUrl + "/v2/assistants/" + @assistantId + "/sessions" + api_opt + "?version=2019-02-28")
     request = Net::HTTP::Post.new(uri)
-    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
+    request.basic_auth("apikey", @apikey)
+#    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     request['Content-Type'] = request['Accept'] = 'application/json'
     if body
       request.body = body
