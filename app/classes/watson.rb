@@ -5,7 +5,6 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require "base64"
 
 class Watson
   @@sessionId = ""
@@ -15,11 +14,7 @@ class Watson
     
     @assistantId = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
     @watsonUrl = "https://gateway-tok.watsonplatform.net/assistant/api"
-    
     @apikey = "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
-    basic_enc   = Base64.urlsafe_encode64(@apikey) 
-    Rails.logger.debug("---ENC---")
-    Rails.logger.debug basic_enc
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
@@ -36,7 +31,6 @@ class Watson
     uri = URI.parse(@watsonUrl + "/v2/assistants/" + @assistantId + "/sessions" + api_opt + "?version=2019-02-28")
     request = Net::HTTP::Post.new(uri)
     request.basic_auth("apikey", @apikey)
-#    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
     request['Content-Type'] = request['Accept'] = 'application/json'
     if body
       request.body = body
@@ -52,14 +46,13 @@ class Watson
 
     Rails.logger.debug("---RESPONSE---")
     if response
+      json_response = JSON.parse(response.body)
       Rails.logger.debug response
       Rails.logger.debug response.body
       Rails.logger.debug response.code
-      json_response = JSON.parse(response.body)
     end
 
     return json_response
-
   end
   
   # チャット開始
@@ -88,7 +81,6 @@ class Watson
     Rails.logger.debug json_response
 
     text = ""
-
     if json_response
       text = json_response["output"]["generic"][0]["text"]
       html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + text + "</h3> </div>" 
@@ -135,5 +127,4 @@ class Watson
     }
     return body
   end
-  
 end
