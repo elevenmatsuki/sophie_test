@@ -16,9 +16,11 @@ class Watson
     @watsonUrl = "https://gateway-tok.watsonplatform.net/assistant/api"
     @apikey = "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
     
-#    @hostname = Rails.configuration.x.brightpattern_hostname
+    hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
 #    @clientId = Rails.configuration.x.brightpattern_clientId
+    Rails.logger.debug '--HOSTNAME--'
+    Rails.logger.debug hostname
     
   end
   
