@@ -22,7 +22,9 @@ class Orchestration
       when "BrightPattern"
         @bp = Brightpattern.new
       when "Watson"
-        return Watson.new.query_sendchat(@query)
+        watson = Watson.new
+        watson.api_request_chat
+        watson.query_sendchat(@query)
       else
           return nil
       end

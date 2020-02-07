@@ -5,7 +5,6 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require "net/https"
 
 class Watson
   @@sessionId = ""
@@ -13,9 +12,9 @@ class Watson
   def initialize
     Rails.logger.debug 'Watson-initialize'
     
-    body = ""
-#    response = send_api("sessions", body)
-    api_request_chat
+    @assistantId = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
+    @watsonUrl = "https://gateway-tok.watsonplatform.net/assistant/api"
+    @apikey = "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
     
 #    @hostname = Rails.configuration.x.brightpattern_hostname
 #    @appId = Rails.configuration.x.brightpattern_appId
@@ -26,107 +25,45 @@ class Watson
   #API送付 - 共通処理
   def send_api(api_opt, body, post = true)
     Rails.logger.debug 'Watson-send_api'
+    
+    json_response = {}
       
-#    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
-#    baseurl = "https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/"
-#    baseurl = "https://gateway-tok.watsonplatform.net/v2/assistants/"
- #   assistant_id = "e65ae379-0d2d-4cd7-800c-c30da8d805bf"
-#    clientId = "WebChat"
+    uri = URI.parse(@watsonUrl + "/v2/assistants/" + @assistantId + "/sessions" + api_opt + "?version=2019-02-28")
+    request = Net::HTTP::Post.new(uri)
+    request.basic_auth("apikey", @apikey)
+    request['Content-Type'] = request['Accept'] = 'application/json'
+    if body
+      request.body = body
+    end
 
-#    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/537a4514-20cc-40f3-a26d-a1c654fa8b3c/sessions?version=2019-02-28")
-#    uri = URI.parse(baseurl + assistant_id + "/" + api_opt + "?version=2019-02-28")
-#    Rails.logger.debug (uri)
-#    if post 
-#      request = Net::HTTP::Post.new(uri)
-#    else
-#      request = Net::HTTP::Get.new(uri)
-#    end
-#    request.basic_auth("apikey", "UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB")
-#    request.content_type = "text/plain"
-#    request.content_type = "application/json"
-#    request["Authorization"] = "MOBILE-API-140-327-PLAIN appId=\"" + appId + "\", clientId=\"" + clientId + "\""
-
-#    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions")
-#    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-#    request = Net::HTTP::Post.new(uri)
-#    request.basic_auth 'apikey', 'UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB'
-#    request["Authorization"] = "apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB"
-#    request["Authorization"] = 'Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
-
-#    http = Net::HTTP.new(uri.host, uri.port)
-#    http.use_ssl = uri.scheme === "https"
-#    headers = { "Authorization" => "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC"}
-#    params = { "version" => "2019-02-28" }
-#    headers = { "Content-Type" => "application/json" }
-#    request.set_form_data(params)
- #   request.initialize_http_header(headers)
-#    path = uri.path
-#   headers = {}
-#    headers["Authorization"] = "Basic YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC"
-#    response = http.post(path, body, headers)
+    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') { |http|
+      http.request(request)
+    }    
     
-#    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-#    uri = URI.parse("https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
+    Rails.logger.debug("---REQUEST---")
+    Rails.logger.debug uri
+    Rails.logger.debug request
 
-#    request = Net::HTTP::Post.new(uri.path)
-#    req_options = {
-#      use_ssl: uri.scheme == "https",
-#      verify_mode: OpenSSL::SSL::VERIFY_NONE,
-#    }
-#    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-#    http=Net::HTTP.new("gateway-tok.watsonplatform.net", 443)
-#    http.use_ssl = true
-#    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-#    request = Net::HTTP::Post.new("/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-#    if body
-#      request.body = body
-#      Rails.logger.debug("---BODY---")
-#    end
-#    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
-#        response = http.request(request)
-#    http.start() {|http|
-#        print response.body
-#    }
-#    request.basic_auth 'Basic', 'YXBpa2V5OlVHbEJ1d3YwT0V6Rl9rbEswN3NHRzZPMnlHaDRPWmJjZldRTjkzX1pUcXBC'
-    
-#    response = http.request(request)
+    Rails.logger.debug("---RESPONSE---")
+    if response
+      json_response = JSON.parse(response.body)
+      Rails.logger.debug response
+      Rails.logger.debug response.body
+      Rails.logger.debug response.code
+    end
 
-#    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-#      http.request(request)
-#    end
-#    uri = URI.parse("https://apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB@gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28")
-    
-#    Rails.logger.debug("---REQUEST---")
-#    Rails.logger.debug request
-#    Rails.logger.debug request["Authorization"]
-#    Rails.logger.debug uri.inspect
-#    Rails.logger.debug uri.hostname
-#    Rails.logger.debug uri.port
-#    Rails.logger.debug req_options
-
-#    Rails.logger.debug("---RESPONSE---")
-#    if response
-#      Rails.logger.debug response
-#      Rails.logger.debug response.body
-#      Rails.logger.debug response.code
-#    end
-
-    return response
-
+    return json_response
   end
   
   # チャット開始
   def api_request_chat
     Rails.logger.debug 'Watson-api_request_chat'
 
-    cmd = "curl -u 'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB' -X POST 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions?version=2019-02-28'"
-    response = %x[ #{cmd} ]
-    
-    json_response = JSON.parse(response)
-    @@sessionId = json_response["session_id"]
-
-    Rails.logger.debug ("SessionID")
-    Rails.logger.debug @@sessionId
+    body = ""
+    json_response = send_api("", body)
+    if json_response
+      @@sessionId = json_response["session_id"]
+     end
   
     return json_response
   end
@@ -135,87 +72,28 @@ class Watson
   def query_sendchat(msg)
     Rails.logger.debug 'Watson-query_sendchat'
     
-#    if chat_id then
-#      responce = api_send_events(chat_id, query)
-#    end
+    json_response = {}
+    if @@sessionId
+      body = "{\"input\": {\"text\": \"" + msg + "\"}}"
+      json_response = send_api("/" + @@sessionId + "/message", body)
+    end
+
+    Rails.logger.debug json_response
+
+    text = ""
+    if json_response
+      text = json_response["output"]["generic"][0]["text"]
+      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + text + "</h3> </div>" 
+    end
     
-#    Rails.logger.debug responce.inspect
-#    Rails.logger.debug responce.body.inspect
-
-    cmd = "curl -u \'apikey:UGlBuwv0OEzF_klK07sGG6O2yGh4OZbcfWQN93_ZTqpB\' -X POST -H \'Content-Type:application/json\' -d '{\"input\": {\"text\": \"" + msg + "\"}}' 'https://gateway-tok.watsonplatform.net/assistant/api/v2/assistants/e65ae379-0d2d-4cd7-800c-c30da8d805bf/sessions/" + @@sessionId + "/message?version=2019-02-28'"
-    Rails.logger.debug cmd
-
-    response = %x[ #{cmd} ]
-    json_response = JSON.parse(response)
-    msg = json_response["output"]["generic"][0]["text"]
-    
-    html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
-
     response = ""
-    if !msg.blank?
-      responce = create_json_to_send(msg, html, {})
-    end
-    Rails.logger.debug responce
-    
-    return responce
- end
-  
-  #チャット受信
-  def query_getchat(chat_id)
-    Rails.logger.debug 'Watson-query_getchat'
-    msg = ""
-    
-    responce = api_get_events(chat_id)
-
-    Rails.logger.debug responce.body.inspect
-    responce_body = JSON.parse(responce.body)
-    
-    msg = ""
-    html = ""
-    if responce_body["events"]
-      for events in responce_body["events"] do
-        if events["event"] == "chat_session_message" then
-          Rails.logger.debug "Message=" + events["msg"]
-          msg = events["msg"]   #とりあえず最後のメッセージ
-        end
-      end
-    
-      html = "<script src='//static.midomi.com/corpus/H_Zk82fGHFX/build/js/templates.min.js'></script><div class='h-template h-simple-text'>   <h3 class='h-template-title h-simple-text-title'>" + msg + "</h3> </div>" 
+    if !text.blank?
+      response = create_json_to_send(text, html, {})
     end
     
-    response = {}
-    if !msg.blank?
-      responce = create_json_to_send(msg, html, {})
-    end
+    return response
+  end
     
-    return responce
-  end
-  
-  
-  def api_send_events(chat_id, query)
-    Rails.logger.debug 'Brightpattern-api_send_events'
-    Rails.logger.debug chat_id
-
-    body = JSON.dump({
-      "events" => [
-        {
-          "event" => "chat_session_message",
-          "msg" => query
-        }
-      ]
-    })
-
-    return send_api("/" + chat_id + "/events", body)
-  end
-  
-  def api_get_events(chat_id)
-    Rails.logger.debug 'Watson-api_get_events'
-    Rails.logger.debug chat_id
-    
-    body = nil
-    return send_api("/" + chat_id + "/events", body, false)
-  end
-  
   def create_json_to_send(text, html, expression)
     Rails.logger.debug("Watson-create_json_to_send")
 
@@ -249,5 +127,4 @@ class Watson
     }
     return body
   end
-  
 end
