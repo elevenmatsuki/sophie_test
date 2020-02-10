@@ -50,7 +50,7 @@ class ConversationsController < ApplicationController
 #    end
 
     logger.debug("SESSION-Chat_id")
-    logger.debug bp_chat_id
+#    logger.debug bp_chat_id
 
 #    if !params["fm-question"].blank?
 #      response = orchestration.send_chat(bp_chat_id)
