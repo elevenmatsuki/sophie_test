@@ -11,7 +11,12 @@ class Orchestration
       @partner = partner # string, the name of the partner company we reach out to
       @response = nil
       @bp = nil
-      @sessionId = params["fm-avatar"]["avatarSessionId"]
+      @sessionId = ""
+      fm_avater = params["fm-avatar"].blank? ? {} : JSON.parse(params["fm-avatar"])
+      if fm_avater 
+        @sessionId = fm_avater ["avatarSessionId"]
+      end
+
       Rails.logger.debug @sessionId
 
       
