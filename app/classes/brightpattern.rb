@@ -213,7 +213,8 @@ class Brightpattern
         "Content-Type": "application/json",
     }
     
-    CUSTOMER_JWT_SECRET = Rails.application.secrets.customer_jwt_secret
+    CUSTOMER_JWT_SECRET = "24db2224-9afc-4b8x-yeex-e1fe567c7564"
+#    CUSTOMER_JWT_SECRET = Rails.application.secrets.customer_jwt_secret
     DEFAULT_HOSTNAME = "https://dal-admin.faceme.com"
 
     sessionIdJwt = JWT.encode ({sessionId: sessionId}), CUSTOMER_JWT_SECRET, 'HS256'
