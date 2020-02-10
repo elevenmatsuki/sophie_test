@@ -213,11 +213,11 @@ class Brightpattern
         "Content-Type": "application/json",
     }
     
-    CUSTOMER_JWT_SECRET01 = "24db2224-9afc-4b8x-yeex-e1fe567c7564"
+    jwt_secret = "24db2224-9afc-4b8x-yeex-e1fe567c7564"
 #    CUSTOMER_JWT_SECRET = Rails.application.secrets.customer_jwt_secret
-    DEFAULT_HOSTNAME = "https://dal-admin.faceme.com"
+    hostname = "https://dal-admin.faceme.com"
 
-    sessionIdJwt = JWT.encode ({sessionId: sessionId}), CUSTOMER_JWT_SECRET01, 'HS256'
+    sessionIdJwt = JWT.encode ({sessionId: sessionId}), jwt_secret, 'HS256'
 
     body = {
         answer: query,
@@ -230,7 +230,7 @@ class Brightpattern
         headers: headers,
     }
 
-    response = HTTParty.post("#{DEFAULT_HOSTNAME}/api/v1/avatar/#{conversation.avatar_session_id}/speak", 
+    response = HTTParty.post("#{hostname}/api/v1/avatar/#{conversation.avatar_session_id}/speak", 
         body: JSON.generate(body),
         headers: headers
     )
