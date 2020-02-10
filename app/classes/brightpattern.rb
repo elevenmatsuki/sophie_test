@@ -230,7 +230,7 @@ class Brightpattern
         headers: headers,
     }
 
-    response = HTTParty.post("#{hostname}/api/v1/avatar/#{conversation.avatar_session_id}/speak", 
+    response = HTTParty.post("#{hostname}/api/v1/avatar/#{sessionId}/speak", 
         body: JSON.generate(body),
         headers: headers
     )
