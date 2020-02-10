@@ -241,6 +241,7 @@ class Brightpattern
     Rails.logger.debug body
     Rails.logger.debug("===RESPONSE===")
     Rails.logger.debug response
+    Rails.logger.debug response.body
   end
   
 end
