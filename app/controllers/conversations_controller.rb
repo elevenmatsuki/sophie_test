@@ -72,8 +72,8 @@ class ConversationsController < ApplicationController
 #      Rails.logger.debug("ConversationsController-response")
 #      Rails.logger.debug response.inspect
       
+#    end
       render json: response
-    end
   end
   
   def check
