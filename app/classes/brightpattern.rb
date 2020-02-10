@@ -230,11 +230,15 @@ class Brightpattern
         headers: headers,
     }
 
-    response = HTTParty.post("#{hostname}/api/v1/avatar/#{sessionId}/speak", 
+    url = "#{hostname}/api/v1/avatar/#{sessionId}/speak"
+    response = HTTParty.post(url,
         body: JSON.generate(body),
         headers: headers
     )
-    Rails.logger.debug("&&&RESPONSE&&&")
+    Rails.logger.debug("===REQUEST===")
+    Rails.logger.debug url
+    Rails.logger.debug body
+    Rails.logger.debug("===RESPONSE===")
     Rails.logger.debug response
   end
   

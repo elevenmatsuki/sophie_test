@@ -11,6 +11,8 @@ class Orchestration
       @partner = partner # string, the name of the partner company we reach out to
       @response = nil
       @bp = nil
+      
+      @query = "おはようございます"
       @sessionId = ""
       fm_avater = params["fm-avatar"].blank? ? {} : JSON.parse(params["fm-avatar"])
       if fm_avater 
