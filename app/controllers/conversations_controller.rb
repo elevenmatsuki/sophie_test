@@ -34,41 +34,43 @@ class ConversationsController < ApplicationController
     # BrightPattern
     orchestration = Orchestration.new(params, "BrightPattern")
     response = orchestration.orchestrate
+    
+#    Speak.new(params).send_unsolicited_response
 
-    bp_chat_id = ""
+#    bp_chat_id = ""
 
-    if session[:bp_chat_id].blank?
-      response = orchestration.request_chat
+#    if session[:bp_chat_id].blank?
+#      response = orchestration.request_chat
 
-      response_body = JSON.parse(response.body)
-      bp_chat_id = response_body["chat_id"]
-      session[:bp_chat_id] = bp_chat_id
-    else
-      bp_chat_id = session[:bp_chat_id]
-    end
+#      response_body = JSON.parse(response.body)
+#      bp_chat_id = response_body["chat_id"]
+#      session[:bp_chat_id] = bp_chat_id
+#    else
+#      bp_chat_id = session[:bp_chat_id]
+#    end
 
     logger.debug("SESSION-Chat_id")
     logger.debug bp_chat_id
 
-    if !params["fm-question"].blank?
-      response = orchestration.send_chat(bp_chat_id)
-      Rails.logger.debug("SENDCHAT-response")
-      Rails.logger.debug response.inspect
+#    if !params["fm-question"].blank?
+#      response = orchestration.send_chat(bp_chat_id)
+#      Rails.logger.debug("SENDCHAT-response")
+#      Rails.logger.debug response.inspect
 
-      render json: response
-    else
-      logger.debug("ConversationsController-GETEVENT")
+#      render json: response
+#    else
+#      logger.debug("ConversationsController-GETEVENT")
+#      
+#      response  = {}
+#      if orchestration
+#        response = orchestration.get_chat(bp_chat_id)
+#        response.each do |var|
+#          logger.debug(var)
+#        end
+#      end
       
-      response  = {}
-      if orchestration
-        response = orchestration.get_chat(bp_chat_id)
-        response.each do |var|
-          logger.debug(var)
-        end
-      end
-      
-      Rails.logger.debug("ConversationsController-response")
-      Rails.logger.debug response.inspect
+#      Rails.logger.debug("ConversationsController-response")
+#      Rails.logger.debug response.inspect
       
       render json: response
     end
