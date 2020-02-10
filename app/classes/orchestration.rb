@@ -4,8 +4,6 @@ class Orchestration
     def initialize(params, partner)
       Rails.logger.debug 'Orchestration-initialize'
       Rails.logger.debug params
-      @sessionId = params["fm-avatar"]
-      Rails.logger.debug @sessionId
 
       @query = params["fm-question"] # string, query from the STT engine of UneeQ
       @conversation_state = params["fm-conversation"].blank? ? nil : params["fm-conversation"] # Maintain conversation state between utterances
@@ -13,6 +11,8 @@ class Orchestration
       @partner = partner # string, the name of the partner company we reach out to
       @response = nil
       @bp = nil
+      @sessionId = params["fm-avatar"]["avatarSessionId"]
+      Rails.logger.debug @sessionId
 
       
     end
