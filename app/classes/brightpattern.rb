@@ -237,6 +237,7 @@ class Brightpattern
     )
     Rails.logger.debug("===REQUEST===")
     Rails.logger.debug url
+    Rails.logger.debug headers
     Rails.logger.debug body
     Rails.logger.debug("===RESPONSE===")
     Rails.logger.debug response
