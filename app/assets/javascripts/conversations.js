@@ -26,7 +26,7 @@ window.onload = function () {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             document.getElementById('prompt').innerHTML = "Press and hold screen to speak";
         } else {
-            document.getElementById('prompt').innerHTML = "Hold <b>space</b> to speak.";
+            document.getElementById('prompt').innerHTML = "DEBUGGING...";
         }
     }
 
@@ -246,13 +246,6 @@ function askKeyPress(e) {
         fm.sendTranscript(document.getElementById('askInput').value);
         document.getElementById('askInput').value = '';
 //        setTimeout(eventTimer,1000);
-    }
-}
-
-function getAPIEvent(){
-    if (fm.ready.value === true) {
-        console.log("Sending transcript to UneeQ: GetEvent");
-        fm.api.avatarAsk("");
     }
 }
 
