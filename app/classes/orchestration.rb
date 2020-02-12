@@ -13,15 +13,10 @@ class Orchestration
       @bp = nil
       
       @query = "おはようございます"
-      @sessionId = ""
       fm_avater = params["fm-avatar"].blank? ? {} : JSON.parse(params["fm-avatar"])
-      if fm_avater 
-        @sessionId = fm_avater ["avatarSessionId"]
-      end
+      @sessionId = fm_avater ? "" : fm_avater["avatarSessionId"]
 
       Rails.logger.debug @sessionId
-
-      
     end
 
     def orchestrate
