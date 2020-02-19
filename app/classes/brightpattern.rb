@@ -209,14 +209,15 @@ class Brightpattern
     Rails.logger.debug("Brightpattern-send_unsolicited_response")
 #        puts "Sending unsolicited response..."
 #       conversation = Conversation.first
-    headers = {
-        "Content-Type": "application/json",
-    }
     
 #    CUSTOMER_JWT_SECRET = Rails.application.secrets.customer_jwt_secret
     query = "ありがとうございます"
     jwt_secret = "24db2224-9afc-4b8x-yeex-e1fe567c7564"
     hostname = "https://dal-admin.faceme.com"
+
+    headers = {
+        "Content-Type": "application/json",
+    }
 
     sessionIdJwt = JWT.encode ({sessionId: sessionId}), jwt_secret, 'HS256'
 
