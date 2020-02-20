@@ -216,7 +216,7 @@ class Brightpattern
     hostname = "https://dal-admin.faceme.com"
 
     headers = {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
     }
 
     sessionIdJwt = JWT.encode ({sessionId: sessionId}), jwt_secret, 'HS256'
