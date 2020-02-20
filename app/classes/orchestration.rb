@@ -14,7 +14,7 @@ class Orchestration
       
       @query = "おはようございます"
       fm_avater = params["fm-avatar"].blank? ? {} : JSON.parse(params["fm-avatar"])
-      @sessionId = fm_avater ? "" : fm_avater["avatarSessionId"]
+      @sessionId = fm_avater ? fm_avater["avatarSessionId"] : ""
 
       Rails.logger.debug @sessionId
     end
