@@ -223,7 +223,7 @@ class Brightpattern
 
     body = {
         answer: query,
-        answerAvatar: JSON.generate({}),
+        answerAvatar: JSON.generate({"instructions": {}}),
         sessionIdJwt: sessionIdJwt
     }
 
