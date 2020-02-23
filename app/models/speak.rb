@@ -14,7 +14,7 @@ class Speak < ApplicationRecord
         headers = {
             "Content-Type": "application/json",
         }
-        DEFAULT_HOSTNAME = 'https://dal-admin.faceme.com';
+        hostname = 'https://dal-admin.faceme.com';
 
         sessionIdJwt = JWT.encode ({sessionId: conversation.avatar_session_id}), CUSTOMER_JWT_SECRET, 'HS256'
 
@@ -29,7 +29,7 @@ class Speak < ApplicationRecord
             headers: headers,
         }
 
-        response = HTTParty.post("#{DEFAULT_HOSTNAME}/api/v1/avatar/#{conversation.avatar_session_id}/speak", 
+        response = HTTParty.post("#{hostname}/api/v1/avatar/#{conversation.avatar_session_id}/speak", 
             body: JSON.generate(body),
             headers: headers
         )
