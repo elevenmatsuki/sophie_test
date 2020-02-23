@@ -20,11 +20,11 @@ class Brightpattern
   #API送付 - 共通処理
   def send_api(api_opt, body, post = true)
     Rails.logger.debug 'Brightpattern-send_api'
-      
+    
     hostname = "cbadev.brightpattern.com"
     appId = "e7926a805d904b11a21dbe114beaf098"
     clientId = "WebChat"
-    
+
 #    Rails.logger.debug '===HOSTNAME2==='
 #    Rails.logger.debug @hostname
 #    Rails.logger.debug @appId
@@ -185,8 +185,8 @@ class Brightpattern
             ],
             "displayHtml": {
                 "html": html
+            }
         }
-    }
     }
 
     body = {
@@ -196,6 +196,50 @@ class Brightpattern
         "conversationPayload": "",
     }
     return body
+  end
+  
+  def send_unsolicited_response(sessionId, query)
+    Rails.logger.debug("Brightpattern-send_unsolicited_response")
+#        puts "Sending unsolicited response..."
+#       conversation = Conversation.first
+    
+#    CUSTOMER_JWT_SECRET = Rails.application.secrets.customer_jwt_secret
+    query = "ありがとうございます"
+    jwt_secret = "24db2224-9afc-4b8x-yeex-e1fe567c7564"
+    hostname = "https://dal-admin.faceme.com"
+
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    sessionIdJwt = JWT.encode ({sessionId: sessionId}), jwt_secret, 'HS256'
+
+    body = {
+        answer: query,
+        answerAvatar: JSON.generate({"instructions": {}}),
+        sessionIdJwt: sessionIdJwt
+    }
+
+    options = {
+        body: JSON.generate(body),
+        headers: headers,
+    }
+
+    url = "#{hostname}/api/v1/avatar/#{sessionId}/speak"
+    response = HTTParty.post(url,
+        body: JSON.generate(body),
+        headers: headers
+    )
+    Rails.logger.debug("===REQUEST===")
+    Rails.logger.debug url
+    Rails.logger.debug headers
+    Rails.logger.debug body
+    Rails.logger.debug("===RESPONSE===")
+    Rails.logger.debug response.inspect
+    Rails.logger.debug response.code
+    Rails.logger.debug response.body
+#    Rails.logger.debug "sessionId : " + sessionId
+#    Rails.logger.debug "sessionIdJwt : " + sessionIdJwt
   end
   
 end

@@ -1,0 +1,87 @@
+// Place all the styles related to the speaks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.background {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: flex;
+    justify-content: initial;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    background: #232135;
+    color: white;
+}
+
+.uneeq_logo {
+    width: 50%;
+    margin: 150px auto 25px; // top left-right bottom
+    max-width: 200px;
+    vertical-align: text-top;
+}
+
+input,
+button {
+    font: inherit;
+    border: 0;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+// Separating border radius on these elements makes it appear they are a single element on the page.
+
+#text_to_speak {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#submit_btn {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    background-color: #6f356f;
+    color: white;
+}
+
+form {
+    display: flex;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+input {
+    flex-grow: 1;
+    padding: 0.5em 0.75em;
+    line-height: 2em;
+}
+
+button {
+    padding: 0.25em 0.5em;
+    background: hsl(130, 75%, 75%);
+}
+
+svg {
+    display: block;
+    width: 3em;
+    height: auto;
+}
+
+h3, p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

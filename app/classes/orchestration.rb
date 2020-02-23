@@ -3,6 +3,7 @@ class Orchestration
 
     def initialize(params, partner)
       Rails.logger.debug 'Orchestration-initialize'
+      Rails.logger.debug params
 
       @query = params["fm-question"] # string, query from the STT engine of UneeQ
       @conversation_state = params["fm-conversation"].blank? ? nil : params["fm-conversation"] # Maintain conversation state between utterances
@@ -12,6 +13,11 @@ class Orchestration
       @bp = nil
       @watson = nil
       
+      @query = "おはようございます"
+      fm_avater = params["fm-avatar"].blank? ? {} : JSON.parse(params["fm-avatar"])
+      @avatar_session_id = fm_avater ? fm_avater["avatarSessionId"] : ""
+
+      Rails.logger.debug @avatar_session_id
     end
 
     def orchestrate
@@ -21,10 +27,7 @@ class Orchestration
           Houndify.new.query_houndify(@location, @conversation_state, @query)
       when "BrightPattern"
         @bp = Brightpattern.new
-      when "Watson"
-        watson = Watson.new
-        watson.api_request_chat
-        watson.query_sendchat(@query)
+        @bp.send_unsolicited_response(@avatar_session_id,@query)
       else
           return nil
       end
