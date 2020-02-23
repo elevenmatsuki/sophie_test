@@ -245,8 +245,8 @@ class Brightpattern
     Rails.logger.debug response.inspect
     Rails.logger.debug response.code
     Rails.logger.debug response.body
-    Rails.logger.debug "sessionId : " + sessionId
-    Rails.logger.debug "sessionIdJwt : " + sessionIdJwt
+#    Rails.logger.debug "sessionId : " + sessionId
+#    Rails.logger.debug "sessionIdJwt : " + sessionIdJwt
   end
   
 end

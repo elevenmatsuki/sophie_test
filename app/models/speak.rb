@@ -29,6 +29,9 @@ class Speak < ApplicationRecord
             headers: headers,
         }
 
+        Rails.logger.debug "AvatarsessionId : " + conversation.avatar_session_id
+        Rails.logger.debug "sessionIdJwt : " + sessionIdJwt
+
         response = HTTParty.post("#{hostname}/api/v1/avatar/#{conversation.avatar_session_id}/speak", 
             body: JSON.generate(body),
             headers: headers
