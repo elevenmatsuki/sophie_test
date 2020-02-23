@@ -30,7 +30,8 @@ class ConversationsController < ApplicationController
 #    orchestration = Orchestration.new(params, "Houndify")
 #    response = orchestration.orchestrate
 #    render json: response
-
+    Conversation.first.update_session(params)
+    
     # BrightPattern
     orchestration = Orchestration.new(params, "BrightPattern")
     response = orchestration.orchestrate
