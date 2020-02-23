@@ -233,18 +233,18 @@ class Brightpattern
     }
 
     url = "#{hostname}/api/v1/avatar/#{sessionId}/speak"
-#    response = HTTParty.post(url,
-#        body: JSON.generate(body),
-#        headers: headers
-#    )
+    response = HTTParty.post(url,
+        body: JSON.generate(body),
+        headers: headers
+    )
     Rails.logger.debug("===REQUEST===")
     Rails.logger.debug url
     Rails.logger.debug headers
     Rails.logger.debug body
     Rails.logger.debug("===RESPONSE===")
-#    Rails.logger.debug response.inspect
-#    Rails.logger.debug response.code
-#    Rails.logger.debug response.body
+    Rails.logger.debug response.inspect
+    Rails.logger.debug response.code
+    Rails.logger.debug response.body
     Rails.logger.debug "sessionId : " + sessionId
     Rails.logger.debug "sessionIdJwt : " + sessionIdJwt
   end
