@@ -14,9 +14,9 @@ class Orchestration
       
       @query = "おはようございます"
       fm_avater = params["fm-avatar"].blank? ? {} : JSON.parse(params["fm-avatar"])
-      @sessionId = fm_avater ? fm_avater["avatarSessionId"] : ""
+      @avatar_session_id = fm_avater ? fm_avater["avatarSessionId"] : ""
 
-      Rails.logger.debug @sessionId
+      Rails.logger.debug @avatar_session_id
     end
 
     def orchestrate
@@ -26,7 +26,7 @@ class Orchestration
           Houndify.new.query_houndify(@location, @conversation_state, @query)
       when "BrightPattern"
         @bp = Brightpattern.new
-        @bp.send_unsolicited_response(@sessionId,@query)
+        @bp.send_unsolicited_response(@avatar_session_id,@query)
       else
           return nil
       end
