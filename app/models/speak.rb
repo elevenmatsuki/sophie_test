@@ -14,6 +14,7 @@ class Speak < ApplicationRecord
         headers = {
             "Content-Type": "application/json",
         }
+        DEFAULT_HOSTNAME = 'https://dal-admin.faceme.com';
 
         sessionIdJwt = JWT.encode ({sessionId: conversation.avatar_session_id}), CUSTOMER_JWT_SECRET, 'HS256'
 
